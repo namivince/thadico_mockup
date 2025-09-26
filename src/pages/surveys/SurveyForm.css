@@ -1,0 +1,308 @@
+.survey-form-page {
+  padding: 24px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: calc(100vh - 64px);
+}
+
+.page-header {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.page-title {
+  display: flex;
+  align-items: flex-start;
+}
+
+.page-title h2 {
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.page-title p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Steps Card */
+.steps-card {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  /* Prevent layout thrashing */
+  contain: layout style paint;
+  will-change: auto;
+}
+
+.steps-card .ant-steps {
+  padding: 8px 0;
+}
+
+.steps-card .ant-steps-item-process .ant-steps-item-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+}
+
+.steps-card .ant-steps-item-finish .ant-steps-item-icon {
+  background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+  border-color: #52c41a;
+}
+
+.steps-card .ant-steps-item-wait .ant-steps-item-icon {
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+}
+
+/* Step Cards */
+.step-card {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  /* Performance optimizations */
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+.step-card .ant-card-head {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px 12px 0 0;
+  border-bottom: none;
+}
+
+.step-card .ant-card-head-title {
+  color: white;
+  font-weight: 600;
+}
+
+.step-card .ant-card-extra .ant-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.step-card .ant-card-extra .ant-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+/* Form Elements */
+.survey-form-page .ant-form-item-label > label {
+  font-weight: 600;
+  color: #333;
+}
+
+.survey-form-page .ant-input,
+.survey-form-page .ant-input-number,
+.survey-form-page .ant-select-selector {
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.survey-form-page .ant-input:focus,
+.survey-form-page .ant-input-number:focus,
+.survey-form-page .ant-select-focused .ant-select-selector {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.survey-form-page .ant-input[size="large"],
+.survey-form-page .ant-select-large .ant-select-selector {
+  height: 48px;
+  font-size: 16px;
+}
+
+/* Question Cards */
+.step-card .ant-card .ant-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.step-card .ant-card .ant-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.step-card .ant-card .ant-card-head {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 8px 8px 0 0;
+  min-height: auto;
+  padding: 12px 16px;
+}
+
+.step-card .ant-card .ant-card-head-title {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Audience Summary */
+.audience-summary {
+  padding: 16px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.audience-summary h4 {
+  margin: 0 0 12px 0;
+  color: #1e40af;
+  font-size: 16px;
+}
+
+.summary-tags .ant-tag {
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-weight: 500;
+}
+
+/* Actions Card */
+.actions-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: sticky;
+  bottom: 24px;
+  z-index: 100;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-actions,
+.right-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Buttons */
+.survey-form-page .ant-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  height: 40px;
+  padding: 0 20px;
+  transition: all 0.3s ease;
+}
+
+.survey-form-page .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.survey-form-page .ant-btn {
+  border-radius: 8px;
+  font-weight: 500;
+  height: 40px;
+  padding: 0 16px;
+  transition: all 0.3s ease;
+}
+
+.survey-form-page .ant-btn:hover {
+  transform: translateY(-1px);
+}
+
+.survey-form-page .ant-btn-dashed {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.survey-form-page .ant-btn-dashed:hover {
+  border-color: #764ba2;
+  color: #764ba2;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+/* Select Options */
+.survey-form-page .ant-select-dropdown {
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.survey-form-page .ant-select-item {
+  border-radius: 6px;
+  margin: 4px 8px;
+}
+
+.survey-form-page .ant-select-item-option-selected {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Radio & Checkbox */
+.survey-form-page .ant-radio-wrapper,
+.survey-form-page .ant-checkbox-wrapper {
+  font-weight: 500;
+}
+
+.survey-form-page .ant-radio-checked .ant-radio-inner,
+.survey-form-page .ant-checkbox-checked .ant-checkbox-inner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+}
+
+/* Date Picker */
+.survey-form-page .ant-picker {
+  border-radius: 8px;
+}
+
+.survey-form-page .ant-picker-focused {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .survey-form-page {
+    padding: 16px;
+  }
+
+  .page-title {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-title h2 {
+    font-size: 24px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .left-actions,
+  .right-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .actions-card {
+    position: relative;
+    bottom: auto;
+  }
+}
