@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/thadico_mockup/static/css/main.013fd37b.css",
+    "main.js": "/thadico_mockup/static/js/main.6b8a8752.js",
+    "index.html": "/thadico_mockup/index.html",
+    "main.013fd37b.css.map": "/thadico_mockup/static/css/main.013fd37b.css.map",
+    "main.6b8a8752.js.map": "/thadico_mockup/static/js/main.6b8a8752.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.013fd37b.css",
+    "static/js/main.6b8a8752.js"
+  ]
+}
