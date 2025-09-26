@@ -7,9 +7,12 @@ import './utils/resizeObserverFix';
 import './App.css';
 
 function App() {
+  // Thêm basename cho GitHub Pages
+  const basename = process.env.NODE_ENV === 'production' ? '/thadico_mockup' : '';
+  
   return (
     <ConfigProvider locale={viVN}>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <div className="app">
           <AppRoutes />
         </div>
