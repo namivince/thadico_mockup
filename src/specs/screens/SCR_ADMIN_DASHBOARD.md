@@ -1,183 +1,186 @@
-# SCR_ADMIN_DASHBOARD — Dashboard quản trị
+SCR_ADMIN_DASHBOARD — Super Admin Overview (F1/F2/F3)
+0) Metadata
 
-## 0) Metadata
-- Route: `/dashboard`
-- Design: UI mẫu ảnh Dashboard (ảnh 14) - **ĐÃ CẬP NHẬT THÀNH GIAO DIỆN MỚI**
-- Role access: Admin only
-- **Phiên bản**: 2.0 - Hoàn toàn mới với 4 tabs và nhiều widgets chuyên nghiệp
+Route: /dashboard
 
-## 1) Purpose
-Trang tổng quan hiển thị các chỉ số nhân sự, biến động hàng tháng và cung cấp lối tắt đến các chức năng quản trị chính. **Đã được nâng cấp với giao diện hiện đại, nhiều tính năng và trải nghiệm người dùng tốt hơn.**
+Role access: super_admin
 
-## 2) Layout - **ĐÃ CẬP NHẬT HOÀN TOÀN**
+Design ref: Dashboard v2 (layout 4 khối chính, 1 thanh mega-menu rút gọn)
 
-### 2.1) Header
-- **Top mega-menu**: TỔ CHỨC / NHÂN SỰ / CÔNG-LƯƠNG / ĐÁNH GIÁ / TUYỂN DỤNG / ĐÀO TẠO / QUẢN TRỊ  
-  - Submenu Master Data: Quản lý đề xuất, Chương trình khảo sát, Danh mục, Chức danh, Cấu hình hệ thống.
-- **User menu**: Thông tin cá nhân, Đăng xuất
-- **Gradient background** với hiệu ứng glass morphism
+Mục tiêu: Cho Super Admin xem bức tranh tổng của 3 flow (F1, F2, F3) + lối tắt thao tác nhanh.
 
-### 2.2) Main Content - **4 TABS MỚI**
+1) Navigation (Mega-menu rút gọn)
 
-#### Tab 1: "Tổng quan" 📊
-- **KPI Widgets**:
-  - Tổng hợp nhân sự: Tổng số, Chính thức, Thử việc (với hover effects)
-  - Biến động tháng: Nhân sự mới, Nghỉ việc, Thay đổi ròng (với màu sắc động)
+Dashboard → /dashboard
 
-- **Main Dashboard Area**:
-  - **Left Column (16/24)**:
-    - **Biểu đồ phân bố nhân sự**: Progress bars theo phòng ban với tổng số ở trung tâm
-    - **Widget hiệu suất**: Progress bars xu hướng 6 tháng với target indicators
-  
-  - **Right Column (8/24)**:
-    - **Weather Widget**: Thời tiết hiện tại với icon động
-    - **Tasks Widget**: Danh sách công việc cần làm với priority và progress
-    - **System Status Widget**: Trạng thái hệ thống (Database, Server, Network, Security)
+Khảo sát (F1) → /surveys
 
-- **Shortcuts Section**:
-  - Import tổng hợp công
-  - Quản lý bộ tiêu chí đánh giá  
-  - Thêm mới nhân sự
-  - **Gradient buttons** với hover animations
+Kế hoạch đào tạo (F2) → /training/plans
 
-#### Tab 2: "Lịch & Sự kiện" 📅
-- **Calendar Widget**: 
-  - Lịch tương tác với sự kiện được đánh dấu
-  - Badge indicators cho các mức độ ưu tiên
-- **Events Panel**:
-  - Danh sách sự kiện sắp tới (7 ngày)
-  - Chi tiết sự kiện khi chọn ngày
-  - Color coding theo priority (high/medium/low)
+Đánh giá (F3) → /assessment/rounds
 
-#### Tab 3: "Hoạt động" 🔔
-- **Recent Activities**:
-  - Timeline hoạt động với icons và màu sắc
-  - Thông tin user, timestamp với relative time
-  - Animated timeline với hover effects
-- **Notifications Panel**:
-  - Thông báo với trạng thái đọc/chưa đọc
-  - Badge counter cho thông báo mới
-  - Priority icons và colors
-- **Quick Stats**: Thống kê nhanh các chỉ số hoạt động
+Cấu hình (ẩn trên demo nếu không cần) → /admin/system
 
-#### Tab 4: "Báo cáo" 📋
-- **Report Generator**:
-  - Dropdown chọn loại báo cáo (Chấm công, Hiệu suất, Phòng ban, Lương)
-  - Date range picker
-  - Preview table với pagination
-- **Export Options**: Excel, PDF với progress indicators
-- **Summary Statistics**: KPI tóm tắt cho từng loại báo cáo
-- **Quick Actions**: Lưu template, Lên lịch gửi, Chia sẻ, In báo cáo
+Không hiển thị: Công-lương, Tuyển dụng, Nhân sự… để tránh nhiễu demo.
 
-## 3) Actions - **ĐÃ MỞ RỘNG**
+2) Layout tổng
 
-### 3.1) Tab Navigation
-- Click tab → chuyển đổi giữa các màn hình
-- Smooth transition animations
-- Active tab highlighting với gradient
+Hàng 1 (Hero KPIs) — 3 card ngang (equal width)
 
-### 3.2) Widget Interactions
-- **KPI Cards**: Click → điều hướng sang danh sách chi tiết (VD: `/people/list`)
-- **Department Chart**: Hover → hiển thị tooltip chi tiết
-- **Performance Bars**: Click → drill-down vào chi tiết tháng
-- **Weather Widget**: Auto-refresh mỗi 30 phút
-- **Tasks**: Click task → mở modal chi tiết, check/uncheck completion
-- **System Status**: Click service → mở monitoring dashboard
-- **Calendar**: 
-  - Click ngày → hiển thị events của ngày đó
-  - Click event → mở modal chi tiết event
-- **Activities Timeline**: Click activity → mở chi tiết hoạt động
-- **Notifications**: Click → đánh dấu đã đọc, click action button
-- **Reports**: 
-  - Change report type → update preview table
-  - Click export → download file
-  - Click quick actions → execute action
+F1 — Surveys
 
-### 3.3) Menu Actions
-- **Mega Menu**: Click menu item → điều hướng đến module
-- **User Menu**: Click profile/logout → thực hiện action
-- **Shortcuts**: Click → mở module tương ứng với gradient animation
+KPIs: draft, running, dueSoon, overdue, responseRate%
 
-## 4) APIs - **ĐÃ MỞ RỘNG**
+F2 — Training Plans
 
-### 4.1) Existing APIs
-- `GET /api/dashboard/kpis` - Lấy dữ liệu KPI
-- `GET /api/dashboard/shortcuts` - Lấy danh sách shortcuts
+KPIs: draft, waitingApproval, approved, deployed, completed
 
-### 4.2) New APIs Added
-- `GET /api/dashboard/department-stats` - Thống kê phòng ban
-- `GET /api/dashboard/performance-trends` - Xu hướng hiệu suất
-- `GET /api/dashboard/weather` - Thông tin thời tiết
-- `GET /api/dashboard/tasks` - Danh sách công việc
-- `PUT /api/dashboard/tasks/:id` - Cập nhật trạng thái task
-- `GET /api/dashboard/system-status` - Trạng thái hệ thống
-- `GET /api/dashboard/events` - Sự kiện lịch
-- `GET /api/dashboard/activities` - Hoạt động gần đây
-- `GET /api/dashboard/notifications` - Thông báo
-- `PUT /api/dashboard/notifications/:id/read` - Đánh dấu đã đọc
-- `POST /api/dashboard/reports/generate` - Tạo báo cáo
-- `POST /api/dashboard/reports/export` - Export báo cáo
+F3 — Assessments
 
-## 5) Rules / Validation - **ĐÃ CẬP NHẬT**
+KPIs: draft, running, grading, resultsPublished, finalized
 
-### 5.1) Access Control
-- Widgets hiển thị theo role (Admin full quyền)
-- Shortcut disabled nếu không có quyền
-- Tab visibility theo permission
-- Export functions chỉ cho Admin/Manager
+Hàng 2 (Tiến độ & cảnh báo)
 
-### 5.2) Data Refresh
-- **KPI data**: Cập nhật theo tháng hiện tại
-- **Weather**: Auto-refresh 30 phút
-- **System Status**: Real-time updates
-- **Activities**: Real-time với WebSocket
-- **Notifications**: Real-time push
+Progress Board (3 cột): mỗi cột 1 flow
 
-### 5.3) Performance
-- **Lazy loading**: Chỉ load data khi switch tab
-- **Caching**: Cache data 5 phút cho widgets
-- **Pagination**: Tables có pagination
-- **Responsive**: Tối ưu cho mobile/tablet
+Thanh tiến độ: % hoàn thành kỳ hiện tại
 
-## 6) Technical Implementation - **MỚI**
+Mini-pill: “Việc cần làm” (approval pending, lớp chưa xếp lịch, survey sắp đóng…)
 
-### 6.1) Components Created
-- `AdminDashboard.jsx` - Main dashboard container
-- `KpiWidget.jsx` - KPI cards
-- `DepartmentChart.jsx` - Department distribution
-- `PerformanceWidget.jsx` - Performance trends
-- `CalendarWidget.jsx` - Calendar and events
-- `RecentActivities.jsx` - Activities timeline
-- `QuickReports.jsx` - Report generator
-- `WeatherWidget.jsx` - Weather info
-- `TasksWidget.jsx` - Task management
-- `SystemStatusWidget.jsx` - System monitoring
-- `MegaMenu.jsx` - Top navigation
-- `ShortcutWidget.jsx` - Quick actions
+Alert Center (right side, 1/3 chiều ngang)
 
-### 6.2) Styling
-- **CSS File**: `AdminDashboard.css`
-- **Theme**: Gradient backgrounds, glass morphism
-- **Animations**: Hover effects, smooth transitions
-- **Responsive**: Mobile-first design
-- **Colors**: Professional color palette
+Danh sách cảnh báo hợp nhất: overdue, dueIn3Days, approvalSLA, budgetOver
 
-### 6.3) Dependencies
-- `antd` - UI components
-- `@ant-design/icons` - Icons
-- `dayjs` - Date handling
-- `react-router-dom` - Navigation
+Hàng 3 (Trends & phân tích)
 
-## 7) Changelog - **MỚI**
+F1 Trend (line): Response rate 6 tháng + completion by org (mini bar)
 
-### Version 2.0 (2025-09-26)
-- ✅ **MAJOR UPDATE**: Hoàn toàn thiết kế lại giao diện
-- ✅ **NEW**: 4 tabs navigation system
-- ✅ **NEW**: 10+ widgets mới với tính năng phong phú
-- ✅ **NEW**: Gradient theme và glass morphism effects
-- ✅ **NEW**: Real-time data và interactive elements
-- ✅ **NEW**: Mobile responsive design
-- ✅ **IMPROVED**: Performance với lazy loading
-- ✅ **IMPROVED**: User experience với animations
-- ✅ **FIXED**: Removed chart library errors
-- ✅ **ADDED**: Comprehensive documentation
+F2 Budget vs Actual (bar): theo quý; chip báo “Over / Within”
+
+F3 Score Distribution (violin/histogram): điểm trung bình & gap vs standard
+
+Hàng 4 (Quick Actions / Shortcuts)
+
+F1: Tạo khảo sát, Phân phối, Mở monitor
+
+F2: Tạo kế hoạch, Gửi phê duyệt, Triển khai lớp
+
+F3: Tạo chiến dịch, Đóng input & chấm, Công bố kết quả
+
+Phân quyền: chỉ enable khi user có quyền flow tương ứng
+
+Tất cả card có onClick dẫn tới màn hình list/detail tương ứng.
+
+3) Interactions
+
+Click KPI → filter preset trên list của flow đó.
+
+Hover KPI → tooltip hiển thị query mô tả (e.g. “Surveys running this month”).
+
+Alert item → mở modal chi tiết + nút xử lý nhanh (Send reminder / Approve / Close input).
+
+Trend chart có dropdown range: 3M / 6M / 12M.
+
+4) APIs
+
+Tổng hợp (1 call/flow)
+
+GET /api/dashboard/f1/summary?range=month
+→ { draft, running, dueSoon, overdue, responseRate }
+
+GET /api/dashboard/f2/summary?range=year
+→ { draft, waitingApproval, approved, deployed, completed, budget:{plan,actual} }
+
+GET /api/dashboard/f3/summary?range=period
+→ { draft, running, grading, resultsPublished, finalized, avgScore, gap }
+
+Tiến độ & cảnh báo
+
+GET /api/dashboard/alerts
+→ [{ id, flow: 'F1'|'F2'|'F3', type, title, dueAt, severity, action:{label, href} }]
+
+GET /api/dashboard/f1/progress?period=:period → { completionPct, pendingReminders }
+
+GET /api/dashboard/f2/progress?year=:year → { completionPct, approvalsPending }
+
+GET /api/dashboard/f3/progress?roundId=:id → { completionPct, gradingSLA }
+
+Trends
+
+GET /api/dashboard/f1/trends?months=6 → [{ month, responseRate, completion }]
+
+GET /api/dashboard/f2/budget-trend?months=6 → [{ month, plan, actual }]
+
+GET /api/dashboard/f3/score-trend?months=6 → [{ month, avg, stdev }]
+
+Shortcuts
+
+GET /api/dashboard/shortcuts?flows=F1,F2,F3
+→ [{ code, title, href, enabled }]
+
+5) Rules
+
+Timebox: mặc định hiển thị tháng hiện tại (F1, F3) và năm hiện tại (F2).
+
+SLA nhắc việc:
+
+F1: nhắc T-3/T-1/Overdue
+
+F2: nhắc mỗi cấp phê duyệt sau N giờ
+
+F3: nhắc grading trước deadline
+
+Hiển thị có điều kiện: card/shortcut ẩn hoặc disabled nếu enabled=false.
+
+6) UI/UX Notes
+
+Tone: clean, gradient nhẹ, glass cho hero KPIs.
+
+Iconography:
+
+F1 📋, F2 🎓, F3 🧭 (tuỳ bộ icon đang dùng).
+
+Color coding:
+
+F1 (indigo), F2 (teal), F3 (orange). Alerts dùng đỏ/amber/xanh lá theo severity.
+
+Responsive:
+
+Hàng 1: 3 card → stack 1/row trên mobile.
+
+Hàng 2: Progress Board 2/3 + Alerts 1/3 → mobile: stack.
+
+7) Acceptance Criteria
+
+ Vào /dashboard thấy 3 KPI cards cho F1, F2, F3 với số liệu đúng.
+
+ Click KPI → được điều hướng sang list tương ứng với filter preset.
+
+ Alert Center hiện các cảnh báo cross-flow, click mở được action/modal.
+
+ 3 widgets Trends hiển thị dữ liệu đúng phạm vi (3M/6M/12M selector).
+
+ Shortcuts hiển thị theo quyền; disabled khi không đủ quyền.
+
+ Tất cả API lỗi → hiển thị skeleton + message “Thử lại”.
+
+8) Data contracts (ví dụ)
+// /api/dashboard/f2/summary
+{
+  "draft": 4,
+  "waitingApproval": 2,
+  "approved": 5,
+  "deployed": 3,
+  "completed": 1,
+  "budget": { "plan": 1200000000, "actual": 950000000 }
+}
+
+9) Telemetry
+
+Event: dash.kpi.click (flow, kpi)
+
+Event: dash.alert.action (flow, type, action)
+
+Event: dash.shortcut.click (code)
+
+Event: dash.range.change (widget, months)

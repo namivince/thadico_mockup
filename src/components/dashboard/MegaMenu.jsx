@@ -28,11 +28,7 @@ const MegaMenu = ({ onMenuSelect }) => {
 
   // Icon mapping cho từng menu
   const menuIcons = {
-    'organization': <ApartmentOutlined />,
-    'personnel': <TeamOutlined />,
-    'salary': <DollarOutlined />,
     'assessment': <TrophyOutlined />,
-    'recruitment': <UserAddOutlined />,
     'training': <BookOutlined />,
     'admin': <SettingOutlined />
   };
@@ -59,6 +55,20 @@ const MegaMenu = ({ onMenuSelect }) => {
     // Handle navigation for specific menu items
     if (e.key === 'admin:surveys') {
       navigate('/surveys');
+      return;
+    }
+
+    // Training routes
+    if (e.key === 'training:demands') {
+      navigate('/training/demands');
+      return;
+    }
+    if (e.key === 'training:plans') {
+      navigate('/training/plans');
+      return;
+    }
+    if (e.key === 'training:courses') {
+      navigate('/training/courses');
       return;
     }
     
@@ -108,6 +118,9 @@ const MegaMenu = ({ onMenuSelect }) => {
   return (
     <div className="mega-menu">
       <div className="mega-menu__container">
+        <div className="mega-menu__logo">
+          <h1 className="logo-text">THADICO</h1>
+        </div>
         <div className="mega-menu__left">
           {mainMenuItems.map((item) => (
             <Dropdown 
@@ -120,6 +133,14 @@ const MegaMenu = ({ onMenuSelect }) => {
               <Button 
                 type={selectedMenu === item.key ? 'primary' : 'default'}
                 className="mega-menu__item"
+                style={{
+                  fontWeight: 600,
+                  padding: '0 16px',
+                  height: '38px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
                 {item.icon}
                 <span style={{ marginLeft: '6px', marginRight: '4px' }}>

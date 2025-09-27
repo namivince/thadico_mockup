@@ -6,6 +6,14 @@ import SurveyList from '../pages/surveys/SurveyList';
 import SurveyForm from '../pages/surveys/SurveyForm';
 import SurveyMonitor from '../pages/surveys/SurveyMonitor';
 
+// Training Plan Routes
+import PlanList from '../pages/training/PlanList';
+import PlanForm from '../pages/training/PlanForm';
+import PlanApprovalQueue from '../pages/training/PlanApprovalQueue';
+import PlanDeploy from '../pages/training/PlanDeploy';
+import TrainingDemandList from '../pages/training/TrainingDemandList';
+import CourseList from '../pages/training/CourseList';
+
 // Kiểm tra xem người dùng có quyền Admin không
 const isAdmin = () => {
   // Đây là logic giả định, cần thay thế bằng logic thực tế
@@ -81,6 +89,72 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <SurveyMonitor />
+          </AdminRoute>
+        } 
+      />
+      
+      {/* Training Plan Routes */}
+      <Route 
+        path="/training/plans" 
+        element={
+          <AdminRoute>
+            <PlanList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/plans/new" 
+        element={
+          <AdminRoute>
+            <PlanForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/plans/:id/edit" 
+        element={
+          <AdminRoute>
+            <PlanForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/plans/:id" 
+        element={
+          <AdminRoute>
+            <PlanForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/plans/:id/approvals" 
+        element={
+          <AdminRoute>
+            <PlanApprovalQueue />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/plans/:id/deploy" 
+        element={
+          <AdminRoute>
+            <PlanDeploy />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/demands" 
+        element={
+          <AdminRoute>
+            <TrainingDemandList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/training/courses" 
+        element={
+          <AdminRoute>
+            <CourseList />
           </AdminRoute>
         } 
       />

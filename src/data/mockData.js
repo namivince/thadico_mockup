@@ -4,41 +4,121 @@
 
 // Dữ liệu KPI cho dashboard
 export const dashboardKpiData = {
-  // Tổng hợp nhân sự
-  totalEmployees: 150,
-  officialEmployees: 135,
-  probationEmployees: 15,
+  // F1 - Surveys
+  surveys: {
+    draft: 5,
+    running: 3,
+    dueSoon: 2,
+    overdue: 1,
+    responseRate: 78.5
+  },
   
-  // Biến động tháng
-  newEmployees: 8,
-  resignedEmployees: 3,
-  netChange: 5
+  // F2 - Training Plans
+  trainingPlans: {
+    draft: 4,
+    waitingApproval: 2,
+    approved: 5,
+    deployed: 3,
+    completed: 1,
+    budget: { plan: 1200000000, actual: 950000000 }
+  },
+  
+  // F3 - Assessments
+  assessments: {
+    draft: 3,
+    running: 2,
+    grading: 4,
+    resultsPublished: 6,
+    finalized: 2,
+    avgScore: 7.8,
+    gap: 0.5
+  },
+  
+  // Progress data
+  progress: {
+    f1: { completionPct: 65, pendingReminders: 12 },
+    f2: { completionPct: 45, approvalsPending: 5 },
+    f3: { completionPct: 80, gradingSLA: 3 }
+  }
 };
 
 // Danh sách shortcuts cho dashboard
-export const dashboardShortcuts = [
-  {
-    id: 'import_attendance',
-    title: 'Import tổng hợp công',
-    icon: 'import',
-    path: '/attendance/import',
-    disabled: false
-  },
-  {
-    id: 'assessment_criteria',
-    title: 'Quản lý bộ tiêu chí đánh giá',
-    icon: 'audit',
-    path: '/assessment/criteria',
-    disabled: false
-  },
-  {
-    id: 'add_employee',
-    title: 'Thêm mới nhân sự',
-    icon: 'user-add',
-    path: '/employees/new',
-    disabled: false
-  }
-];
+export const dashboardShortcuts = {
+  // F1 - Surveys
+  f1: [
+    {
+      id: 'create_survey',
+      title: 'Tạo khảo sát',
+      icon: 'form',
+      path: '/surveys/new',
+      disabled: false
+    },
+    {
+      id: 'distribute_survey',
+      title: 'Phân phối khảo sát',
+      icon: 'share-alt',
+      path: '/surveys/distribute',
+      disabled: false
+    },
+    {
+      id: 'monitor_survey',
+      title: 'Mở monitor',
+      icon: 'dashboard',
+      path: '/surveys/monitor',
+      disabled: false
+    }
+  ],
+  
+  // F2 - Training Plans
+  f2: [
+    {
+      id: 'create_plan',
+      title: 'Tạo kế hoạch',
+      icon: 'file-add',
+      path: '/training/plans/new',
+      disabled: false
+    },
+    {
+      id: 'submit_approval',
+      title: 'Gửi phê duyệt',
+      icon: 'audit',
+      path: '/training/plans/approvals',
+      disabled: false
+    },
+    {
+      id: 'deploy_class',
+      title: 'Triển khai lớp',
+      icon: 'rocket',
+      path: '/training/courses/new',
+      disabled: false
+    }
+  ],
+  
+  // F3 - Assessments
+  f3: [
+    {
+      id: 'create_campaign',
+      title: 'Tạo chiến dịch',
+      icon: 'trophy',
+      path: '/assessment/rounds/new',
+      disabled: false
+    },
+    {
+      id: 'close_input',
+      title: 'Đóng input & chấm',
+      icon: 'lock',
+      path: '/assessment/rounds/grading',
+      disabled: false
+    },
+    {
+      id: 'publish_results',
+      title: 'Công bố kết quả',
+      icon: 'notification',
+      path: '/assessment/rounds/results',
+      disabled: false
+    }
+  ]
+};
 
 // Danh sách người dùng mẫu
 export const users = [
@@ -168,7 +248,9 @@ export const trainingDemands = [
     creator: 'Nguyễn Văn A',
     createdDate: '2025-06-15',
     status: 'APPROVED',
-    approver: 'Trần Văn B'
+    approver: 'Trần Văn B',
+    description: 'Nâng cao kỹ năng lãnh đạo cho cấp quản lý cao',
+    skills: ['Kỹ năng ra quyết định', 'Quản lý xung đột', 'Tư duy chiến lược']
   },
   {
     id: 2,
@@ -177,7 +259,9 @@ export const trainingDemands = [
     creator: 'Lê Thị C',
     createdDate: '2025-07-10',
     status: 'PENDING',
-    approver: null
+    approver: null,
+    description: 'Nâng cao kỹ năng quản lý dự án cho team leader',
+    skills: ['Agile/Scrum', 'Quản lý thời gian', 'Phân bổ nguồn lực']
   },
   {
     id: 3,
@@ -186,7 +270,196 @@ export const trainingDemands = [
     creator: 'Phạm Văn D',
     createdDate: '2025-07-20',
     status: 'REJECTED',
-    approver: 'Trần Văn B'
+    approver: 'Trần Văn B',
+    description: 'Nâng cao kỹ năng bán hàng cho đội ngũ kinh doanh',
+    skills: ['Kỹ năng thuyết trình', 'Kỹ năng đàm phán', 'Chăm sóc khách hàng']
+  },
+  {
+    id: 4,
+    name: 'Đào tạo Excel nâng cao',
+    department: 'Phòng Kế toán',
+    creator: 'Hoàng Thị E',
+    createdDate: '2025-06-05',
+    status: 'APPROVED',
+    approver: 'Trần Văn B',
+    description: 'Nâng cao kỹ năng sử dụng Excel cho nhân viên kế toán',
+    skills: ['Hàm và công thức nâng cao', 'Pivot Table', 'VBA Macro']
+  },
+  {
+    id: 5,
+    name: 'Đào tạo tiếng Anh giao tiếp',
+    department: 'Phòng Kinh doanh',
+    creator: 'Nguyễn Thị F',
+    createdDate: '2025-05-20',
+    status: 'APPROVED',
+    approver: 'Trần Văn B',
+    description: 'Nâng cao kỹ năng tiếng Anh giao tiếp cho đội ngũ kinh doanh quốc tế',
+    skills: ['Giao tiếp', 'Thương lượng', 'Viết email']
+  },
+  {
+    id: 6,
+    name: 'Đào tạo kỹ năng thuyết trình',
+    department: 'Phòng Marketing',
+    creator: 'Lê Văn G',
+    createdDate: '2025-07-05',
+    status: 'PENDING',
+    approver: null,
+    description: 'Nâng cao kỹ năng thuyết trình cho đội ngũ marketing',
+    skills: ['Thuyết trình', 'Thiết kế slide', 'Kỹ năng trình bày']
+  },
+  {
+    id: 7,
+    name: 'Đào tạo Digital Marketing',
+    department: 'Phòng Marketing',
+    creator: 'Lê Văn G',
+    createdDate: '2025-06-28',
+    status: 'APPROVED',
+    approver: 'Trần Văn B',
+    description: 'Cập nhật kiến thức về Digital Marketing',
+    skills: ['SEO', 'Google Ads', 'Social Media Marketing']
+  },
+  {
+    id: 8,
+    name: 'Đào tạo kỹ năng lập trình Python',
+    department: 'Phòng Kỹ thuật',
+    creator: 'Lê Thị C',
+    createdDate: '2025-07-15',
+    status: 'PENDING',
+    approver: null,
+    description: 'Đào tạo kỹ năng lập trình Python cho đội ngũ phát triển',
+    skills: ['Python cơ bản', 'Data Analysis', 'Machine Learning']
+  },
+  {
+    id: 9,
+    name: 'Đào tạo quản lý thời gian',
+    department: 'Phòng Nhân sự',
+    creator: 'Trần Thị H',
+    createdDate: '2025-05-10',
+    status: 'APPROVED',
+    approver: 'Nguyễn Văn A',
+    description: 'Nâng cao kỹ năng quản lý thời gian cho toàn bộ nhân viên',
+    skills: ['Lập kế hoạch', 'Sắp xếp ưu tiên', 'Quản lý công việc']
+  },
+  {
+    id: 10,
+    name: 'Đào tạo kỹ năng làm việc nhóm',
+    department: 'Phòng Nhân sự',
+    creator: 'Trần Thị H',
+    createdDate: '2025-06-10',
+    status: 'APPROVED',
+    approver: 'Nguyễn Văn A',
+    description: 'Nâng cao kỹ năng làm việc nhóm cho toàn bộ nhân viên',
+    skills: ['Giao tiếp', 'Phối hợp', 'Giải quyết xung đột']
+  },
+  {
+    id: 11,
+    name: 'Đào tạo kỹ năng phỏng vấn',
+    department: 'Phòng Nhân sự',
+    creator: 'Trần Thị H',
+    createdDate: '2025-07-01',
+    status: 'PENDING',
+    approver: null,
+    description: 'Nâng cao kỹ năng phỏng vấn cho đội ngũ tuyển dụng',
+    skills: ['Kỹ thuật phỏng vấn', 'Đánh giá ứng viên', 'Xây dựng bộ câu hỏi']
+  },
+  {
+    id: 12,
+    name: 'Đào tạo kỹ năng chăm sóc khách hàng',
+    department: 'Phòng CSKH',
+    creator: 'Võ Thị I',
+    createdDate: '2025-06-20',
+    status: 'APPROVED',
+    approver: 'Trần Văn B',
+    description: 'Nâng cao kỹ năng chăm sóc khách hàng cho đội ngũ CSKH',
+    skills: ['Giao tiếp', 'Xử lý khiếu nại', 'Chăm sóc khách hàng VIP']
+  },
+  {
+    id: 13,
+    name: 'Đào tạo kỹ năng sử dụng Salesforce',
+    department: 'Phòng Kinh doanh',
+    creator: 'Phạm Văn D',
+    createdDate: '2025-07-25',
+    status: 'PENDING',
+    approver: null,
+    description: 'Đào tạo kỹ năng sử dụng Salesforce cho đội ngũ kinh doanh',
+    skills: ['Quản lý lead', 'Báo cáo', 'Tự động hóa']
+  },
+  {
+    id: 14,
+    name: 'Đào tạo kỹ năng sử dụng PowerBI',
+    department: 'Phòng Kế toán',
+    creator: 'Hoàng Thị E',
+    createdDate: '2025-06-15',
+    status: 'REJECTED',
+    approver: 'Trần Văn B',
+    description: 'Đào tạo kỹ năng sử dụng PowerBI cho đội ngũ kế toán',
+    skills: ['Tạo báo cáo', 'Phân tích dữ liệu', 'Trực quan hóa']
+  },
+  {
+    id: 15,
+    name: 'Đào tạo kỹ năng quản lý stress',
+    department: 'Phòng Nhân sự',
+    creator: 'Trần Thị H',
+    createdDate: '2025-05-25',
+    status: 'APPROVED',
+    approver: 'Nguyễn Văn A',
+    description: 'Nâng cao kỹ năng quản lý stress cho toàn bộ nhân viên',
+    skills: ['Quản lý cảm xúc', 'Kỹ thuật thư giãn', 'Cân bằng công việc và cuộc sống']
+  },
+  {
+    id: 16,
+    name: 'Đào tạo kỹ năng sử dụng Adobe Photoshop',
+    department: 'Phòng Marketing',
+    creator: 'Lê Văn G',
+    createdDate: '2025-07-10',
+    status: 'PENDING',
+    approver: null,
+    description: 'Đào tạo kỹ năng sử dụng Adobe Photoshop cho đội ngũ marketing',
+    skills: ['Chỉnh sửa ảnh', 'Thiết kế banner', 'Xử lý ảnh sản phẩm']
+  },
+  {
+    id: 17,
+    name: 'Đào tạo kỹ năng sử dụng Jira',
+    department: 'Phòng Kỹ thuật',
+    creator: 'Lê Thị C',
+    createdDate: '2025-06-05',
+    status: 'APPROVED',
+    approver: 'Trần Văn B',
+    description: 'Đào tạo kỹ năng sử dụng Jira cho đội ngũ phát triển',
+    skills: ['Quản lý task', 'Agile board', 'Báo cáo']
+  },
+  {
+    id: 18,
+    name: 'Đào tạo kỹ năng viết email chuyên nghiệp',
+    department: 'Phòng Hành chính',
+    creator: 'Nguyễn Thị J',
+    createdDate: '2025-07-15',
+    status: 'PENDING',
+    approver: null,
+    description: 'Nâng cao kỹ năng viết email chuyên nghiệp cho toàn bộ nhân viên',
+    skills: ['Cấu trúc email', 'Ngôn ngữ chuyên nghiệp', 'Email template']
+  },
+  {
+    id: 19,
+    name: 'Đào tạo kỹ năng sử dụng SAP',
+    department: 'Phòng Kế toán',
+    creator: 'Hoàng Thị E',
+    createdDate: '2025-06-25',
+    status: 'REJECTED',
+    approver: 'Trần Văn B',
+    description: 'Đào tạo kỹ năng sử dụng SAP cho đội ngũ kế toán',
+    skills: ['SAP FI', 'SAP CO', 'Báo cáo tài chính']
+  },
+  {
+    id: 20,
+    name: 'Đào tạo kỹ năng an toàn thông tin',
+    department: 'Phòng IT',
+    creator: 'Trần Văn K',
+    createdDate: '2025-07-01',
+    status: 'APPROVED',
+    approver: 'Nguyễn Văn A',
+    description: 'Nâng cao ý thức về an toàn thông tin cho toàn bộ nhân viên',
+    skills: ['Bảo mật mật khẩu', 'Nhận diện lửa đảo', 'Bảo vệ dữ liệu']
   }
 ];
 
@@ -194,27 +467,212 @@ export const trainingDemands = [
 export const trainingPlans = [
   {
     id: 1,
-    name: 'Kế hoạch đào tạo Q3/2025',
-    budget: 150000000,
-    createdDate: '2025-06-20',
-    creator: 'Trần Văn B',
-    status: 'APPROVED'
+    name: 'Kế hoạch đào tạo 2025',
+    year: 2025,
+    description: 'Kế hoạch đào tạo toàn công ty năm 2025',
+    budget: 500000000,
+    createdAt: '2025-01-15',
+    createdBy: 'Nguyễn Văn A',
+    status: 'draft',
+    items: 12,
+    approvalLevel: 0,
+    completionRate: 0,
+    department: 'Phòng Nhân sự',
+    objectives: ['Nâng cao kỹ năng lãnh đạo', 'Phát triển kỹ năng chuyên môn', 'Cải thiện ngoại ngữ']
   },
   {
     id: 2,
-    name: 'Kế hoạch đào tạo Q4/2025',
-    budget: 200000000,
-    createdDate: '2025-09-15',
-    creator: 'Trần Văn B',
-    status: 'WAITING_APPROVAL'
+    name: 'Kế hoạch đào tạo Q2/2025',
+    year: 2025,
+    description: 'Kế hoạch đào tạo quý 2 năm 2025',
+    budget: 250000000,
+    createdAt: '2025-03-10',
+    createdBy: 'Trần Thị B',
+    status: 'waiting_approval',
+    items: 8,
+    approvalLevel: 1,
+    completionRate: 0,
+    department: 'Phòng Nhân sự',
+    objectives: ['Nâng cao kỹ năng lãnh đạo', 'Phát triển kỹ năng chuyên môn']
   },
   {
     id: 3,
-    name: 'Kế hoạch đào tạo 2026',
-    budget: 500000000,
-    createdDate: '2025-11-10',
-    creator: 'Trần Văn B',
-    status: 'DRAFT'
+    name: 'Kế hoạch đào tạo kỹ năng lãnh đạo',
+    year: 2025,
+    description: 'Kế hoạch đào tạo kỹ năng lãnh đạo cho các cấp quản lý',
+    budget: 350000000,
+    createdAt: '2025-02-20',
+    createdBy: 'Lê Văn C',
+    status: 'approved',
+    items: 5,
+    approvalLevel: 3,
+    completionRate: 0,
+    department: 'Phòng Nhân sự',
+    objectives: ['Nâng cao kỹ năng lãnh đạo', 'Phát triển kỹ năng quản lý']
+  },
+  {
+    id: 4,
+    name: 'Kế hoạch đào tạo nhân viên mới',
+    year: 2025,
+    description: 'Kế hoạch đào tạo nhân viên mới vào công ty',
+    budget: 120000000,
+    createdAt: '2025-01-05',
+    createdBy: 'Phạm Thị D',
+    status: 'deployed',
+    items: 6,
+    approvalLevel: 3,
+    completionRate: 45,
+    department: 'Phòng Nhân sự',
+    objectives: ['Hội nhập nhân viên mới', 'Giới thiệu văn hóa công ty']
+  },
+  {
+    id: 5,
+    name: 'Kế hoạch đào tạo Q1/2025',
+    year: 2025,
+    description: 'Kế hoạch đào tạo quý 1 năm 2025',
+    budget: 180000000,
+    createdAt: '2025-01-02',
+    createdBy: 'Nguyễn Văn A',
+    status: 'completed',
+    items: 10,
+    approvalLevel: 3,
+    completionRate: 100,
+    department: 'Phòng Nhân sự',
+    objectives: ['Nâng cao kỹ năng chuyên môn', 'Cập nhật kiến thức mới']
+  }
+];
+
+// Danh sách khóa học đào tạo
+export const trainingCourses = [
+  { id: 1, name: 'Kỹ năng lãnh đạo cấp cao', category: 'Soft Skills', cost: 15000000 },
+  { id: 2, name: 'Quản lý dự án', category: 'Management', cost: 12000000 },
+  { id: 3, name: 'Tiếng Anh giao tiếp', category: 'Language', cost: 8000000 },
+  { id: 4, name: 'Excel nâng cao', category: 'Technical', cost: 5000000 },
+  { id: 5, name: 'Kỹ năng bán hàng', category: 'Sales', cost: 7000000 },
+  { id: 6, name: 'Kỹ năng thuyết trình', category: 'Soft Skills', cost: 6000000 },
+  { id: 7, name: 'Quản lý thời gian', category: 'Soft Skills', cost: 4000000 },
+  { id: 8, name: 'Digital Marketing', category: 'Marketing', cost: 10000000 }
+];
+
+// Danh sách phê duyệt kế hoạch
+export const planApprovals = [
+  {
+    planId: 2,
+    approvals: [
+      {
+        level: 1,
+        title: 'Trưởng phòng',
+        approver: 'Nguyễn Văn A',
+        status: 'approved',
+        dueDate: '2025-03-20',
+        completedDate: '2025-03-18',
+        comment: 'Đã duyệt, cần lưu ý về ngân sách'
+      },
+      {
+        level: 2,
+        title: 'Giám đốc Nhân sự',
+        approver: 'Lê Thị B',
+        status: 'waiting',
+        dueDate: '2025-03-25',
+        completedDate: null,
+        comment: null
+      },
+      {
+        level: 3,
+        title: 'Tổng Giám đốc',
+        approver: 'Trần Văn C',
+        status: 'pending',
+        dueDate: '2025-03-30',
+        completedDate: null,
+        comment: null
+      }
+    ],
+    comments: [
+      {
+        id: 1,
+        author: 'Nguyễn Văn A',
+        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+        content: 'Kế hoạch này cần xem xét lại ngân sách cho khóa học tiếng Anh.',
+        datetime: '2025-03-18 10:30',
+        role: 'Trưởng phòng'
+      },
+      {
+        id: 2,
+        author: 'Trần Thị B',
+        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+        content: 'Đã điều chỉnh ngân sách theo góp ý.',
+        datetime: '2025-03-18 11:15',
+        role: 'HR Manager'
+      }
+    ],
+    versions: [
+      { id: 1, version: 1, createdAt: '2025-03-10', note: 'Phiên bản đầu tiên' },
+      { id: 2, version: 2, createdAt: '2025-03-15', note: 'Cập nhật sau feedback' }
+    ]
+  }
+];
+
+// Danh sách lớp học đã triển khai
+export const trainingClasses = [
+  {
+    id: 1,
+    planId: 3,
+    planItemId: 1,
+    courseName: 'Kỹ năng lãnh đạo cấp cao',
+    targetDepartment: 'Ban Giám đốc',
+    status: 'scheduled',
+    startDate: '2025-05-15',
+    endDate: '2025-05-16',
+    startTime: '08:30',
+    endTime: '16:30',
+    location: 'Phòng hỏp A',
+    instructor: 'Nguyễn Văn X',
+    participants: [
+      { id: 1, name: 'Nguyễn Văn A', position: 'Giám đốc' },
+      { id: 2, name: 'Trần Thị B', position: 'Phó Giám đốc' }
+    ],
+    estimatedCost: 100000000,
+    actualCost: null,
+    lmsLink: 'https://lms.thadico.com/course/123',
+    quarter: 'Q2/2025'
+  },
+  {
+    id: 2,
+    planId: 3,
+    planItemId: 2,
+    courseName: 'Kỹ năng quản lý dự án',
+    targetDepartment: 'Phòng Kỹ thuật',
+    status: 'planned',
+    startDate: null,
+    endDate: null,
+    startTime: null,
+    endTime: null,
+    location: null,
+    instructor: null,
+    participants: [],
+    estimatedCost: 120000000,
+    actualCost: null,
+    lmsLink: null,
+    quarter: 'Q2/2025'
+  },
+  {
+    id: 3,
+    planId: 3,
+    planItemId: 3,
+    courseName: 'Kỹ năng quản lý nhóm',
+    targetDepartment: 'Phòng Kinh doanh',
+    status: 'planned',
+    startDate: null,
+    endDate: null,
+    startTime: null,
+    endTime: null,
+    location: null,
+    instructor: null,
+    participants: [],
+    estimatedCost: 130000000,
+    actualCost: null,
+    lmsLink: null,
+    quarter: 'Q3/2025'
   }
 ];
 
@@ -289,33 +747,7 @@ export const competencies = [
 
 // Dữ liệu mẫu cho menu
 export const menuItems = [
-  {
-    key: 'organization',
-    label: 'TỔ CHỨC',
-    children: [
-      { key: 'org:tree', label: 'Cây tổ chức' },
-      { key: 'org:positions', label: 'Vị trí công việc' },
-      { key: 'org:chart', label: 'Sơ đồ tổ chức' }
-    ]
-  },
-  {
-    key: 'personnel',
-    label: 'NHÂN SỰ',
-    children: [
-      { key: 'personnel:list', label: 'Danh sách nhân sự' },
-      { key: 'personnel:onboarding', label: 'Nhân sự mới' },
-      { key: 'personnel:offboarding', label: 'Nghỉ việc' }
-    ]
-  },
-  {
-    key: 'salary',
-    label: 'CÔNG-LƯƠNG',
-    children: [
-      { key: 'salary:attendance', label: 'Chấm công' },
-      { key: 'salary:payroll', label: 'Tính lương' },
-      { key: 'salary:reports', label: 'Báo cáo' }
-    ]
-  },
+ 
   {
     key: 'assessment',
     label: 'ĐÁNH GIÁ',
@@ -323,15 +755,6 @@ export const menuItems = [
       { key: 'assessment:rounds', label: 'Vòng đánh giá' },
       { key: 'assessment:criteria', label: 'Bộ tiêu chí' },
       { key: 'assessment:competency', label: 'Từ điển năng lực' }
-    ]
-  },
-  {
-    key: 'recruitment',
-    label: 'TUYỂN DỤNG',
-    children: [
-      { key: 'recruitment:requests', label: 'Yêu cầu tuyển dụng' },
-      { key: 'recruitment:candidates', label: 'Ứng viên' },
-      { key: 'recruitment:interviews', label: 'Phỏng vấn' }
     ]
   },
   {

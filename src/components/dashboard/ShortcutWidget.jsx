@@ -1,73 +1,122 @@
 import React from 'react';
-import { Card, Row, Col, Button } from 'antd';
-import { ImportOutlined, AuditOutlined, UserAddOutlined } from '@ant-design/icons';
+import { Card, Row, Col, Button, Tabs } from 'antd';
+import { 
+  FormOutlined, 
+  ShareAltOutlined, 
+  DashboardOutlined,
+  FileAddOutlined, 
+  AuditOutlined, 
+  RocketOutlined,
+  TrophyOutlined,
+  LockOutlined,
+  NotificationOutlined
+} from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+
+const { TabPane } = Tabs;
 
 // Map các icon theo tên
 const iconMap = {
-  'import': <ImportOutlined />,
+  'form': <FormOutlined />,
+  'share-alt': <ShareAltOutlined />,
+  'dashboard': <DashboardOutlined />,
+  'file-add': <FileAddOutlined />,
   'audit': <AuditOutlined />,
-  'user-add': <UserAddOutlined />
+  'rocket': <RocketOutlined />,
+  'trophy': <TrophyOutlined />,
+  'lock': <LockOutlined />,
+  'notification': <NotificationOutlined />
 };
 
 /**
- * Component hiển thị các shortcut trên dashboard
+ * Component hiển thị các phím tắt trên dashboard cho 3 luồng
  */
 const ShortcutWidget = ({ shortcuts, loading }) => {
   const navigate = useNavigate();
 
-  // Xử lý khi click vào shortcut
+  // Xử lý khi click vào phím tắt
   const handleShortcutClick = (path) => {
     navigate(path);
   };
 
-  // Danh sách các shortcut mặc định (sử dụng khi không có dữ liệu từ API)
-  const defaultShortcuts = [
-    {
-      id: 'import_attendance',
-      title: 'Import tổng hợp công',
-      icon: 'import',
-      path: '/attendance/import',
-      disabled: false
-    },
-    {
-      id: 'assessment_criteria',
-      title: 'Quản lý bộ tiêu chí đánh giá',
-      icon: 'audit',
-      path: '/assessment/criteria',
-      disabled: false
-    },
-    {
-      id: 'add_employee',
-      title: 'Thêm mới nhân sự',
-      icon: 'user-add',
-      path: '/employees/new',
-      disabled: false
-    }
-  ];
-
-  // Sử dụng shortcuts từ API hoặc mặc định nếu không có
-  const displayShortcuts = shortcuts || defaultShortcuts;
+  // Kiểm tra dữ liệu có sẵn
+  if (!shortcuts) {
+    return <Card title="Thao tác nhanh" className="shortcut-widget" loading={true} />;
+  }
 
   return (
-    <Card title="Lối tắt" className="shortcut-widget" loading={loading}>
-      <Row gutter={[16, 16]}>
-        {displayShortcuts.map((shortcut) => (
-          <Col key={shortcut.id} xs={24} sm={12} md={8}>
-            <Button
-              type="primary"
-              icon={iconMap[shortcut.icon] || null}
-              size="large"
-              block
-              onClick={() => handleShortcutClick(shortcut.path)}
-              disabled={shortcut.disabled}
-              className="shortcut-button"
-            >
-              {shortcut.title}
-            </Button>
-          </Col>
-        ))}
-      </Row>
+    <Card 
+      title="Thao tác nhanh" 
+      className="shortcut-widget" 
+      loading={loading}
+    >
+      <Tabs defaultActiveKey="f1" type="card" className="shortcut-tabs">
+        <TabPane 
+          tab={<span><FormOutlined /> Khảo sát (F1)</span>} 
+          key="f1"
+        >
+          <Row gutter={[16, 16]}>
+            {shortcuts?.f1?.map((shortcut) => (
+              <Col xs={24} sm={12} md={8} key={shortcut.id}>
+                <Button 
+                  type="default"
+                  icon={iconMap[shortcut.icon] || null}
+                  onClick={() => handleShortcutClick(shortcut.path)}
+                  disabled={shortcut.disabled}
+                  className="shortcut-button f1-button"
+                  block
+                >
+                  {shortcut.title}
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </TabPane>
+
+        <TabPane 
+          tab={<span><RocketOutlined /> Kế hoạch đào tạo (F2)</span>} 
+          key="f2"
+        >
+          <Row gutter={[16, 16]}>
+            {shortcuts?.f2?.map((shortcut) => (
+              <Col xs={24} sm={12} md={8} key={shortcut.id}>
+                <Button 
+                  type="default"
+                  icon={iconMap[shortcut.icon] || null}
+                  onClick={() => handleShortcutClick(shortcut.path)}
+                  disabled={shortcut.disabled}
+                  className="shortcut-button f2-button"
+                  block
+                >
+                  {shortcut.title}
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </TabPane>
+
+        <TabPane 
+          tab={<span><TrophyOutlined /> Đánh giá (F3)</span>} 
+          key="f3"
+        >
+          <Row gutter={[16, 16]}>
+            {shortcuts?.f3?.map((shortcut) => (
+              <Col xs={24} sm={12} md={8} key={shortcut.id}>
+                <Button 
+                  type="default"
+                  icon={iconMap[shortcut.icon] || null}
+                  onClick={() => handleShortcutClick(shortcut.path)}
+                  disabled={shortcut.disabled}
+                  className="shortcut-button f3-button"
+                  block
+                >
+                  {shortcut.title}
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </TabPane>
+      </Tabs>
     </Card>
   );
 };

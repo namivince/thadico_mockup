@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Typography, Spin, message, Row, Col, Tabs } from 'antd';
-import { DashboardOutlined, CalendarOutlined, BarChartOutlined, BellOutlined } from '@ant-design/icons';
+import { Layout, Typography, Spin, message, Row, Col, Tabs, Card, Alert, Progress, Badge } from 'antd';
+import { 
+  DashboardOutlined, 
+  CalendarOutlined, 
+  BarChartOutlined, 
+  BellOutlined,
+  FormOutlined,
+  RocketOutlined,
+  TrophyOutlined,
+  WarningOutlined,
+  ClockCircleOutlined,
+  FileExclamationOutlined
+} from '@ant-design/icons';
 import MegaMenu from '../../components/dashboard/MegaMenu';
 import KpiWidget from '../../components/dashboard/KpiWidget';
 import ShortcutWidget from '../../components/dashboard/ShortcutWidget';
@@ -12,6 +23,7 @@ import QuickReports from '../../components/dashboard/QuickReports';
 import WeatherWidget from '../../components/dashboard/WeatherWidget';
 import TasksWidget from '../../components/dashboard/TasksWidget';
 import SystemStatusWidget from '../../components/dashboard/SystemStatusWidget';
+import AlertCenter from '../../components/dashboard/AlertCenter';
 import { dashboardApi } from '../../services/api/dashboardApi';
 import './AdminDashboard.css';
 
@@ -110,36 +122,124 @@ const AdminDashboard = () => {
                 ),
                 children: (
                   <>
-                    {/* KPI Section */}
+                    {/* KPI Section - 3 luồng chính */}
                     <section className="dashboard-section">
                       <KpiWidget data={kpiData} loading={loading} />
                     </section>
 
-                    {/* Charts Section */}
+                    {/* Tiến độ & Cảnh báo */}
                     <section className="dashboard-section">
                       <Row gutter={[24, 24]}>
                         <Col xs={24} lg={16}>
-                          <Row gutter={[16, 16]}>
-                            <Col xs={24}>
-                              <DepartmentChart loading={loading} />
-                            </Col>
-                            <Col xs={24}>
-                              <PerformanceWidget loading={loading} />
-                            </Col>
-                          </Row>
+                          <Card 
+                            title={
+                              <div className="progress-board-title">
+                                <BarChartOutlined style={{ marginRight: 8 }} />
+                                <span>Tiến độ & Phân tích</span>
+                              </div>
+                            }
+                            className="progress-board-widget"
+                            loading={loading}
+                          >
+                            <Row gutter={[16, 16]}>
+                              {/* F1 - Surveys Trend */}
+                              <Col xs={24} md={8}>
+                                <Card 
+                                  title="Tỷ lệ phản hồi khảo sát" 
+                                  size="small" 
+                                  className="trend-card f1-trend"
+                                >
+                                  <div className="trend-value">
+                                    <span className="trend-number">{kpiData?.surveys?.responseRate || 0}%</span>
+                                    <Badge 
+                                      count="+5.2%" 
+                                      style={{ backgroundColor: '#52c41a' }} 
+                                    />
+                                  </div>
+                                  <Progress 
+                                    percent={kpiData?.surveys?.responseRate || 0} 
+                                    strokeColor="#722ed1" 
+                                    showInfo={false} 
+                                  />
+                                  <div className="trend-footer">
+                                    <span>Mục tiêu: 80%</span>
+                                    <span>6 tháng gần nhất</span>
+                                  </div>
+                                </Card>
+                              </Col>
+                              
+                              {/* F2 - Budget vs Actual */}
+                              <Col xs={24} md={8}>
+                                <Card 
+                                  title="Ngân sách vs Thực chi" 
+                                  size="small" 
+                                  className="trend-card f2-trend"
+                                >
+                                  <div className="trend-value">
+                                    <span className="trend-number">
+                                      {new Intl.NumberFormat('vi-VN', { 
+                                        style: 'currency', 
+                                        currency: 'VND',
+                                        notation: 'compact',
+                                        maximumFractionDigits: 1
+                                      }).format(kpiData?.trainingPlans?.budget?.actual || 0)}
+                                    </span>
+                                    <Badge 
+                                      count="-20.8%" 
+                                      style={{ backgroundColor: '#52c41a' }} 
+                                    />
+                                  </div>
+                                  <Progress 
+                                    percent={kpiData?.trainingPlans?.budget?.actual / kpiData?.trainingPlans?.budget?.plan * 100 || 0} 
+                                    strokeColor="#13c2c2" 
+                                    showInfo={false} 
+                                  />
+                                  <div className="trend-footer">
+                                    <span>Kế hoạch: {new Intl.NumberFormat('vi-VN', { 
+                                      style: 'currency', 
+                                      currency: 'VND',
+                                      notation: 'compact',
+                                      maximumFractionDigits: 1
+                                    }).format(kpiData?.trainingPlans?.budget?.plan || 0)}</span>
+                                    <span>Quý hiện tại</span>
+                                  </div>
+                                </Card>
+                              </Col>
+                              
+                              {/* F3 - Score Distribution */}
+                              <Col xs={24} md={8}>
+                                <Card 
+                                  title="Điểm đánh giá trung bình" 
+                                  size="small" 
+                                  className="trend-card f3-trend"
+                                >
+                                  <div className="trend-value">
+                                    <span className="trend-number">{kpiData?.assessments?.avgScore || 0}</span>
+                                    <Badge 
+                                      count={`${kpiData?.assessments?.gap > 0 ? '+' : ''}${kpiData?.assessments?.gap || 0}`} 
+                                      style={{ 
+                                        backgroundColor: kpiData?.assessments?.gap >= 0 ? '#52c41a' : '#f5222d' 
+                                      }} 
+                                    />
+                                  </div>
+                                  <Progress 
+                                    percent={(kpiData?.assessments?.avgScore / 10) * 100 || 0} 
+                                    strokeColor="#fa8c16" 
+                                    showInfo={false} 
+                                  />
+                                  <div className="trend-footer">
+                                    <span>Tiêu chuẩn: 7.5</span>
+                                    <span>Kỳ hiện tại</span>
+                                  </div>
+                                </Card>
+                              </Col>
+                            </Row>
+                          </Card>
                         </Col>
+                        
+                        {/* Alert Center */}
                         <Col xs={24} lg={8}>
-                          <Row gutter={[16, 16]}>
-                            <Col xs={24}>
-                              <WeatherWidget loading={loading} />
-                            </Col>
-                            <Col xs={24}>
-                              <TasksWidget loading={loading} />
-                            </Col>
-                            <Col xs={24}>
-                              <SystemStatusWidget loading={loading} />
-                            </Col>
-                          </Row>
+                          <AlertCenter loading={loading} />
                         </Col>
                       </Row>
                     </section>
