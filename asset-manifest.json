@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/thadico_mockup/static/css/main.a79343b4.css",
-    "main.js": "/thadico_mockup/static/js/main.484726cb.js",
+    "main.js": "/thadico_mockup/static/js/main.e3ede859.js",
     "index.html": "/thadico_mockup/index.html",
     "main.a79343b4.css.map": "/thadico_mockup/static/css/main.a79343b4.css.map",
-    "main.484726cb.js.map": "/thadico_mockup/static/js/main.484726cb.js.map"
+    "main.e3ede859.js.map": "/thadico_mockup/static/js/main.e3ede859.js.map"
   },
   "entrypoints": [
     "static/css/main.a79343b4.css",
-    "static/js/main.484726cb.js"
+    "static/js/main.e3ede859.js"
   ]
 }
