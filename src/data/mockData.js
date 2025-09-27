@@ -768,13 +768,9 @@ export const menuItems = [
   },
   {
     key: 'admin',
-    label: 'QUẢN TRỊ',
+    label: 'Khảo sát',
     children: [
-      { key: 'admin:proposals', label: 'Quản lý đề xuất' },
       { key: 'admin:surveys', label: 'Chương trình khảo sát' },
-      { key: 'admin:categories', label: 'Danh mục' },
-      { key: 'admin:positions', label: 'Chức danh' },
-      { key: 'admin:system', label: 'Cấu hình hệ thống' }
     ]
   }
 ];
