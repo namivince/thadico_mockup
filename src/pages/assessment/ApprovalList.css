@@ -1,0 +1,129 @@
+.approval-list-container {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.approval-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background-color: #fff;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.approval-list-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.approval-stats {
+  margin-bottom: 24px;
+}
+
+.stat-detail {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.approval-list-filters {
+  margin-bottom: 24px;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.approval-list-table {
+  margin-bottom: 24px;
+}
+
+.drawer-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.drawer-subtitle {
+  margin-top: 4px;
+}
+
+.drawer-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.submission-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.criterion-review {
+  margin-bottom: 16px;
+}
+
+.criterion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.criterion-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.criterion-content {
+  padding-left: 16px;
+}
+
+.criterion-self,
+.criterion-manager {
+  margin-bottom: 16px;
+}
+
+.criterion-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.criterion-note {
+  margin-top: 8px;
+}
+
+.overall-notes {
+  margin-top: 24px;
+}
+
+.overall-self {
+  margin-bottom: 16px;
+}
+
+.overall-manager {
+  margin-bottom: 16px;
+}

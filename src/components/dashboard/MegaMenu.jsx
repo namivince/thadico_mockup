@@ -49,9 +49,16 @@ const MegaMenu = ({ onMenuSelect }) => {
   }, {});
 
   // Xử lý khi chọn menu
-  const handleMenuClick = (e) => {
+  const handleMenuClick = (e, path) => {
     setSelectedMenu(e.key);
     
+    // Nếu có đường dẫn trực tiếp, điều hướng đến đó
+    if (path) {
+      navigate(path);
+      return;
+    }
+    
+    // Các đường dẫn cũ (giữ lại để tương thích ngược)
     // Handle navigation for specific menu items
     if (e.key === 'admin:surveys') {
       navigate('/surveys');
@@ -82,7 +89,6 @@ const MegaMenu = ({ onMenuSelect }) => {
     const items = subMenus[menuKey] || [];
     return (
       <Menu 
-        onClick={handleMenuClick}
         className="mega-menu-dropdown"
         style={{
           minWidth: '250px',
@@ -94,6 +100,7 @@ const MegaMenu = ({ onMenuSelect }) => {
         {items.map((item) => (
           <Menu.Item 
             key={item.key}
+            onClick={(e) => handleMenuClick(e, item.path)}
             style={{
               borderRadius: '8px',
               margin: '4px 8px',

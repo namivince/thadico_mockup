@@ -104,17 +104,17 @@ export const dashboardShortcuts = {
       disabled: false
     },
     {
-      id: 'close_input',
-      title: 'Đóng input & chấm',
-      icon: 'lock',
-      path: '/assessment/rounds/grading',
+      id: 'monitor_progress',
+      title: 'Theo dõi tiến độ',
+      icon: 'dashboard',
+      path: '/assessment/rounds',
       disabled: false
     },
     {
-      id: 'publish_results',
-      title: 'Công bố kết quả',
+      id: 'view_results',
+      title: 'Xem kết quả',
       icon: 'notification',
-      path: '/assessment/rounds/results',
+      path: '/assessment/rounds',
       disabled: false
     }
   ]
@@ -752,18 +752,19 @@ export const menuItems = [
     key: 'assessment',
     label: 'ĐÁNH GIÁ',
     children: [
-      { key: 'assessment:rounds', label: 'Vòng đánh giá' },
-      { key: 'assessment:criteria', label: 'Bộ tiêu chí' },
-      { key: 'assessment:competency', label: 'Từ điển năng lực' }
+      { key: 'assessment:rounds', label: 'Vòng đánh giá', path: '/assessment/rounds' },
+      { key: 'assessment:create', label: 'Tạo chiến dịch', path: '/assessment/rounds/new' },
+      { key: 'assessment:criteria', label: 'Bộ tiêu chí', path: '/assessment/rubrics/new/builder' },
+      { key: 'assessment:competency', label: 'Từ điển năng lực', path: '/assessment/competency' }
     ]
   },
   {
     key: 'training',
     label: 'ĐÀO TẠO',
     children: [
-      { key: 'training:demands', label: 'Nhu cầu đào tạo' },
-      { key: 'training:plans', label: 'Kế hoạch đào tạo' },
-      { key: 'training:courses', label: 'Khóa học' }
+      { key: 'training:demands', label: 'Nhu cầu đào tạo', path: '/training/demands' },
+      { key: 'training:plans', label: 'Kế hoạch đào tạo', path: '/training/plans' },
+      { key: 'training:courses', label: 'Khóa học', path: '/training/courses' }
     ]
   },
   {

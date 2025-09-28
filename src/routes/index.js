@@ -14,6 +14,16 @@ import PlanDeploy from '../pages/training/PlanDeploy';
 import TrainingDemandList from '../pages/training/TrainingDemandList';
 import CourseList from '../pages/training/CourseList';
 
+// Assessment Routes
+import CampaignForm from '../pages/assessment/CampaignForm';
+import RubricBuilder from '../pages/assessment/RubricBuilder';
+import RoundList from '../pages/assessment/RoundList';
+import RoundBoard from '../pages/assessment/RoundBoard';
+import SelfEvalForm from '../pages/assessment/SelfEvalForm';
+import ApprovalList from '../pages/assessment/ApprovalList';
+import ResultsReport from '../pages/assessment/ResultsReport';
+import AppealsList from '../pages/assessment/AppealsList';
+
 // Kiểm tra xem người dùng có quyền Admin không
 const isAdmin = () => {
   // Đây là logic giả định, cần thay thế bằng logic thực tế
@@ -159,7 +169,75 @@ const AppRoutes = () => {
         } 
       />
       
-      {/* Các route khác có thể được thêm vào đây */}
+      {/* Assessment Routes */}
+      <Route 
+        path="/assessment/rounds" 
+        element={
+          <AdminRoute>
+            <RoundList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/new" 
+        element={
+          <AdminRoute>
+            <CampaignForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/:id/edit" 
+        element={
+          <AdminRoute>
+            <CampaignForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rubrics/:id/builder" 
+        element={
+          <AdminRoute>
+            <RubricBuilder />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/:id/board" 
+        element={
+          <AdminRoute>
+            <RoundBoard />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/:id/grading" 
+        element={
+          <AdminRoute>
+            <ApprovalList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/:id/results" 
+        element={
+          <AdminRoute>
+            <ResultsReport />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/rounds/:id/appeals" 
+        element={
+          <AdminRoute>
+            <AppealsList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/self-eval/:token" 
+        element={<SelfEvalForm />} 
+      />
       
       {/* Route 404 */}
       <Route path="*" element={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}>

@@ -51,7 +51,7 @@ const KpiWidget = ({ data, loading }) => {
             title={
               <div className="kpi-card-title">
                 <FormOutlined className="kpi-card-icon f1-icon" />
-                <span>Khảo sát (F1)</span>
+                <span>Khảo sát</span>
               </div>
             }
             className="kpi-card f1-card"
@@ -143,7 +143,7 @@ const KpiWidget = ({ data, loading }) => {
             title={
               <div className="kpi-card-title">
                 <RocketOutlined className="kpi-card-icon f2-icon" />
-                <span>Kế hoạch đào tạo (F2)</span>
+                <span>Kế hoạch đào tạo</span>
               </div>
             }
             className="kpi-card f2-card"
@@ -233,7 +233,7 @@ const KpiWidget = ({ data, loading }) => {
             title={
               <div className="kpi-card-title">
                 <TrophyOutlined className="kpi-card-icon f3-icon" />
-                <span>Đánh giá (F3)</span>
+                <span>Đánh giá</span>
               </div>
             }
             className="kpi-card f3-card"
