@@ -126,7 +126,19 @@ const MegaMenu = ({ onMenuSelect }) => {
     <div className="mega-menu">
       <div className="mega-menu__container">
         <div className="mega-menu__logo">
-          <h1 className="logo-text">THADICO</h1>
+          <img 
+            src={process.env.PUBLIC_URL + '/logo_thadico.png'} 
+            alt="" 
+            className="logo-image" 
+            style={{ 
+              height: '50px', 
+              width: '280px', 
+              objectFit: 'contain',
+              objectPosition: 'left center',
+              marginTop: '0px', 
+              marginBottom: '0px' 
+            }} 
+          />
         </div>
         <div className="mega-menu__left">
           {mainMenuItems.map((item) => (

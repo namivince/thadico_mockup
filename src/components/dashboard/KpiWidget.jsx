@@ -75,7 +75,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đang chạy" 
                     value={data?.surveys?.running || 0} 
-                    valueStyle={{ color: '#1890ff' }}
+                    valueStyle={{ color: '#7C4DFF' }}
                     prefix={<RocketOutlined />}
                     onClick={() => handleKpiClick('/surveys', 'running')}
                     className="clickable-stat"
@@ -87,7 +87,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Sắp hết hạn" 
                     value={data?.surveys?.dueSoon || 0} 
-                    valueStyle={{ color: '#faad14' }}
+                    valueStyle={{ color: '#B39DDB' }}
                     prefix={<ClockCircleOutlined />}
                     onClick={() => handleKpiClick('/surveys', 'dueSoon')}
                     className="clickable-stat"
@@ -101,7 +101,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Quá hạn" 
                     value={data?.surveys?.overdue || 0} 
-                    valueStyle={{ color: '#f5222d' }}
+                    valueStyle={{ color: '#EF4444' }}
                     prefix={<WarningOutlined />}
                     onClick={() => handleKpiClick('/surveys', 'overdue')}
                     className="clickable-stat"
@@ -115,7 +115,7 @@ const KpiWidget = ({ data, loading }) => {
                     value={data?.surveys?.responseRate || 0} 
                     precision={1}
                     suffix="%"
-                    valueStyle={{ color: '#52c41a' }}
+                    valueStyle={{ color: '#7C4DFF' }}
                     prefix={<PercentageOutlined />}
                     onClick={() => handleKpiClick('/surveys/analytics')}
                     className="clickable-stat"
@@ -131,7 +131,7 @@ const KpiWidget = ({ data, loading }) => {
               <Progress 
                 percent={data?.progress?.f1?.completionPct || 0} 
                 status="active" 
-                strokeColor="#722ed1"
+                className="f1-progress"
               />
             </div>
           </Card>
@@ -167,7 +167,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Chờ duyệt" 
                     value={data?.trainingPlans?.waitingApproval || 0} 
-                    valueStyle={{ color: '#faad14' }}
+                    valueStyle={{ color: '#10BDBD' }}
                     prefix={<AuditOutlined />}
                     onClick={() => handleKpiClick('/training/plans', 'waiting_approval')}
                     className="clickable-stat"
@@ -179,7 +179,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đã duyệt" 
                     value={data?.trainingPlans?.approved || 0} 
-                    valueStyle={{ color: '#52c41a' }}
+                    valueStyle={{ color: '#64D6D6' }}
                     prefix={<CheckCircleOutlined />}
                     onClick={() => handleKpiClick('/training/plans', 'approved')}
                     className="clickable-stat"
@@ -193,7 +193,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đang triển khai" 
                     value={data?.trainingPlans?.deployed || 0} 
-                    valueStyle={{ color: '#1890ff' }}
+                    valueStyle={{ color: '#10BDBD' }}
                     prefix={<RocketOutlined />}
                     onClick={() => handleKpiClick('/training/plans', 'deployed')}
                     className="clickable-stat"
@@ -205,7 +205,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Hoàn thành" 
                     value={data?.trainingPlans?.completed || 0} 
-                    valueStyle={{ color: '#13c2c2' }}
+                    valueStyle={{ color: '#64D6D6' }}
                     prefix={<FileDoneOutlined />}
                     onClick={() => handleKpiClick('/training/plans', 'completed')}
                     className="clickable-stat"
@@ -221,7 +221,7 @@ const KpiWidget = ({ data, loading }) => {
               <Progress 
                 percent={data?.progress?.f2?.completionPct || 0} 
                 status="active" 
-                strokeColor="#13c2c2"
+                className="f2-progress"
               />
             </div>
           </Card>
@@ -257,7 +257,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đang chạy" 
                     value={data?.assessments?.running || 0} 
-                    valueStyle={{ color: '#1890ff' }}
+                    valueStyle={{ color: '#FF9800' }}
                     prefix={<RocketOutlined />}
                     onClick={() => handleKpiClick('/assessment/rounds', 'running')}
                     className="clickable-stat"
@@ -269,7 +269,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đang chấm" 
                     value={data?.assessments?.grading || 0} 
-                    valueStyle={{ color: '#faad14' }}
+                    valueStyle={{ color: '#FFD180' }}
                     prefix={<AuditOutlined />}
                     onClick={() => handleKpiClick('/assessment/rounds', 'grading')}
                     className="clickable-stat"
@@ -283,7 +283,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Đã công bố" 
                     value={data?.assessments?.resultsPublished || 0} 
-                    valueStyle={{ color: '#52c41a' }}
+                    valueStyle={{ color: '#FF9800' }}
                     prefix={<FileProtectOutlined />}
                     onClick={() => handleKpiClick('/assessment/rounds', 'published')}
                     className="clickable-stat"
@@ -295,7 +295,7 @@ const KpiWidget = ({ data, loading }) => {
                   <Statistic 
                     title="Hoàn thành" 
                     value={data?.assessments?.finalized || 0} 
-                    valueStyle={{ color: '#13c2c2' }}
+                    valueStyle={{ color: '#FFD180' }}
                     prefix={<FileDoneOutlined />}
                     onClick={() => handleKpiClick('/assessment/rounds', 'finalized')}
                     className="clickable-stat"
@@ -311,7 +311,7 @@ const KpiWidget = ({ data, loading }) => {
               <Progress 
                 percent={data?.progress?.f3?.completionPct || 0} 
                 status="active" 
-                strokeColor="#fa8c16"
+                className="f3-progress"
               />
             </div>
           </Card>
