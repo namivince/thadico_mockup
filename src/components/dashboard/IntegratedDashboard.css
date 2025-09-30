@@ -1,0 +1,177 @@
+.integrated-dashboard {
+  padding: 16px;
+}
+
+.integrated-dashboard .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.integrated-dashboard .dashboard-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.integrated-dashboard .dashboard-title h4 {
+  margin-bottom: 4px;
+}
+
+.integrated-dashboard .dashboard-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.integrated-dashboard .dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Statistics Cards */
+.integrated-dashboard .statistic-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EDEFF3;
+  transition: all 0.3s ease;
+}
+
+.integrated-dashboard .statistic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.integrated-dashboard .survey-card .ant-statistic-title,
+.integrated-dashboard .survey-card .ant-statistic-content {
+  color: #7C4DFF;
+}
+
+.integrated-dashboard .training-card .ant-statistic-title,
+.integrated-dashboard .training-card .ant-statistic-content {
+  color: #10BDBD;
+}
+
+.integrated-dashboard .assessment-card .ant-statistic-title,
+.integrated-dashboard .assessment-card .ant-statistic-content {
+  color: #FF9800;
+}
+
+.integrated-dashboard .participants-card .ant-statistic-title,
+.integrated-dashboard .participants-card .ant-statistic-content {
+  color: #22C55E;
+}
+
+.integrated-dashboard .statistic-card .ant-statistic-content {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.integrated-dashboard .statistic-card .ant-statistic-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Chart Cards */
+.integrated-dashboard .chart-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EDEFF3;
+}
+
+.integrated-dashboard .chart-card .ant-card-head {
+  background: #F9FAFB;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.integrated-dashboard .chart-card .ant-card-head-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* Activities and Quick Access Cards */
+.integrated-dashboard .activities-card,
+.integrated-dashboard .quick-access-card,
+.integrated-dashboard .notifications-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EDEFF3;
+}
+
+.integrated-dashboard .activities-card .ant-card-head,
+.integrated-dashboard .quick-access-card .ant-card-head,
+.integrated-dashboard .notifications-card .ant-card-head {
+  background: #F9FAFB;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.integrated-dashboard .activities-card .ant-card-head-title,
+.integrated-dashboard .quick-access-card .ant-card-head-title,
+.integrated-dashboard .notifications-card .ant-card-head-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.integrated-dashboard .view-all {
+  text-align: center;
+}
+
+.integrated-dashboard .quick-access-card .ant-btn-text {
+  text-align: left;
+  height: auto;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.integrated-dashboard .quick-access-card .ant-btn-text:hover {
+  background-color: #F5F0FF;
+}
+
+.integrated-dashboard .quick-access-card .ant-btn-text .anticon {
+  margin-right: 8px;
+}
+
+/* Notifications */
+.integrated-dashboard .notifications-card .ant-list-item {
+  padding: 12px 24px;
+}
+
+.integrated-dashboard .notifications-card .ant-list-item:hover {
+  background-color: #F9FAFB;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .integrated-dashboard .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .integrated-dashboard .dashboard-filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .integrated-dashboard .dashboard-filters .ant-select {
+    width: 45% !important;
+  }
+  
+  .integrated-dashboard .statistic-card {
+    margin-bottom: 16px;
+  }
+  
+  .integrated-dashboard .chart-card {
+    margin-bottom: 16px;
+  }
+}

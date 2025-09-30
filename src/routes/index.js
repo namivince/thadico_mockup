@@ -13,6 +13,7 @@ import PlanApprovalQueue from '../pages/training/PlanApprovalQueue';
 import PlanDeploy from '../pages/training/PlanDeploy';
 import TrainingDemandList from '../pages/training/TrainingDemandList';
 import CourseList from '../pages/training/CourseList';
+import PlanAutoSuggest from '../pages/training/PlanAutoSuggest';
 
 // Assessment Routes
 import CampaignForm from '../pages/assessment/CampaignForm';
@@ -23,6 +24,16 @@ import SelfEvalForm from '../pages/assessment/SelfEvalForm';
 import ApprovalList from '../pages/assessment/ApprovalList';
 import ResultsReport from '../pages/assessment/ResultsReport';
 import AppealsList from '../pages/assessment/AppealsList';
+import AppealHistory from '../components/assessment/AppealHistory';
+
+// Alert Center
+import AlertCenter from '../components/alerts/AlertCenter';
+
+// Reports
+import IntegratedReports from '../components/reports/IntegratedReports';
+
+// System Integration
+import SystemIntegration from '../components/system/SystemIntegration';
 
 // Kiểm tra xem người dùng có quyền Admin không
 const isAdmin = () => {
@@ -168,6 +179,14 @@ const AppRoutes = () => {
           </AdminRoute>
         } 
       />
+      <Route 
+        path="/training/plans/auto-suggest" 
+        element={
+          <AdminRoute>
+            <PlanAutoSuggest />
+          </AdminRoute>
+        } 
+      />
       
       {/* Assessment Routes */}
       <Route 
@@ -235,8 +254,54 @@ const AppRoutes = () => {
         } 
       />
       <Route 
+        path="/assessment/rounds/:id/appeals/:appealId/process" 
+        element={
+          <AdminRoute>
+            <AppealsList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/appeals/history" 
+        element={
+          <AdminRoute>
+            <AppealHistory />
+          </AdminRoute>
+        } 
+      />
+      <Route 
         path="/self-eval/:token" 
         element={<SelfEvalForm />} 
+      />
+      
+      {/* Alert Center Route */}
+      <Route 
+        path="/alerts" 
+        element={
+          <AdminRoute>
+            <AlertCenter />
+          </AdminRoute>
+        } 
+      />
+
+      {/* Reports Routes */}
+      <Route 
+        path="/reports" 
+        element={
+          <AdminRoute>
+            <IntegratedReports />
+          </AdminRoute>
+        } 
+      />
+
+      {/* System Integration Route */}
+      <Route 
+        path="/system/integration" 
+        element={
+          <AdminRoute>
+            <SystemIntegration />
+          </AdminRoute>
+        } 
       />
       
       {/* Route 404 */}

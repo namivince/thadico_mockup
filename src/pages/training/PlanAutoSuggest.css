@@ -1,0 +1,86 @@
+.plan-auto-suggest .ant-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EDEFF3;
+}
+
+.plan-auto-suggest .ant-card-head {
+  background: #F9FAFB;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.plan-auto-suggest .ant-card-head-title {
+  color: #333333;
+  font-weight: 600;
+}
+
+.plan-auto-suggest .mb-4 {
+  margin-bottom: 24px;
+}
+
+/* Teal theme for buttons */
+.plan-auto-suggest .ant-btn-primary {
+  background: #10BDBD;
+  border-color: #10BDBD;
+}
+
+.plan-auto-suggest .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #10BDBD 0%, #64D6D6 100%);
+  box-shadow: 0 8px 25px rgba(16, 189, 189, 0.2);
+  border-color: #10BDBD;
+}
+
+/* Chart colors */
+.plan-auto-suggest .chart-container {
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.plan-auto-suggest .ant-table-thead > tr > th {
+  background: #F9FAFB;
+  color: #333333;
+  font-weight: 600;
+}
+
+.plan-auto-suggest .ant-table-tbody > tr:hover > td {
+  background: #F0F7FF;
+}
+
+/* Tag colors */
+.plan-auto-suggest .ant-tag-red {
+  color: #EF4444;
+  background: #FEF2F2;
+  border-color: #EF4444;
+}
+
+.plan-auto-suggest .ant-tag-orange {
+  color: #F59E0B;
+  background: #FEF9F0;
+  border-color: #F59E0B;
+}
+
+.plan-auto-suggest .ant-tag-green {
+  color: #22C55E;
+  background: #F0FDF4;
+  border-color: #22C55E;
+}
+
+/* Form styles */
+.plan-auto-suggest .ant-form-item-label > label {
+  color: #333333;
+  font-weight: 500;
+}
+
+/* Progress bar styles */
+.plan-auto-suggest .f2-progress .ant-progress-bg {
+  background: linear-gradient(90deg, #10BDBD 0%, #64D6D6 100%) !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .plan-auto-suggest .ant-col {
+    margin-bottom: 16px;
+  }
+}

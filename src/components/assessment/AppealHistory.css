@@ -1,0 +1,128 @@
+.appeal-history .appeal-history-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EDEFF3;
+}
+
+.appeal-history .appeal-history-card .ant-card-head {
+  background: #F9FAFB;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.appeal-history .appeal-history-card .ant-card-head-title {
+  color: #333333;
+  font-weight: 600;
+}
+
+.appeal-history .appeal-filters {
+  margin-bottom: 16px;
+}
+
+.appeal-history .appeals-table .ant-table-thead > tr > th {
+  background: #F9FAFB;
+  color: #333333;
+  font-weight: 600;
+}
+
+.appeal-history .appeals-table .ant-table-tbody > tr:hover > td {
+  background: #FFF8E6;
+}
+
+/* Appeal Detail Modal */
+.appeal-detail-modal .ant-modal-content {
+  border-radius: 12px;
+}
+
+.appeal-detail-modal .ant-modal-header {
+  border-radius: 12px 12px 0 0;
+  background: #F9FAFB;
+  border-bottom: 1px solid #EDEFF3;
+  padding: 16px 24px;
+}
+
+.appeal-detail-modal .ant-modal-title {
+  color: #333333;
+  font-weight: 600;
+}
+
+.appeal-detail-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.appeal-detail-modal .ant-descriptions-item-label {
+  font-weight: 500;
+  color: #333333;
+  background-color: #F9FAFB;
+}
+
+.appeal-detail-modal .ant-divider-inner-text {
+  font-weight: 500;
+  color: #333333;
+}
+
+.appeal-detail-modal .ant-list-bordered {
+  border-radius: 8px;
+  border: 1px solid #EDEFF3;
+}
+
+.appeal-detail-modal .ant-timeline-item-label {
+  width: 120px;
+}
+
+.appeal-detail-modal .review-result-card {
+  border-radius: 8px;
+  border: 1px solid #EDEFF3;
+}
+
+.appeal-detail-modal .review-result-card .ant-card-body {
+  padding: 0;
+}
+
+/* Amber theme for buttons */
+.appeal-history .ant-btn-primary {
+  background: #FF9800;
+  border-color: #FF9800;
+}
+
+.appeal-history .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #FF9800 0%, #FFD180 100%);
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.2);
+  border-color: #FF9800;
+}
+
+/* Status tag colors */
+.appeal-history .ant-tag-default {
+  color: #8A8FA3;
+  background: #F9FAFB;
+  border-color: #EDEFF3;
+}
+
+.appeal-history .ant-tag-processing {
+  color: #1890FF;
+  background: #E6F7FF;
+  border-color: #91D5FF;
+}
+
+.appeal-history .ant-tag-success {
+  color: #22C55E;
+  background: #F0FDF4;
+  border-color: #86EFAC;
+}
+
+.appeal-history .ant-tag-error {
+  color: #EF4444;
+  background: #FEF2F2;
+  border-color: #FCA5A5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .appeal-history .appeal-filters .ant-col {
+    margin-bottom: 8px;
+  }
+  
+  .appeal-detail-modal .ant-timeline-item-label {
+    width: auto;
+  }
+}

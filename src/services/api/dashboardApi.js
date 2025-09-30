@@ -1,7 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios'; // Sẽ sử dụng khi triển khai API thật
 import { dashboardKpiData, dashboardShortcuts } from '../../data/mockData';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
+// const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api'; // Sẽ sử dụng khi triển khai API thật
 
 export const dashboardApi = {
   /**

@@ -1,0 +1,137 @@
+.appeal-form-modal .ant-modal-content {
+  border-radius: 12px;
+}
+
+.appeal-form-modal .ant-modal-header {
+  border-radius: 12px 12px 0 0;
+  background: #F9FAFB;
+  border-bottom: 1px solid #EDEFF3;
+  padding: 16px 24px;
+}
+
+.appeal-form-modal .ant-modal-title {
+  color: #333333;
+  font-weight: 600;
+}
+
+.appeal-form-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.appeal-form-modal .assessment-info-card,
+.appeal-form-modal .appeal-form-card,
+.appeal-form-modal .regulations-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #EDEFF3;
+}
+
+.appeal-form-modal .ant-card-head {
+  background: #F9FAFB;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.appeal-form-modal .ant-card-head-title {
+  color: #333333;
+  font-weight: 600;
+}
+
+.appeal-form-modal .ant-descriptions-item-label {
+  font-weight: 500;
+  color: #333333;
+  background-color: #F9FAFB;
+}
+
+.appeal-form-modal .ant-checkbox-wrapper {
+  margin-left: 0;
+}
+
+.appeal-form-modal .ant-divider-inner-text {
+  font-weight: 500;
+  color: #333333;
+}
+
+.appeal-form-modal .ant-upload-drag {
+  border-radius: 8px;
+  border: 1px dashed #EDEFF3;
+}
+
+.appeal-form-modal .ant-upload-drag:hover {
+  border-color: #FF9800;
+}
+
+.appeal-form-modal .ant-upload-drag-icon {
+  color: #FF9800;
+}
+
+.appeal-form-modal .regulations-card ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.appeal-form-modal .regulations-card li {
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+.appeal-form-modal .regulations-card li:last-child {
+  margin-bottom: 0;
+}
+
+.appeal-form-modal .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.appeal-form-modal .loading-container,
+.appeal-form-modal .error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Amber theme for buttons */
+.appeal-form-modal .ant-btn-primary {
+  background: #FF9800;
+  border-color: #FF9800;
+}
+
+.appeal-form-modal .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #FF9800 0%, #FFD180 100%);
+  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.2);
+  border-color: #FF9800;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .appeal-form-modal .ant-descriptions-item {
+    padding: 8px;
+  }
+  
+  .appeal-form-modal .form-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .appeal-form-modal .form-actions .ant-space {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .appeal-form-modal .form-actions .ant-space .ant-space-item {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-bottom: 8px;
+  }
+  
+  .appeal-form-modal .form-actions .ant-space .ant-space-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .appeal-form-modal .form-actions .ant-space .ant-space-item .ant-btn {
+    width: 100%;
+  }
+}

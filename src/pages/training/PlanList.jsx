@@ -981,14 +981,29 @@ const PlanList = () => {
         }
         className="plan-list-card"
         extra={
-          <Button 
-            type="primary" 
-            icon={<PlusOutlined />} 
-            onClick={handleCreatePlan}
-            className="create-button"
-          >
-            Tạo kế hoạch mới
-          </Button>
+          <Space>
+            <Button 
+              icon={<BarChartOutlined />} 
+              onClick={() => navigate('/training/plans/auto-suggest')}
+              className="suggest-button"
+              style={{ 
+                background: '#E6FFFB', 
+                color: '#10BDBD',
+                borderColor: '#10BDBD',
+                fontWeight: 500 
+              }}
+            >
+              Đề xuất tự động
+            </Button>
+            <Button 
+              type="primary" 
+              icon={<PlusOutlined />} 
+              onClick={handleCreatePlan}
+              className="create-button"
+            >
+              Tạo kế hoạch mới
+            </Button>
+          </Space>
         }
       >
         <Tabs activeKey={activeTab} onChange={setActiveTab} className="plan-tabs">
