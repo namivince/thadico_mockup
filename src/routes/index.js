@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import DemoPage from '../pages/DemoPage';
 import AdminDashboard from '../pages/dashboard/AdminDashboard';
 import LoginPage from '../pages/auth/LoginPage';
 import SurveyList from '../pages/surveys/SurveyList';
@@ -16,15 +17,18 @@ import CourseList from '../pages/training/CourseList';
 import PlanAutoSuggest from '../pages/training/PlanAutoSuggest';
 
 // Assessment Routes
-import CampaignForm from '../pages/assessment/CampaignForm';
+// Import các component mới
+import CampaignForm from '../components/assessment/CampaignForm';
 import RubricBuilder from '../pages/assessment/RubricBuilder';
 import RoundList from '../pages/assessment/RoundList';
 import RoundBoard from '../pages/assessment/RoundBoard';
 import SelfEvalForm from '../pages/assessment/SelfEvalForm';
 import ApprovalList from '../pages/assessment/ApprovalList';
 import ResultsReport from '../pages/assessment/ResultsReport';
-import AppealsList from '../pages/assessment/AppealsList';
+import AppealsList from '../components/assessment/AppealsList';
 import AppealHistory from '../components/assessment/AppealHistory';
+import GradingConsole from '../components/assessment/GradingConsole';
+import TestRunner from '../components/assessment/TestRunner';
 
 // Alert Center
 import AlertCenter from '../components/alerts/AlertCenter';
@@ -54,10 +58,11 @@ const AdminRoute = ({ children }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Route mặc định chuyển hướng đến dashboard nếu đã đăng nhập, ngược lại đến trang đăng nhập */}
-      <Route path="/" element={
-        isAdmin() ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />
-      } />
+      {/* Route mặc định chuyển hướng đến trang demo */}
+      <Route path="/" element={<DemoPage />} />
+      
+      {/* Route demo */}
+      <Route path="/demo" element={<DemoPage />} />
       
       {/* Route đăng nhập */}
       <Route path="/login" element={<LoginPage />} />
@@ -206,7 +211,23 @@ const AppRoutes = () => {
         } 
       />
       <Route 
+        path="/assessment/campaigns/new" 
+        element={
+          <AdminRoute>
+            <CampaignForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
         path="/assessment/rounds/:id/edit" 
+        element={
+          <AdminRoute>
+            <CampaignForm />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/campaigns/:id/edit" 
         element={
           <AdminRoute>
             <CampaignForm />
@@ -226,6 +247,14 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <RoundBoard />
+          </AdminRoute>
+        } 
+      />
+      <Route 
+        path="/assessment/grading" 
+        element={
+          <AdminRoute>
+            <GradingConsole />
           </AdminRoute>
         } 
       />
@@ -254,6 +283,14 @@ const AppRoutes = () => {
         } 
       />
       <Route 
+        path="/assessment/appeals" 
+        element={
+          <AdminRoute>
+            <AppealsList />
+          </AdminRoute>
+        } 
+      />
+      <Route 
         path="/assessment/rounds/:id/appeals/:appealId/process" 
         element={
           <AdminRoute>
@@ -272,6 +309,10 @@ const AppRoutes = () => {
       <Route 
         path="/self-eval/:token" 
         element={<SelfEvalForm />} 
+      />
+      <Route 
+        path="/test/:token" 
+        element={<TestRunner />} 
       />
       
       {/* Alert Center Route */}

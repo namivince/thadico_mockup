@@ -1,0 +1,59 @@
+.shortcuts-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.f1-shortcuts {
+  border-bottom: 3px solid #7C4DFF;
+}
+
+.f2-shortcuts {
+  border-bottom: 3px solid #10BDBD;
+}
+
+.f3-shortcuts {
+  border-bottom: 3px solid #FF9800;
+}
+
+.shortcuts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shortcut-button {
+  text-align: left;
+  height: auto;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.shortcut-button:hover {
+  transform: translateX(4px);
+}
+
+.f1-shortcuts .shortcut-button:hover {
+  color: #7C4DFF;
+  border-color: #7C4DFF;
+}
+
+.f2-shortcuts .shortcut-button:hover {
+  color: #10BDBD;
+  border-color: #10BDBD;
+}
+
+.f3-shortcuts .shortcut-button:hover {
+  color: #FF9800;
+  border-color: #FF9800;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .shortcuts-card {
+    margin-bottom: 16px;
+  }
+}

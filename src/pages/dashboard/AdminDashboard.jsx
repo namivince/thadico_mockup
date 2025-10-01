@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Typography, Spin, message, Row, Col, Tabs, Card, Alert, Progress, Badge } from 'antd';
+import { Layout, Typography, Spin, message, Row, Col, Tabs, Card, Alert, Badge, Button, Avatar, Dropdown, Menu } from 'antd';
 import { 
   DashboardOutlined, 
   CalendarOutlined, 
@@ -8,37 +8,57 @@ import {
   FormOutlined,
   RocketOutlined,
   TrophyOutlined,
-  WarningOutlined,
-  ClockCircleOutlined,
-  FileExclamationOutlined
+  UserOutlined,
+  LogoutOutlined,
+  DownOutlined,
+  HomeOutlined
 } from '@ant-design/icons';
-import MegaMenu from '../../components/dashboard/MegaMenu';
-import KpiWidget from '../../components/dashboard/KpiWidget';
-import ShortcutWidget from '../../components/dashboard/ShortcutWidget';
-import DepartmentChart from '../../components/dashboard/DepartmentChart';
-import PerformanceWidget from '../../components/dashboard/PerformanceWidget';
-import CalendarWidget from '../../components/dashboard/CalendarWidget';
-import RecentActivities from '../../components/dashboard/RecentActivities';
-import QuickReports from '../../components/dashboard/QuickReports';
-import WeatherWidget from '../../components/dashboard/WeatherWidget';
-import TasksWidget from '../../components/dashboard/TasksWidget';
-import SystemStatusWidget from '../../components/dashboard/SystemStatusWidget';
-import AlertCenter from '../../components/dashboard/AlertCenter';
-import { dashboardApi } from '../../services/api/dashboardApi';
+import SideMenu from '../../components/dashboard/SideMenu';
+
+// Import các component mới
+import HeroKPIs from '../../components/dashboard/HeroKPIs';
+import ProgressBoard from '../../components/dashboard/ProgressBoard';
+import UnifiedAlerts from '../../components/dashboard/UnifiedAlerts';
+import TrendsCharts from '../../components/dashboard/TrendsCharts';
+import RadarCharts from '../../components/dashboard/RadarCharts';
+import QuickShortcuts from '../../components/dashboard/QuickShortcuts';
+
+// Import mock data
+import { 
+  heroKpis, 
+  progressBoard, 
+  alerts, 
+  trends, 
+  competencyRadar, 
+  roleRadar, 
+  shortcuts,
+  roles,
+  organizations
+} from '../../mock/dashboardData';
+
 import './AdminDashboard.css';
 
-const { Header, Content } = Layout;
+const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
 /**
  * Trang Dashboard quản trị
  */
 const AdminDashboard = () => {
-  const [kpiData, setKpiData] = useState(null);
-  const [shortcuts, setShortcuts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentMonth, setCurrentMonth] = useState('');
   const [user, setUser] = useState(null);
+  
+  // Mock data cho dashboard
+  const [dashboardData, setDashboardData] = useState({
+    kpis: heroKpis,
+    progress: progressBoard,
+    alertsData: alerts,
+    trendsData: trends,
+    competencyRadarData: competencyRadar,
+    roleRadarData: roleRadar,
+    shortcutsData: shortcuts
+  });
 
   // Lấy thông tin người dùng từ localStorage
   useEffect(() => {
@@ -46,23 +66,21 @@ const AdminDashboard = () => {
     setUser(userData);
   }, []);
   
-  // Lấy dữ liệu KPI và shortcuts khi component được mount
+  // Giả lập việc tải dữ liệu
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
         
-        // Lấy dữ liệu KPI
-        const kpisResponse = await dashboardApi.getKpis();
-        setKpiData(kpisResponse);
-        
-        // Lấy danh sách shortcuts
-        const shortcutsResponse = await dashboardApi.getShortcuts();
-        setShortcuts(shortcutsResponse);
+        // Giả lập delay để tạo trải nghiệm loading
+        await new Promise(resolve => setTimeout(resolve, 800));
         
         // Lấy tháng hiện tại
         const date = new Date();
         setCurrentMonth(`${date.getMonth() + 1}/${date.getFullYear()}`);
+        
+        // Dữ liệu đã được import từ mock data
+        message.success('Dữ liệu dashboard đã được tải thành công');
       } catch (error) {
         message.error('Không thể tải dữ liệu dashboard. Vui lòng thử lại sau.');
       } finally {
@@ -81,222 +99,183 @@ const AdminDashboard = () => {
 
   return (
     <Layout className="admin-dashboard">
-      <Header className="dashboard-header">
-        <MegaMenu onMenuSelect={handleMenuSelect} />
-      </Header>
+      <Sider width={250} theme="light" className="dashboard-sider">
+        <SideMenu />
+      </Sider>
       
-      <Content className="dashboard-content">
-        <div className="dashboard-title">
-          <Row justify="space-between" align="middle">
-            <Col>
-              <Title level={2}>Dashboard</Title>
-              <Typography.Text type="secondary">
-                Dữ liệu cập nhật tháng {currentMonth}
-              </Typography.Text>
-            </Col>
-            <Col>
-              <Typography.Text strong>
-                Xin chào, {user?.name || 'Người dùng'}!
-              </Typography.Text>
-            </Col>
-          </Row>
-        </div>
-
-        {loading ? (
-          <div className="loading-container">
-            <Spin size="large" tip="Đang tải dữ liệu..." />
-          </div>
-        ) : (
-          <Tabs
-            defaultActiveKey="overview"
-            type="card"
-            className="dashboard-tabs"
-            items={[
-              {
-                key: 'overview',
-                label: (
-                  <span>
-                    <DashboardOutlined />
-                    Tổng quan
-                  </span>
-                ),
-                children: (
-                  <>
-                    {/* KPI Section - 3 luồng chính */}
-                    <section className="dashboard-section">
-                      <KpiWidget data={kpiData} loading={loading} />
-                    </section>
-
-                    {/* Tiến độ & Cảnh báo */}
-                    <section className="dashboard-section">
-                      <Row gutter={[24, 24]}>
-                        <Col xs={24} lg={16}>
-                          <Card 
-                            title={
-                              <div className="progress-board-title">
-                                <BarChartOutlined style={{ marginRight: 8 }} />
-                                <span>Tiến độ & Phân tích</span>
-                              </div>
-                            }
-                            className="progress-board-widget"
-                            loading={loading}
-                          >
-                            <Row gutter={[16, 16]}>
-                              {/* F1 - Surveys Trend */}
-                              <Col xs={24} md={8}>
-                                <Card 
-                                  title="Tỷ lệ phản hồi khảo sát" 
-                                  size="small" 
-                                  className="trend-card f1-trend"
-                                >
-                                  <div className="trend-value">
-                                    <span className="trend-number">{kpiData?.surveys?.responseRate || 0}%</span>
-                                    <Badge 
-                                      count="+5.2%" 
-                                      style={{ backgroundColor: '#52c41a' }} 
-                                    />
-                                  </div>
-                                  <Progress 
-                                    percent={kpiData?.surveys?.responseRate || 0} 
-                                    strokeColor="#722ed1" 
-                                    showInfo={false} 
-                                  />
-                                  <div className="trend-footer">
-                                    <span>Mục tiêu: 80%</span>
-                                    <span>6 tháng gần nhất</span>
-                                  </div>
-                                </Card>
-                              </Col>
-                              
-                              {/* F2 - Budget vs Actual */}
-                              <Col xs={24} md={8}>
-                                <Card 
-                                  title="Ngân sách vs Thực chi" 
-                                  size="small" 
-                                  className="trend-card f2-trend"
-                                >
-                                  <div className="trend-value">
-                                    <span className="trend-number">
-                                      {new Intl.NumberFormat('vi-VN', { 
-                                        style: 'currency', 
-                                        currency: 'VND',
-                                        notation: 'compact',
-                                        maximumFractionDigits: 1
-                                      }).format(kpiData?.trainingPlans?.budget?.actual || 0)}
-                                    </span>
-                                    <Badge 
-                                      count="-20.8%" 
-                                      style={{ backgroundColor: '#52c41a' }} 
-                                    />
-                                  </div>
-                                  <Progress 
-                                    percent={kpiData?.trainingPlans?.budget?.actual / kpiData?.trainingPlans?.budget?.plan * 100 || 0} 
-                                    strokeColor="#13c2c2" 
-                                    showInfo={false} 
-                                  />
-                                  <div className="trend-footer">
-                                    <span>Kế hoạch: {new Intl.NumberFormat('vi-VN', { 
-                                      style: 'currency', 
-                                      currency: 'VND',
-                                      notation: 'compact',
-                                      maximumFractionDigits: 1
-                                    }).format(kpiData?.trainingPlans?.budget?.plan || 0)}</span>
-                                    <span>Quý hiện tại</span>
-                                  </div>
-                                </Card>
-                              </Col>
-                              
-                              {/* F3 - Score Distribution */}
-                              <Col xs={24} md={8}>
-                                <Card 
-                                  title="Điểm đánh giá trung bình" 
-                                  size="small" 
-                                  className="trend-card f3-trend"
-                                >
-                                  <div className="trend-value">
-                                    <span className="trend-number">{kpiData?.assessments?.avgScore || 0}</span>
-                                    <Badge 
-                                      count={`${kpiData?.assessments?.gap > 0 ? '+' : ''}${kpiData?.assessments?.gap || 0}`} 
-                                      style={{ 
-                                        backgroundColor: kpiData?.assessments?.gap >= 0 ? '#52c41a' : '#f5222d' 
-                                      }} 
-                                    />
-                                  </div>
-                                  <Progress 
-                                    percent={(kpiData?.assessments?.avgScore / 10) * 100 || 0} 
-                                    strokeColor="#fa8c16" 
-                                    showInfo={false} 
-                                  />
-                                  <div className="trend-footer">
-                                    <span>Tiêu chuẩn: 7.5</span>
-                                    <span>Kỳ hiện tại</span>
-                                  </div>
-                                </Card>
-                              </Col>
-                            </Row>
-                          </Card>
-                        </Col>
-                        
-                        {/* Alert Center */}
-                        <Col xs={24} lg={8}>
-                          <AlertCenter loading={loading} />
-                        </Col>
-                      </Row>
-                    </section>
-
-                    {/* Shortcuts Section */}
-                    <section className="dashboard-section">
-                      <ShortcutWidget shortcuts={shortcuts} loading={loading} />
-                    </section>
-                  </>
-                )
-              },
-              {
-                key: 'calendar',
-                label: (
-                  <span>
-                    <CalendarOutlined />
-                    Lịch & Sự kiện
-                  </span>
-                ),
-                children: (
-                  <section className="dashboard-section">
-                    <CalendarWidget loading={loading} />
-                  </section>
-                )
-              },
-              {
-                key: 'activities',
-                label: (
-                  <span>
-                    <BellOutlined />
-                    Hoạt động
-                  </span>
-                ),
-                children: (
-                  <section className="dashboard-section">
-                    <RecentActivities loading={loading} />
-                  </section>
-                )
-              },
-              {
-                key: 'reports',
-                label: (
-                  <span>
-                    <BarChartOutlined />
-                    Báo cáo
-                  </span>
-                ),
-                children: (
-                  <section className="dashboard-section">
-                    <QuickReports loading={loading} />
-                  </section>
-                )
+      <Layout className="dashboard-main">
+        <Header className="dashboard-header">
+          <div className="header-right">
+            <Badge count={3} size="small" style={{ marginRight: '16px' }}>
+              <Button 
+                type="text" 
+                icon={<BellOutlined />} 
+                style={{ 
+                  fontSize: '18px', 
+                  color: '#666',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              />
+            </Badge>
+            
+            <Dropdown 
+              overlay={
+                <Menu
+                  style={{
+                    minWidth: '200px',
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+                    border: '1px solid rgba(0, 0, 0, 0.06)'
+                  }}
+                >
+                  <Menu.Item 
+                    key="profile" 
+                    icon={<UserOutlined />}
+                    style={{ borderRadius: '8px', margin: '4px 8px' }}
+                  >
+                    Thông tin cá nhân
+                  </Menu.Item>
+                  <Menu.Divider />
+                  <Menu.Item 
+                    key="logout" 
+                    icon={<LogoutOutlined />} 
+                    onClick={() => {
+                      localStorage.removeItem('user');
+                      window.location.href = '/login';
+                    }}
+                    style={{ borderRadius: '8px', margin: '4px 8px', color: '#f5222d' }}
+                  >
+                    Đăng xuất
+                  </Menu.Item>
+                </Menu>
               }
-            ]}
-          />
-        )}
-      </Content>
+              placement="bottomRight"
+              arrow={{ pointAtCenter: true }}
+            >
+              <Button className="user-btn">
+                <Avatar 
+                  size="small" 
+                  icon={<UserOutlined />} 
+                  style={{ 
+                    backgroundColor: '#667eea',
+                    marginRight: '8px'
+                  }}
+                />
+                <span style={{ fontWeight: '600' }}>
+                  {user?.name || 'Nguyễn Phúc Vinh'}
+                </span>
+                <DownOutlined style={{ fontSize: '10px', marginLeft: '8px' }} />
+              </Button>
+            </Dropdown>
+          </div>
+        </Header>
+        <Content className="dashboard-content">
+          <div className="welcome-banner">
+            <div className="welcome-message">
+              <h2>Chào mừng trở lại <span role="img" aria-label="wave">👋</span></h2>
+              <h1>{user?.name || 'Trần Đắc Thiên Thạch'}</h1>
+              <p>Chúc bạn có một ngày làm việc hiệu quả, phát triển năng lượng!</p>
+            </div>
+          </div>
+          
+          <div className="dashboard-title">
+            <Row justify="space-between" align="middle">
+              <Col>
+                <Title level={2}>Dashboard</Title>
+                <Typography.Text type="secondary">
+                  Dữ liệu cập nhật tháng {currentMonth}
+                </Typography.Text>
+              </Col>
+              <Col>
+                <Typography.Text strong>
+                  Xin chào, {user?.name || 'Người dùng'}!
+                </Typography.Text>
+              </Col>
+            </Row>
+          </div>
+
+          {loading ? (
+            <div className="loading-container">
+              <Spin size="large" tip="Đang tải dữ liệu..." />
+            </div>
+          ) : (
+            <div className="dashboard-content-inner">
+              {/* Tiêu đề trang */}
+              <div className="dashboard-title-section">
+                <Row justify="space-between" align="middle">
+                  <Col>
+                    <Title level={2}>Super Admin Overview</Title>
+                    <Typography.Text type="secondary">
+                      Dữ liệu cập nhật tháng {currentMonth}
+                    </Typography.Text>
+                  </Col>
+                  <Col>
+                    <Button 
+                      type="primary" 
+                      icon={<HomeOutlined />}
+                      onClick={() => window.location.href = '/demo'}
+                    >
+                      Về trang demo
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+              
+              {/* Hàng 1: Hero KPIs */}
+              <section className="dashboard-section">
+                <HeroKPIs data={dashboardData.kpis} loading={loading} />
+              </section>
+
+              {/* Hàng 2: Tiến độ & Cảnh báo */}
+              <section className="dashboard-section">
+                <Row gutter={[24, 24]}>
+                  <Col xs={24} lg={16}>
+                    <ProgressBoard data={dashboardData.progress} loading={loading} />
+                  </Col>
+                  <Col xs={24} lg={8}>
+                    <UnifiedAlerts data={dashboardData.alertsData} loading={loading} />
+                  </Col>
+                </Row>
+              </section>
+
+              {/* Hàng 3: Trends & Radar Charts */}
+              <section className="dashboard-section">
+                <Row gutter={[24, 24]}>
+                  <Col xs={24} lg={24}>
+                    <TrendsCharts data={dashboardData.trendsData} loading={loading} />
+                  </Col>
+                </Row>
+              </section>
+              
+              <section className="dashboard-section">
+                <Row gutter={[24, 24]}>
+                  <Col xs={24} lg={24}>
+                    <RadarCharts 
+                      data={{
+                        F3_radar_competency: dashboardData.competencyRadarData.F3_radar_competency,
+                        F3_radar_role: dashboardData.roleRadarData.F3_radar_role
+                      }} 
+                      roles={roles}
+                      organizations={organizations}
+                      loading={loading} 
+                    />
+                  </Col>
+                </Row>
+              </section>
+
+              {/* Hàng 4: Quick Shortcuts */}
+              <section className="dashboard-section">
+                <QuickShortcuts data={dashboardData.shortcutsData} loading={loading} />
+              </section>
+            </div>
+          )}
+        </Content>
+      </Layout>
     </Layout>
   );
 };

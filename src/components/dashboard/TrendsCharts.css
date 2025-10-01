@@ -1,0 +1,36 @@
+.chart-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-card-header h5 {
+  margin: 0;
+}
+
+.f1-chart {
+  border-left: 3px solid #7C4DFF;
+}
+
+.f2-chart {
+  border-left: 3px solid #10BDBD;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .chart-card {
+    margin-bottom: 16px;
+  }
+  
+  .chart-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

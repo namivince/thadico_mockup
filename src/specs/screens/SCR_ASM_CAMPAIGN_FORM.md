@@ -1,30 +1,57 @@
-# SCR_ASM_CAMPAIGN_FORM — Tạo/Chỉnh đợt đánh giá
+# SCR_ASM_CAMPAIGN_FORM — Thiết lập chiến dịch đánh giá tay nghề
 
 ## 0) Metadata
-Route: /assessment/rounds/new, /assessment/rounds/:id/edit
-Roles: Super Admin, HR Admin
-Ref: F3 — bước “Create campaign”
+- Route: `/assessment/campaigns/new`  & `/assessment/campaigns/:id/edit` 
+- Roles: **Super Admin**, Admin
+- Design: 4 step wizard
 
 ## 1) Purpose
-Wizard 4 bước: (1) Info (tên, thời gian, scope) (2) Content/Rubric (chọn template hoặc mở builder) (3) Scoring (trọng số, thang) (4) Review & Publish.
+Tạo/thiết lập chiến dịch: danh mục, đề thi (import Excel), phạm vi, mốc thời gian, **SLA chấm bài** và **cửa sổ phúc khảo**.
 
-## 2) Layout
-Header: Save Draft · Publish · Cancel
-Step1 Info: tên, thời gian, mode(sync/async), nút “Chọn đối tượng” (open SCR_ASM_ASSIGN_SCOPE_MODAL)
-Step2 Content: chọn rubric template, nút “Mở Rubric Builder”
-Step3 Scoring: bảng tiêu chí + weight; validate tổng = 100%
-Step4 Review: tóm tắt, cảnh báo, checkbox “Xác nhận publish”
+## 2) Layout (Wizard 4 bước)
+1. **Thông tin chung**  
+   - Tên chiến dịch, mô tả, đơn vị phạm vi  
+   - Thời gian mở bài (openAt) / đóng nhận bài (closeAt)
+2. **Nội dung & Đề thi**  
+   - Chọn ngân hàng câu hỏi hoặc **Import Excel** (.xlsx)  
+   - Upload template → preview danh sách câu hỏi (MCQ / Essay)  
+   - Gắn "nhóm năng lực" (không trọng số – theo BA note 1)
+3. **Phân công & SLA**  
+   - Chọn giảng viên chấm  
+   - **SLA chấm bài:** deadline chấm (`gradeDueAt` ) + bật cảnh báo email & **countdown**  
+   - Tùy chọn: "Bật đếm ngược ngay từ lúc bắt đầu chấm" (BA note 4)  
+4. **Phúc khảo**  
+   - Cho phép phúc khảo: số lần (≤ N), thời gian trong X ngày sau công bố  
+   - Nhắc: "Không cho phép nếu chưa công bố kết quả" (rule)
 
-## 3) Actions
-Save draft → status=draft
-Publish → /api/asm/rounds/:id/publish → status=published
+Footer: **Lưu nháp** · **Phát hành**
 
-## 4) APIs
-POST /api/asm/rounds
-PUT  /api/asm/rounds/:id
-POST /api/asm/rounds/:id/publish
-GET  /api/asm/rubrics/templates
+## 3) APIs
+- `POST /api/asm/campaigns` 
+- `PUT /api/asm/campaigns/:id` 
+- `POST /api/asm/campaigns/:id/import-questions`  (xlsx)
+- `POST /api/asm/campaigns/:id/publish` 
 
-## 5) Rules
-- Không publish nếu thiếu rubric hoặc weight != 100%
-- Sau publish, cho phép version rubric (không ghi đè)
+## 4) Rules
+- Không trọng số theo nhóm (BA note 1)
+- Import cho phép (BA note 6)
+- SLA chấm bật cảnh báo & đếm ngược (BA note 4)
+- Giới hạn câu hỏi mở (<= 500) (BA note 3)
+- **Super Admin**: có quyền override mọi giới hạn và validation
+
+## 5) Validation
+- openAt < closeAt < gradeDueAt
+- Nếu bật phúc khảo: `appealDays > 0`  & `appealLimit >= 1` 
+
+## 6) Mock data (request)
+```json
+{
+  "name": "Đánh giá tay nghề Q4",
+  "scopeUnitIds": ["dv_01","dv_02"],
+  "openAt": "2025-10-10T08:00:00Z",
+  "closeAt": "2025-10-15T17:00:00Z",
+  "gradeDueAt": "2025-10-20T17:00:00Z",
+  "graders": ["gv_001","gv_007"],
+  "appeal": {"enabled": true, "limit": 2, "days": 7},
+  "questionSource": {"type": "import", "fileId": "up_abc123"}
+}

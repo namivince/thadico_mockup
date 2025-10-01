@@ -3,7 +3,7 @@
 ## 0) Metadata
 - Route: `/assessment/rounds`
 - Design: UI mẫu ảnh round list
-- Role access: Admin only
+- Role access: **Super Admin**, Admin
 
 ## 1) Purpose
 Quản lý danh sách các vòng đánh giá đã tạo: theo dõi trạng thái, thêm mới, chỉnh sửa, kích hoạt.
@@ -11,7 +11,7 @@ Quản lý danh sách các vòng đánh giá đã tạo: theo dõi trạng thái
 ## 2) Layout
 - **Toolbar**: + Thêm mới, Filter theo trạng thái, Export
 - **Table**:
-  - Cột: Tên đợt, Thời gian, Mục tiêu, Trạng thái, Người tạo
+  - Cột: Tên đợt, Thời gian, **SLA chấm**, **Cửa sổ phúc khảo**, Mục tiêu, Trạng thái, Người tạo
   - Actions: Xem chi tiết, Sửa, Kích hoạt, Hoàn thành, Hủy
 - Pagination dưới bảng
 

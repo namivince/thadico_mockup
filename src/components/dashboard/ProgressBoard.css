@@ -1,0 +1,87 @@
+.progress-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.progress-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.f1-progress {
+  border-left: 3px solid #7C4DFF;
+}
+
+.f2-progress {
+  border-left: 3px solid #10BDBD;
+}
+
+.f3-progress {
+  border-left: 3px solid #FF9800;
+}
+
+.progress-card-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.progress-section {
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.todo-section {
+  margin-top: 16px;
+}
+
+.todo-section h5 {
+  margin-bottom: 12px;
+}
+
+.todo-item {
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.todo-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.todo-tag {
+  margin-right: 8px;
+}
+
+.todo-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.todo-item:hover .todo-arrow {
+  opacity: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .progress-card {
+    margin-bottom: 16px;
+  }
+}

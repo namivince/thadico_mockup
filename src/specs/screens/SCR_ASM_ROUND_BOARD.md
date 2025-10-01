@@ -3,7 +3,7 @@
 ## 0) Metadata
 - Route: `/assessment/rounds/:id/board`
 - Design: UI mẫu ảnh Round Board
-- Role access: Admin, HR
+- Role access: **Super Admin**, Admin, HR
 
 ## 1) Purpose
 Hiển thị tiến độ đánh giá theo từng trạng thái (self-eval, manager, approval…) để HR/Admin theo dõi real-time.
@@ -11,8 +11,8 @@ Hiển thị tiến độ đánh giá theo từng trạng thái (self-eval, mana
 ## 2) Layout
 - **Header**: Tên đợt, trạng thái, filter theo phòng ban
 - **Kanban Board**:
-  - Cột: Chưa bắt đầu, Đang tự đánh giá, Đã hoàn thành tự đánh giá, Đang manager đánh giá, Đã phê duyệt
-  - Card: thông tin nhân viên (tên, phòng ban, trạng thái, % hoàn thành)
+  - Cột: Chưa bắt đầu, Đang tự đánh giá, Đã hoàn thành tự đánh giá, **Chờ chấm**, **Quá hạn chấm**, Đang manager đánh giá, Đã phê duyệt, **Phúc khảo đang mở**
+  - Card: thông tin nhân viên (tên, phòng ban, trạng thái, % hoàn thành, **SLA còn lại**)
 - **Footer**: Export progress, Hoàn thành đợt
 
 ## 3) Actions
@@ -30,3 +30,4 @@ Hiển thị tiến độ đánh giá theo từng trạng thái (self-eval, mana
 - Drag & drop chỉ Admin có quyền
 - Hoàn thành đợt chỉ khi tất cả nhân viên đã phê duyệt
 - Phải lưu log mỗi lần override trạng thái
+- **Super Admin**: có quyền force-complete đợt đánh giá bất kỳ lúc nào và chuyển trạng thái tự do giữa các cột
