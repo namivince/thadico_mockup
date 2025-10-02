@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Button, Row, Col, Typography, Divider } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Button, Row, Col, Typography, Divider, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const { Title, Text } = Typography;
@@ -9,6 +9,27 @@ const { Title, Text } = Typography;
  */
 const DemoPage = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Kiểm tra xem người dùng đã đăng nhập chưa
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    setIsLoggedIn(user && user.role === 'ADMIN');
+  }, []);
+
+  // Hàm đăng nhập tự động với quyền admin
+  const handleAutoLogin = () => {
+    const adminUser = {
+      id: 'admin-123',
+      name: 'Admin User',
+      email: 'admin@thadico.com',
+      role: 'ADMIN',
+      permissions: ['all']
+    };
+    localStorage.setItem('user', JSON.stringify(adminUser));
+    setIsLoggedIn(true);
+    message.success('Đăng nhập thành công với quyền Admin');
+  };
 
   // Các luồng demo
   const demoFlows = [
@@ -92,10 +113,30 @@ const DemoPage = () => {
       
       <Divider />
       
-      <div style={{ textAlign: 'center', marginTop: '32px' }}>
+      <div style={{ textAlign: 'center', marginTop: '32px', marginBottom: '20px' }}>
         <Text type="secondary">
           Demo được tạo dựa trên các file spec: SCR_ASM_CAMPAIGN_FORM, SCR_TEST_RUNNER, SCR_GRADING_CONSOLE, SCR_ASM_APPEAL_LIST, SCR_APPEAL_DETAIL_MODAL
         </Text>
+      </div>
+
+      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        {!isLoggedIn ? (
+          <Button 
+            type="primary" 
+            onClick={handleAutoLogin}
+            style={{ marginTop: '16px' }}
+          >
+            Đăng nhập tự động với quyền Admin
+          </Button>
+        ) : (
+          <Button 
+            type="primary" 
+            onClick={() => navigate('/dashboard')}
+            style={{ marginTop: '16px' }}
+          >
+            Vào trang Dashboard Admin
+          </Button>
+        )}
       </div>
     </div>
   );

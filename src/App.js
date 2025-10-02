@@ -7,8 +7,8 @@ import './utils/resizeObserverFix';
 import './App.css';
 
 function App() {
-  // Thêm basename cho GitHub Pages
-  const basename = process.env.NODE_ENV === 'production' ? '/thadico_mockup' : '';
+  // Thêm basename cho GitHub Pages và Netlify
+  const basename = process.env.REACT_APP_BASENAME || '';
   
   return (
     <ConfigProvider locale={viVN}>
