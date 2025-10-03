@@ -52,7 +52,7 @@ const ShortcutWidget = ({ shortcuts, loading }) => {
     >
       <Tabs defaultActiveKey="f1" type="card" className="shortcut-tabs">
         <TabPane 
-          tab={<span><FormOutlined /> Khảo sát (F1)</span>} 
+          tab={<span><FormOutlined /> Khảo sát</span>} 
           key="f1"
         >
           <Row gutter={[16, 16]}>
@@ -74,7 +74,7 @@ const ShortcutWidget = ({ shortcuts, loading }) => {
         </TabPane>
 
         <TabPane 
-          tab={<span><RocketOutlined /> Kế hoạch đào tạo (F2)</span>} 
+          tab={<span><RocketOutlined /> Kế hoạch đào tạo</span>} 
           key="f2"
         >
           <Row gutter={[16, 16]}>
@@ -96,7 +96,7 @@ const ShortcutWidget = ({ shortcuts, loading }) => {
         </TabPane>
 
         <TabPane 
-          tab={<span><TrophyOutlined /> Đánh giá (F3)</span>} 
+          tab={<span><TrophyOutlined /> Đánh giá</span>} 
           key="f3"
         >
           <Row gutter={[16, 16]}>

@@ -64,7 +64,7 @@ const QuickShortcuts = ({ data, loading }) => {
           title={
             <Space>
               <FormOutlined style={{ color: '#7C4DFF' }} />
-              <span>Khảo sát (F1)</span>
+              <span>Khảo sát</span>
             </Space>
           }
           className="shortcuts-card f1-shortcuts"
@@ -93,7 +93,7 @@ const QuickShortcuts = ({ data, loading }) => {
           title={
             <Space>
               <BookOutlined style={{ color: '#10BDBD' }} />
-              <span>Kế hoạch đào tạo (F2)</span>
+              <span>Kế hoạch đào tạo</span>
             </Space>
           }
           className="shortcuts-card f2-shortcuts"
@@ -122,7 +122,7 @@ const QuickShortcuts = ({ data, loading }) => {
           title={
             <Space>
               <TrophyOutlined style={{ color: '#FF9800' }} />
-              <span>Đánh giá năng lực (F3)</span>
+              <span>Đánh giá năng lực</span>
             </Space>
           }
           className="shortcuts-card f3-shortcuts"

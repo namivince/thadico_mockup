@@ -52,7 +52,7 @@ const HeroKPIs = ({ data, loading }) => {
         title={
           <div className="kpi-card-title">
             <FormOutlined style={{ marginRight: 8, color: '#7C4DFF' }} />
-            <span>Khảo sát (F1)</span>
+            <span>Khảo sát</span>
           </div>
         }
         className="kpi-card f1-card"
@@ -156,7 +156,7 @@ const HeroKPIs = ({ data, loading }) => {
         title={
           <div className="kpi-card-title">
             <BookOutlined style={{ marginRight: 8, color: '#10BDBD' }} />
-            <span>Kế hoạch đào tạo (F2)</span>
+            <span>Kế hoạch đào tạo</span>
           </div>
         }
         className="kpi-card f2-card"
@@ -252,7 +252,7 @@ const HeroKPIs = ({ data, loading }) => {
         title={
           <div className="kpi-card-title">
             <TrophyOutlined style={{ marginRight: 8, color: '#FF9800' }} />
-            <span>Đánh giá năng lực (F3)</span>
+            <span>Đánh giá năng lực</span>
           </div>
         }
         className="kpi-card f3-card"

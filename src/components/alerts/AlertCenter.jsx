@@ -597,13 +597,13 @@ const AlertCenter = () => {
               >
                 <Option value="all">Tất cả loại</Option>
                 <Option value="survey">
-                  <Badge color="#7C4DFF" text="Khảo sát (F1)" />
+                  <Badge color="#7C4DFF" text="Khảo sát" />
                 </Option>
                 <Option value="plan">
-                  <Badge color="#10BDBD" text="Kế hoạch (F2)" />
+                  <Badge color="#10BDBD" text="Kế hoạch" />
                 </Option>
                 <Option value="assessment">
-                  <Badge color="#FF9800" text="Đánh giá (F3)" />
+                  <Badge color="#FF9800" text="Đánh giá" />
                 </Option>
               </Select>
             </Col>

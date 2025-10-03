@@ -44,7 +44,7 @@ const ProgressBoard = ({ data, loading }) => {
         title={
           <div className="progress-card-title">
             <FormOutlined style={{ marginRight: 8, color: '#7C4DFF' }} />
-            <span>Khảo sát (F1)</span>
+            <span>Khảo sát</span>
           </div>
         }
         className="progress-card f1-progress"
@@ -91,7 +91,7 @@ const ProgressBoard = ({ data, loading }) => {
         title={
           <div className="progress-card-title">
             <BookOutlined style={{ marginRight: 8, color: '#10BDBD' }} />
-            <span>Kế hoạch đào tạo (F2)</span>
+            <span>Kế hoạch đào tạo</span>
           </div>
         }
         className="progress-card f2-progress"
@@ -138,7 +138,7 @@ const ProgressBoard = ({ data, loading }) => {
         title={
           <div className="progress-card-title">
             <TrophyOutlined style={{ marginRight: 8, color: '#FF9800' }} />
-            <span>Đánh giá năng lực (F3)</span>
+            <span>Đánh giá năng lực</span>
           </div>
         }
         className="progress-card f3-progress"
