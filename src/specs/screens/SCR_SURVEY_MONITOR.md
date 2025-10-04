@@ -1,8 +1,8 @@
-# SCR_SURVEY_MONITOR - Theo dõi khảo sát
+# SCR_SURVEY_MONITOR - Báo cáo khảo sát
 
 ## 1. Metadata
 - **Screen ID**: SCR_SURVEY_MONITOR
-- **Screen Name**: Theo dõi khảo sát
+- **Screen Name**: Báo cáo khảo sát
 - **Module**: Survey Management
 - **Routes**: `/surveys/:id/monitor`, `/surveys/:id`
 - **Component**: `SurveyMonitor.jsx`

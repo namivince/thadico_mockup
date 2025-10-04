@@ -1,4 +1,4 @@
-# SCR_GRADING_CONSOLE — Bảng chấm bài (Giảng viên)
+# SCR_GRADING_CONSOLE — Kết quả đánh giá (Giảng viên)
 
 ## 0) Metadata
 - Route: `/assessment/grading?campaignId=:id` 

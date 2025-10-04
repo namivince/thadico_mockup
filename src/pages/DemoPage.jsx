@@ -51,7 +51,7 @@ const DemoPage = () => {
       title: 'Luồng 3: Giảng viên chấm bài',
       description: 'Demo luồng chấm bài với SLA đếm ngược và cảnh báo quá hạn',
       steps: [
-        { label: 'Mở bảng chấm bài', path: '/assessment/grading?campaignId=cmp_01' }
+        { label: 'Mở Kết quả đánh giá', path: '/assessment/grading?campaignId=cmp_01' }
       ]
     },
     {

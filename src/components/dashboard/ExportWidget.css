@@ -1,0 +1,22 @@
+.export-widget-card {
+  height: 100%;
+}
+
+.export-card-title {
+  display: flex;
+  align-items: center;
+}
+
+.export-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.period-selector {
+  margin-bottom: 16px;
+}
+
+.export-buttons {
+  margin-top: auto;
+}

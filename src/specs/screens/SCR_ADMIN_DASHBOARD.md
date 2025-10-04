@@ -1,253 +1,214 @@
-SCR_ADMIN_DASHBOARD — Super Admin Overview (F1/F2/F3)
-0) Metadata
+# SCR_ADMIN_DASHBOARD — Super Admin Overview
 
-Route: /dashboard
+## Mô tả
+Trang Dashboard chính cho Admin, hiển thị tổng quan về 3 luồng chính: Khảo sát (F1), Kế hoạch đào tạo (F2) và Đánh giá năng lực (F3). Trang này cung cấp các thông số KPI chính, tiến độ công việc, cảnh báo hợp nhất, biểu đồ xu hướng và các phân tích năng lực.
 
-Role access: super_admin
+## Đối tượng người dùng
+- Admin
+- Quản lý cấp cao
 
-Design tone: sạch, gradient nhẹ, glass cho hero KPIs
+## Chức năng chính
+1. **Hiển thị Hero KPIs**
+   - Hiển thị các chỉ số KPI chính cho 3 luồng:
+     - F1 (Khảo sát): Số khảo sát nháp, đang chạy, sắp hết hạn, quá hạn, tỷ lệ phản hồi
+     - F2 (Đào tạo): Số kế hoạch nháp, chờ duyệt, đã duyệt, đã triển khai, hoàn thành
+     - F3 (Đánh giá): Số đợt đánh giá nháp, đang chạy, đang chấm, đã công bố, hoàn tất
+   - Click vào KPI để điều hướng đến trang danh sách tương ứng với bộ lọc đã được thiết lập sẵn
 
-Focus: 3 flow chính
+2. **Theo dõi tiến độ công việc**
+   - Hiển thị bảng tiến độ cho 3 luồng với % hoàn thành
+   - Hiển thị danh sách việc cần làm dưới dạng pills
+   - Click vào tiến độ để điều hướng đến module tương ứng
 
-F1 Khảo sát (Indigo)
+3. **Quản lý cảnh báo hợp nhất**
+   - Hiển thị danh sách cảnh báo từ cả 3 luồng
+   - Phân loại cảnh báo theo mức độ nghiêm trọng: cao, trung bình, thấp
+   - Click vào cảnh báo để xem chi tiết và thực hiện hành động nhanh
 
-F2 Kế hoạch đào tạo (Teal)
+4. **Xem biểu đồ xu hướng**
+   - F1: Biểu đồ đường thể hiện tỷ lệ phản hồi khảo sát theo thòi gian
+   - F2: Biểu đồ cột so sánh ngân sách kế hoạch và thực chi
+   - F3: Biểu đồ điểm đánh giá trung bình theo thòi gian
+   - Chọn khoảng thòi gian hiển thị: 3 tháng, 6 tháng, 12 tháng
 
-F3 Đánh giá năng lực (Amber)
+5. **Phân tích năng lực bằng biểu đồ radar**
+   - Competency Radar: So sánh năng lực tối đa, tiêu chuẩn và trung bình
+   - Role Radar: So sánh năng lực theo vai trò và đơn vị
+   - Chọn vai trò và đơn vị để xem dữ liệu tương ứng
+6. **Truy cập nhanh các chức năng thường dùng**
+   - F1: Tạo khảo sát, Phân phối, Mở monitor
+   - F2: Tạo kế hoạch, Gửi phê duyệt, Triển khai lớp
+   - F3: Tạo chiến dịch, Đóng input & chấm, Công bố kết quả
 
-1) Navigation (mega-menu rút gọn)
+## Luồng màn hình
+1. Người dùng truy cập vào trang Dashboard
+2. Hệ thống hiển thị các thông số KPI, tiến độ, cảnh báo và biểu đồ
+3. Người dùng có thể:
+   - Click vào KPI để điều hướng đến trang danh sách tương ứng
+   - Click vào tiến độ để điều hướng đến module tương ứng
+   - Click vào cảnh báo để xem chi tiết và thực hiện hành động
+   - Thay đổi khoảng thòi gian hiển thị của biểu đồ
+   - Thay đổi vai trò và đơn vị để xem biểu đồ radar tương ứng
+   - Click vào các shortcut để truy cập nhanh các chức năng
 
-Dashboard → /dashboard
+## Các thành phần UI
+- Hero KPIs: 3 card hiển thị các chỉ số KPI chính cho 3 luồng
+- Progress Board: Bảng tiến độ với thanh tiến độ và danh sách việc cần làm
+- Alert Center: Danh sách cảnh báo hợp nhất với mức độ nghiêm trọng
+- Trends Charts: Các biểu đồ xu hướng cho 3 luồng
+- Radar Charts: Biểu đồ radar cho phân tích năng lực
+- Shortcuts: Các nút truy cập nhanh các chức năng thường dùng
 
-Khảo sát (F1) → /surveys
+## Màu sắc
+- F1 (Khảo sát): #7C4DFF (primary), #B39DDB (secondary)
+- F2 (Đào tạo): #10BDBD (primary), #64D6D6 (secondary)
+- F3 (Đánh giá): #FF9800 (primary), #FFCC80 (secondary)
+- Radar:
+  - Max: #6CCF89
+  - Standard: #3B82F6
+  - Average: #F59E0B
+- Severity:
+  - High: #f5222d
+  - Medium: #faad14
+  - Low: #52c41a
 
-Kế hoạch đào tạo (F2) → /training/plans
-
-Đánh giá (F3) → /assessment/rounds
-
-(Ẩn trong demo: Nhân sự, Công-lương, Tuyển dụng, Hệ thống…)
-
-2) Layout tổng thể
-Hàng 1 — Hero KPIs (3 cards ngang)
-
-F1 — Surveys: draft, running, dueSoon, overdue, responseRate%
-
-F2 — Training Plans: draft, waitingApproval, approved, deployed, completed
-
-F3 — Assessments: draft, running, grading, resultsPublished, finalized
-
-Hover KPI → tooltip mô tả query; Click KPI → điều hướng tới list tương ứng với preset filter.
-
-Hàng 2 — Tiến độ & Cảnh báo
-
-Progress Board (3 cột, mỗi cột một flow)
-
-Thanh tiến độ % hoàn thành kỳ hiện tại
-
-Mini pills “việc cần làm”: approval pending, lớp chưa xếp lịch, survey sắp đóng…
-
-Alert Center (1 cột phải)
-
-Danh sách cảnh báo hợp nhất (overdue, dueIn3Days, approvalSLA, budgetOver)
-
-Click item → mở modal chi tiết + nút hành động nhanh (Send reminder / Approve / Close input)
-
-Hàng 3 — Trends & Phân tích (4 ô, 2×2)
-
-F1 Trend (line): Response rate theo tháng (3/6/12M selector)
-
-F2 Budget vs Actual (bar): Kế hoạch vs Thực chi theo tháng/quý (nhãn Over/Within)
-
-F3 Competency Radar (Org Overview): Max vs Chuẩn vs Trung bình theo nhóm năng lực
-
-F3 Role Radar (Role Focus) (tùy chọn bật/tắt): Dropdown Role & Org scope → Max vs Chuẩn Role vs Trung bình scope
-
-Hàng 4 — Quick Actions / Shortcuts
-
-F1: Tạo khảo sát · Phân phối · Mở monitor
-
-F2: Tạo kế hoạch · Gửi phê duyệt · Triển khai lớp
-
-F3: Tạo chiến dịch · Đóng input & chấm · Công bố kết quả
-
-Shortcuts enable/disable theo quyền; click → deep-link vào màn hình list/detail.
-
-3) Interactions
-
-KPI click → mở list với filter preset (vd: status=running&range=thisMonth)
-
-Progress bar click → mở tab tương ứng trong module
-
-Alert click → modal chi tiết + nút xử lý (mock hành vi “thành công”)
-
-Trend range: 3M / 6M / 12M (chỉ thay dữ liệu mock)
-
-Radar axis click: deep-link /assessment/results?round=:id&group=:competency_group
-
-Role Radar controls: Role/Org đổi → thay dataset mock tương ứng
-
-4) Màu sắc & đồ họa
-
-F1 Indigo: #7C4DFF (primary), #B39DDB (secondary)
-
-F2 Teal: #10BDBD (plan), #64D6D6 (actual)
-
-F3 Amber: #FF9800 (avg/hist)
-
-Radar:
-
-max: #6CCF89 (area 20%)
-
-standard: #3B82F6 (area 25%)
-
-avg/orgAvg: #F59E0B (area 25%)
-
-5) Mock Data (hard-coded JSON cho demo)
-5.1 Hero KPIs
+## Dữ liệu
+```json
 {
-  "F1": { "draft": 5, "running": 3, "dueSoon": 2, "overdue": 1, "responseRate": 78.5 },
-  "F2": { "draft": 4, "waitingApproval": 2, "approved": 5, "deployed": 3, "completed": 1 },
-  "F3": { "draft": 3, "running": 2, "grading": 1, "resultsPublished": 4, "finalized": 2 }
+  "heroKpis": {
+    "f1": {
+      "draft": 5, 
+      "running": 3, 
+      "dueSoon": 2, 
+      "overdue": 1, 
+      "responseRate": 0.785
+    },
+    "f2": {
+      "draft": 4, 
+      "waitingApproval": 2, 
+      "approved": 5, 
+      "inAdjustment": 3,
+      "onHold": 1, 
+      "canceled": 0, 
+      "deployed": 3, 
+      "completed": 1,
+      "budget": { "plan": 1200000000, "actual": 950000000 }
+    },
+    "f3": {
+      "draft": 3, 
+      "running": 2, 
+      "grading": 4, 
+      "resultsPublished": 6, 
+      "finalized": 2,
+      "avgScore": 7.8, 
+      "gap": -0.2
+    }
+  },
+  "progressBoard": {
+    "f1": {
+      "total": 10,
+      "completed": 7,
+      "inProgress": 3,
+      "overdue": 1
+    },
+    "f2": {
+      "total": 15,
+      "completed": 9,
+      "inProgress": 5,
+      "onHold": 1
+    },
+    "f3": {
+      "total": 12,
+      "completed": 8,
+      "inProgress": 4,
+      "pending": 2
+    }
+  }
+}
+```
+
+```json
+{
+  "alerts": [
+    { "id": "a1", "flow": "F1", "type": "overdue", "title": "Khảo sát Q3 quá hạn 2 ngày", "dueAt": "2025-10-02", "severity": "high", "action": {"label": "Gửi nhắc", "href": "#"} },
+    { "id": "a2", "flow": "F2", "type": "approvalSLA", "title": "Plan 2025 chờ duyệt L2 >48h", "dueAt": "2025-10-03", "severity": "medium", "action": {"label": "Mở phê duyệt", "href": "#"} },
+    { "id": "a3", "flow": "F2", "type": "holdExpiring", "title": "Lớp \"Kỹ năng A\" on hold còn 1 ngày", "dueAt": "2025-10-05", "severity": "medium", "action": {"label": "Gia hạn", "href": "#"} },
+    { "id": "a4", "flow": "F3", "type": "gradingSLA", "title": "Round Q4 còn 12h đến hạn chấm", "dueAt": "2025-10-01", "severity": "high", "action": {"label": "Mở chấm", "href": "#"} }
+  ]
 }
 
-5.2 Progress Board
+```json
 {
-  "progress": {
-    "F1": { "completionPct": 65, "todo": ["Gửi nhắc T-1 cho phòng KD", "Đóng survey Q3 – 2 ngày nữa"] },
-    "F2": { "completionPct": 45, "todo": ["Chờ duyệt L2 – KH Đào tạo Q4", "Xếp lịch lớp cho 2 khoá"] },
-    "F3": { "completionPct": 80, "todo": ["Nhắc chấm điểm vòng Q3", "Chuẩn bị công bố kết quả"] }
+  "trends": {
+    "f1Trends": [
+      { "month": "Apr", "responseRate": 0.72, "completion": 0.68 },
+      { "month": "May", "responseRate": 0.74, "completion": 0.70 },
+      { "month": "Jun", "responseRate": 0.76, "completion": 0.73 },
+      { "month": "Jul", "responseRate": 0.77, "completion": 0.74 },
+      { "month": "Aug", "responseRate": 0.79, "completion": 0.76 },
+      { "month": "Sep", "responseRate": 0.81, "completion": 0.78 }
+    ],
+    "f2BudgetTrend": [
+      { "month": "Q1", "plan": 180, "actual": 150 },
+      { "month": "Q2", "plan": 200, "actual": 195 },
+      { "month": "Q3", "plan": 220, "actual": 210 },
+      { "month": "Q4", "plan": 240, "actual": 260 }
+    ],
+    "f3ScoreTrend": [
+      { "month": "Apr", "avg": 7.2, "stdev": 0.8 },
+      { "month": "May", "avg": 7.4, "stdev": 0.7 },
+      { "month": "Jun", "avg": 7.5, "stdev": 0.7 },
+      { "month": "Jul", "avg": 7.6, "stdev": 0.6 },
+      { "month": "Sep", "avg": 7.8, "stdev": 0.5 }
+    ]
   }
 }
 
-5.3 Alerts (unified)
 {
-  "alerts":[
-    { "id":"a1","flow":"F1","severity":"high","title":"Survey 'NCĐT Q4' quá hạn 1 ngày","action":{"label":"Gửi nhắc","href":"/surveys/123/monitor"} },
-    { "id":"a2","flow":"F2","severity":"medium","title":"Kế hoạch đào tạo Q4 chờ duyệt L2 > 48h","action":{"label":"Mở duyệt","href":"/training/plans/456/approvals"} },
-    { "id":"a3","flow":"F3","severity":"low","title":"Vòng đánh giá Q3 còn 12 bài chưa chấm","action":{"label":"Đi tới chấm","href":"/assessment/rounds/789/grading"} }
-  ]
-}
-
-5.4 Trends
-{
-  "F1_trend_6m": [
-    { "month":"Apr","responseRate":72, "completion":68 },
-    { "month":"May","responseRate":74, "completion":70 },
-    { "month":"Jun","responseRate":76, "completion":73 },
-    { "month":"Jul","responseRate":77, "completion":74 },
-    { "month":"Aug","responseRate":79, "completion":76 },
-    { "month":"Sep","responseRate":81, "completion":78 }
-  ],
-  "F2_budget_6m": [
-    { "month":"Apr","plan":180, "actual":150 },
-    { "month":"May","plan":200, "actual":195 },
-    { "month":"Jun","plan":220, "actual":210 },
-    { "month":"Jul","plan":240, "actual":260 },
-    { "month":"Aug","plan":260, "actual":255 },
-    { "month":"Sep","plan":280, "actual":275 }
-  ],
-  "F3_score_6m": [
-    { "month":"Apr","avg":7.2, "stdev":0.8 },
-    { "month":"May","avg":7.4, "stdev":0.7 },
-    { "month":"Jun","avg":7.5, "stdev":0.7 },
-    { "month":"Jul","avg":7.6, "stdev":0.6 },
-    { "month":"Aug","avg":7.7, "stdev":0.6 },
-    { "month":"Sep","avg":7.8, "stdev":0.5 }
-  ]
-}
-
-5.5 Radar — Competency (Org Overview)
-{
-  "F3_radar_competency": {
-    "roundId":"2025Q3",
-    "labels":["Giao tiếp","Sáng tạo","Ra quyết định","Pháp luật","Triển khai"],
-    "series": {
-      "max":[4,4,4,4,4],
-      "standard":[3,3,3,3,3],
-      "avg":[2.8,3.2,2.9,2.7,2.8]
+  "competencyRadar": {
+    "F3_radar_competency": {
+      "roundId": "2025Q3",
+      "labels": ["Giao tiếp", "Sáng tạo", "Ra quyết định", "Pháp luật", "Triển khai"],
+      "series": {
+        "max": [4, 4, 4, 4, 4],
+        "standard": [3, 3, 3, 3, 3],
+        "avg": [2.8, 3.2, 2.9, 2.7, 2.8]
+      }
+    }
+  },
+  "roleRadar": {
+    "F3_radar_role": {
+      "role": "HR-EXEC",
+      "org": "HCM",
+      "roundId": "2025Q3",
+      "labels": ["Pháp luật", "Giao tiếp", "Triển khai", "Đào tạo & PTNS"],
+      "series": {
+        "max": [4, 4, 4, 4],
+        "roleStandard": [3, 2.5, 3, 3],
+        "orgAvg": [2.6, 2.2, 2.8, 2.7],
+      "meta": { "gapSum": 1.2, "population": 63 }
     }
   }
 }
 
-5.6 Radar — Role Focus (dropdown Role/Org → đổi dataset)
-{
-  "F3_radar_role": {
-    "role":"HR-EXEC",
-    "org":"HCM",
-    "roundId":"2025Q3",
-    "labels":["Pháp luật","Giao tiếp","Triển khai","Đào tạo & PTNS"],
-    "series": {
-      "max":[4,4,4,4],
-      "roleStandard":[3,2.5,3,3],
-      "orgAvg":[2.6,2.2,2.8,2.7]
-    },
-    "meta": { "gapSum": 1.2, "population": 63 }
-  }
-}
+## Responsive Design
+- Hero KPIs: 3 card → stack 1 cột trên mobile
+- Progress Board & Alerts: 2/3 + 1/3 → stack trên mobile
+- trends & Radar Charts: 2×2 grid → 1 cột trên mobile
+- Shortcuts: Grid → danh sách trên mobile
 
+## Ghi chú
+- Các biểu đồ có trạng thái loading khi đang tải dữ liệu (300-800ms)
+- Các KPI có tooltip hiển thị thông tin chi tiết khi hover
+- Các biểu đồ radar có thể thay đổi dataset dựa trên vai trò và đơn vị được chọn
+- Empty state hiển thị "No data" và gợi ý filter khi không có dữ liệu
+- Shortcuts hiển thị theo quyền (demo: enable tất cả); click deep-link OK
 
-Gợi ý scale: đơn vị ngân sách ở tỷ (VND) cho bar chart (F2); radar thang tối đa 4/5 tuỳ hệ thống (mock 4).
-
-6) UI/UX Notes
-
-Color coding rõ ràng: F1 indigo, F2 teal, F3 amber; Alerts dùng đỏ/amber/xanh lá theo severity
-
-Glass cards cho hero KPI; hover nâng 4–8px (shadow)
-
-Icons gợi ý: F1 📋, F2 🎓, F3 🧭
-
-Responsive:
-
-Hàng 1: 3 card → stack 1 cột trên mobile
-
-Hàng 2: Progress (2/3) + Alerts (1/3) → stack
-
-Hàng 3: 4 ô → 1 cột trên mobile
-
-Empty state: “No data” + gợi ý filter
-
-7) Acceptance Criteria
-
-Vào /dashboard thấy 3 card KPI (F1/F2/F3) với dữ liệu mock đúng.
-
-Click KPI → điều hướng sang list tương ứng với preset filter (link tĩnh cũng được).
-
-Progress Board hiển thị % & “Việc cần làm” theo mock; click mở module.
-
-Alert Center hiển thị 3 cảnh báo; click → modal chi tiết (mock) + nút hành động.
-
-Trends (line, bar) hiển thị dữ liệu 6M; có selector 3M/6M/12M (đổi dataset mock).
-
-Radar Competency & Role hiển thị đúng; đổi Role/Org (dropdown) thay dataset mock.
-
-Shortcuts hiển thị theo quyền (demo: enable tất cả); click deep-link OK.
-
-Mọi ô có skeleton khi “loading giả” (300–800ms) & thông báo retry mock.
-
-8) Telemetry (mock)
-
-dash.kpi.click (flow, kpi)
-
-dash.alert.action (flow, type, action)
-
-dash.shortcut.click (code)
-
-dash.range.change (widget, months)
-
-dash.radar.click (widget: competency|role, axis)
-
-9) Gợi ý cấu trúc component (tùy stack)
-
-Dashboard/index.jsx
-
-Dashboard/HeroKPIs.jsx
-
-Dashboard/ProgressBoard.jsx · Dashboard/AlertCenter.jsx
-
-Dashboard/Trends/F1Line.jsx · Dashboard/Trends/F2BudgetBar.jsx
-
-Dashboard/Radar/CompetencyRadar.jsx · Dashboard/Radar/RoleRadar.jsx
-
-Dashboard/Shortcuts.jsx
-
-mock/dashboardData.ts (chứa toàn bộ JSON mock phía trên)
+## Cấu trúc component
+- Dashboard/index.jsx
+- Dashboard/HeroKPIs.jsx
+- Dashboard/ProgressBoard.jsx
+- Dashboard/UnifiedAlerts.jsx
+- Dashboard/TrendsCharts.jsx
+- Dashboard/RadarCharts.jsx
+- Dashboard/QuickShortcuts.jsx

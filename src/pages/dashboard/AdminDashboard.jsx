@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Typography, Spin, message, Row, Col, Tabs, Card, Alert, Badge, Button, Avatar, Dropdown, Menu } from 'antd';
+import { Typography, Spin, message, Row, Col, Tabs, Card, Alert, Button } from 'antd';
 import { 
   DashboardOutlined, 
   CalendarOutlined, 
   BarChartOutlined, 
-  BellOutlined,
-  FormOutlined,
-  RocketOutlined,
-  TrophyOutlined,
-  UserOutlined,
-  LogoutOutlined,
-  DownOutlined,
   HomeOutlined
 } from '@ant-design/icons';
-import SideMenu from '../../components/dashboard/SideMenu';
 
 // Import các component mới
 import HeroKPIs from '../../components/dashboard/HeroKPIs';
@@ -38,7 +30,6 @@ import {
 
 import './AdminDashboard.css';
 
-const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
 /**
@@ -54,7 +45,28 @@ const AdminDashboard = () => {
     kpis: heroKpis,
     progress: progressBoard,
     alertsData: alerts,
-    trendsData: trends,
+    trendsData: {
+      ...trends,
+      staffStats: {
+        participated: 120,
+        notParticipated: 15,
+        declined: 5
+      },
+      teacherStats: {
+        participated: 18,
+        notParticipated: 2,
+        replaced: 3
+      },
+      courseStats: {
+        totalBudget: 1200000000,
+        actualBudget: 950000000,
+        extraBudget: 50000000
+      },
+      subjectStats: {
+        completed: 32,
+        pending: 8
+      }
+    },
     competencyRadarData: competencyRadar,
     roleRadarData: roleRadar,
     shortcutsData: shortcuts
@@ -98,83 +110,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <Layout className="admin-dashboard">
-      <Sider width={250} theme="light" className="dashboard-sider">
-        <SideMenu />
-      </Sider>
-      
-      <Layout className="dashboard-main">
-        <Header className="dashboard-header">
-          <div className="header-right">
-            <Badge count={3} size="small" style={{ marginRight: '16px' }}>
-              <Button 
-                type="text" 
-                icon={<BellOutlined />} 
-                style={{ 
-                  fontSize: '18px', 
-                  color: '#666',
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              />
-            </Badge>
-            
-            <Dropdown 
-              overlay={
-                <Menu
-                  style={{
-                    minWidth: '200px',
-                    borderRadius: '12px',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
-                    border: '1px solid rgba(0, 0, 0, 0.06)'
-                  }}
-                >
-                  <Menu.Item 
-                    key="profile" 
-                    icon={<UserOutlined />}
-                    style={{ borderRadius: '8px', margin: '4px 8px' }}
-                  >
-                    Thông tin cá nhân
-                  </Menu.Item>
-                  <Menu.Divider />
-                  <Menu.Item 
-                    key="logout" 
-                    icon={<LogoutOutlined />} 
-                    onClick={() => {
-                      localStorage.removeItem('user');
-                      window.location.href = '/login';
-                    }}
-                    style={{ borderRadius: '8px', margin: '4px 8px', color: '#f5222d' }}
-                  >
-                    Đăng xuất
-                  </Menu.Item>
-                </Menu>
-              }
-              placement="bottomRight"
-              arrow={{ pointAtCenter: true }}
-            >
-              <Button className="user-btn">
-                <Avatar 
-                  size="small" 
-                  icon={<UserOutlined />} 
-                  style={{ 
-                    backgroundColor: '#667eea',
-                    marginRight: '8px'
-                  }}
-                />
-                <span style={{ fontWeight: '600' }}>
-                  {user?.name || 'Nguyễn Phúc Vinh'}
-                </span>
-                <DownOutlined style={{ fontSize: '10px', marginLeft: '8px' }} />
-              </Button>
-            </Dropdown>
-          </div>
-        </Header>
-        <Content className="dashboard-content">
+    <div className="admin-dashboard-content">
           <div className="welcome-banner">
             <div className="welcome-message">
               <h2>Chào mừng trở lại <span role="img" aria-label="wave">👋</span></h2>
@@ -215,13 +151,13 @@ const AdminDashboard = () => {
                     </Typography.Text>
                   </Col>
                   <Col>
-                    <Button 
+                    {/* <Button 
                       type="primary" 
                       icon={<HomeOutlined />}
                       onClick={() => window.location.href = '/demo'}
                     >
                       Về trang demo
-                    </Button>
+                    </Button> */}
                   </Col>
                 </Row>
               </div>
@@ -274,9 +210,7 @@ const AdminDashboard = () => {
               </section>
             </div>
           )}
-        </Content>
-      </Layout>
-    </Layout>
+    </div>
   );
 };
 

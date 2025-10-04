@@ -30,30 +30,43 @@ export const alerts = {
 
 // 5.4 Trends
 export const trends = {
-  F1_trend_6m: [
-    { month: "Apr", responseRate: 72, completion: 68 },
-    { month: "May", responseRate: 74, completion: 70 },
-    { month: "Jun", responseRate: 76, completion: 73 },
-    { month: "Jul", responseRate: 77, completion: 74 },
-    { month: "Aug", responseRate: 79, completion: 76 },
-    { month: "Sep", responseRate: 81, completion: 78 }
+  f1Trends: [
+    { month: "Apr", responseRate: 0.72, completion: 0.68 },
+    { month: "May", responseRate: 0.74, completion: 0.70 },
+    { month: "Jun", responseRate: 0.76, completion: 0.73 },
+    { month: "Jul", responseRate: 0.77, completion: 0.74 },
+    { month: "Aug", responseRate: 0.79, completion: 0.76 },
+    { month: "Sep", responseRate: 0.81, completion: 0.78 }
   ],
-  F2_budget_6m: [
-    { month: "Apr", plan: 180, actual: 150 },
-    { month: "May", plan: 200, actual: 195 },
-    { month: "Jun", plan: 220, actual: 210 },
-    { month: "Jul", plan: 240, actual: 260 },
-    { month: "Aug", plan: 260, actual: 255 },
-    { month: "Sep", plan: 280, actual: 275 }
+  f2BudgetTrend: [
+    { month: "Q1", plan: 180, actual: 150 },
+    { month: "Q2", plan: 200, actual: 195 },
+    { month: "Q3", plan: 220, actual: 210 },
+    { month: "Q4", plan: 240, actual: 260 }
   ],
-  F3_score_6m: [
+  f3ScoreTrend: [
     { month: "Apr", avg: 7.2, stdev: 0.8 },
     { month: "May", avg: 7.4, stdev: 0.7 },
     { month: "Jun", avg: 7.5, stdev: 0.7 },
     { month: "Jul", avg: 7.6, stdev: 0.6 },
     { month: "Aug", avg: 7.7, stdev: 0.6 },
     { month: "Sep", avg: 7.8, stdev: 0.5 }
-  ]
+  ],
+  staffStats: {
+    participated: 120,
+    notParticipated: 15,
+    declined: 5
+  },
+  teacherStats: {
+    participated: 18,
+    notParticipated: 2,
+    replaced: 3
+  },
+  courseStats: {
+    totalBudget: 1200000000,
+    actualBudget: 950000000,
+    extraBudget: 50000000
+  }
 };
 
 // 5.5 Radar — Competency (Org Overview)
@@ -144,3 +157,32 @@ export const colors = {
     low: "#52c41a"
   }
 };
+
+// Phân quyền theo vai trò
+export const userRoles = {
+  EMPLOYEE: {
+    name: 'Nhân viên',
+    permissions: ['survey.respond', 'survey.decline_with_reason', 'class.view', 'assessment.self_evaluate']
+  },
+  HR: {
+    name: 'HR',
+    permissions: ['survey.create', 'survey.distribute', 'plan.create', 'plan.adjust_request', 'alerts.send_reminder']
+  },
+  MANAGER: {
+    name: 'Quản lý',
+    permissions: ['plan.approve', 'plan.reject', 'plan.hold', 'plan.cancel', 'alerts.send_reminder']
+  },
+  ADMIN: {
+    name: 'Admin',
+    permissions: ['all']
+  }
+};
+
+// Dữ liệu phản hồi khảo sát
+export const surveyResponses = [
+  { id: 'r1', surveyId: 's1', employeeId: 'e1', employeeName: 'Nguyễn Văn A', department: 'Nhân sự', status: 'responded', respondedAt: '2025-10-01', lastRemindedAt: null },
+  { id: 'r2', surveyId: 's1', employeeId: 'e2', employeeName: 'Trần Thị B', department: 'Kỹ thuật', status: 'pending', respondedAt: null, lastRemindedAt: '2025-10-02' },
+  { id: 'r3', surveyId: 's1', employeeId: 'e3', employeeName: 'Lê Văn C', department: 'Tài chính', status: 'declined', respondedAt: null, lastRemindedAt: '2025-10-01', declineReason: 'Đang trong thời gian nghỉ phép dài hạn' },
+  { id: 'r4', surveyId: 's1', employeeId: 'e4', employeeName: 'Phạm Thị D', department: 'Kỹ thuật', status: 'responded', respondedAt: '2025-10-02', lastRemindedAt: null },
+  { id: 'r5', surveyId: 's1', employeeId: 'e5', employeeName: 'Hoàng Văn E', department: 'Kinh doanh', status: 'pending', respondedAt: null, lastRemindedAt: '2025-10-03' },
+];

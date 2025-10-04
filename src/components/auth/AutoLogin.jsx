@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Component để tự động đăng nhập người dùng với quyền admin
+ * Component kiểm tra đăng nhập và chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
  */
 const AutoLogin = () => {
   const navigate = useNavigate();
@@ -11,21 +11,13 @@ const AutoLogin = () => {
     // Kiểm tra xem người dùng đã đăng nhập chưa
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     
-    // Nếu chưa đăng nhập, tạo user admin mới
+    // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
     if (!user || !user.role) {
-      const adminUser = {
-        id: 'admin-123',
-        name: 'Admin User',
-        email: 'admin@thadico.com',
-        role: 'ADMIN',
-        permissions: ['all']
-      };
+      // Xóa dữ liệu cũ nếu có
+      localStorage.removeItem('user');
       
-      // Lưu vào localStorage
-      localStorage.setItem('user', JSON.stringify(adminUser));
-      
-      // Chuyển hướng đến trang dashboard
-      navigate('/dashboard');
+      // Chuyển hướng đến trang đăng nhập
+      navigate('/login');
     }
   }, [navigate]);
 

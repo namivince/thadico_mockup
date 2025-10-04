@@ -5,6 +5,48 @@
   border-right: 1px solid #f0f0f0;
 }
 
+.user-role-display {
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+
+.role-badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid;
+}
+
+.role-badge.admin {
+  background-color: #f6ffed;
+  color: #52c41a;
+  border-color: #b7eb8f;
+}
+
+.role-badge.manager {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  border-color: #91d5ff;
+}
+
+.role-badge.hr {
+  background-color: #fff2e8;
+  color: #fa541c;
+  border-color: #ffbb96;
+}
+
+.role-badge.employee {
+  background-color: #f9f0ff;
+  color: #722ed1;
+  border-color: #d3adf7;
+}
+
 .side-menu-logo {
   /* padding: 24px 16px; */
   text-align: center;

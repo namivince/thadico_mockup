@@ -31,12 +31,12 @@ import {
   ExclamationCircleOutlined
 } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
-import { surveys, surveyResponses, surveyAnalytics } from '../../data/mockData';
+import { surveyResponses } from '../../mock/dashboardData';
 import dayjs from '../../utils/dayjs';
 import './SurveyMonitor.css';
 
 /**
- * Màn hình theo dõi khảo sát real-time
+ * Màn hình Báo cáo khảo sát real-time
  */
 const SurveyMonitor = () => {
   const navigate = useNavigate();
@@ -46,6 +46,9 @@ const SurveyMonitor = () => {
   const [responses, setResponses] = useState([]);
   const [analytics, setAnalytics] = useState(null);
   const [refreshInterval, setRefreshInterval] = useState(null);
+  const [activeTab, setActiveTab] = useState('responded');
+  const [declineModalVisible, setDeclineModalVisible] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   // Load data
   useEffect(() => {
@@ -65,9 +68,35 @@ const SurveyMonitor = () => {
       setLoading(true);
       
       // Simulate API calls
-      const surveyData = surveys.find(s => s.id === parseInt(id));
-      const responsesData = surveyResponses.filter(r => r.surveyId === parseInt(id));
-      const analyticsData = surveyAnalytics[id];
+      // Sử dụng mock data từ file dashboardData.ts
+      const surveyData = {
+        id: id || 's1',
+        title: 'Khảo sát nhu cầu đào tạo Q4/2025',
+        status: 'running',
+        responseRate: 0.75,
+        dueDate: '2025-10-15',
+        department: 'Toàn công ty',
+        totalInvitations: 50,
+        totalResponses: 35,
+        responseRate: 70,
+        startAt: '2025-10-01',
+        dueAt: '2025-10-15'
+      };
+      
+      // Phân loại responses theo trạng thái
+      const responsesData = surveyResponses;
+      
+      // Tạo dữ liệu phân tích giả
+      const analyticsData = {
+        departmentStats: [
+          { department: 'Nhân sự', invited: 10, responded: 8, rate: 80 },
+          { department: 'Kỹ thuật', invited: 15, responded: 10, rate: 67 },
+          { department: 'Tài chính', invited: 8, responded: 5, rate: 63 },
+          { department: 'Kinh doanh', invited: 12, responded: 7, rate: 58 },
+          { department: 'Marketing', invited: 5, responded: 5, rate: 100 }
+        ],
+        questionStats: []
+      };
       
       setSurvey(surveyData);
       setResponses(responsesData);
@@ -125,12 +154,12 @@ const SurveyMonitor = () => {
     </Menu>
   );
 
-  // Response status columns
-  const responseColumns = [
+  // Columns cho người đã trả lời
+  const respondedColumns = [
     {
       title: 'Người trả lời',
-      dataIndex: 'userName',
-      key: 'userName',
+      dataIndex: 'employeeName',
+      key: 'employeeName',
       render: (text, record) => (
         <div>
           <div style={{ fontWeight: '500' }}>{text}</div>
@@ -140,21 +169,21 @@ const SurveyMonitor = () => {
     },
     {
       title: 'Thời gian trả lời',
-      dataIndex: 'submittedAt',
-      key: 'submittedAt',
-      render: (date) => (
+      dataIndex: 'respondedAt',
+      key: 'respondedAt',
+      render: (date) => date ? (
         <div>
           <div>{dayjs(date).format('DD/MM/YYYY')}</div>
           <div style={{ fontSize: '12px', color: '#666' }}>
             {dayjs(date).format('HH:mm')}
           </div>
         </div>
-      )
+      ) : '-'
     },
     {
       title: 'Trạng thái',
       key: 'status',
-      render: () => (
+      render: (_, record) => (
         <Tag color="green" icon={<CheckCircleOutlined />}>
           Đã hoàn thành
         </Tag>
@@ -172,23 +201,131 @@ const SurveyMonitor = () => {
               title: 'Chi tiết phản hồi',
               content: (
                 <div>
-                  <p><strong>Người trả lời:</strong> {record.userName}</p>
+                  <p><strong>Người trả lời:</strong> {record.employeeName}</p>
                   <p><strong>Phòng ban:</strong> {record.department}</p>
-                  <p><strong>Thời gian:</strong> {dayjs(record.submittedAt).format('DD/MM/YYYY HH:mm')}</p>
-                  <div>
-                    <strong>Câu trả lời:</strong>
-                    <ul>
-                      {record.answers.map((answer, index) => (
-                        <li key={index}>
-                          Câu {answer.questionId}: {answer.value}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <p><strong>Thời gian:</strong> {record.respondedAt ? dayjs(record.respondedAt).format('DD/MM/YYYY HH:mm') : '-'}</p>
                 </div>
               ),
               width: 600
             });
+          }}
+        >
+          Xem chi tiết
+        </Button>
+      )
+    }
+  ];
+  
+  // Columns cho người chưa trả lời
+  const pendingColumns = [
+    {
+      title: 'Người được mời',
+      dataIndex: 'employeeName',
+      key: 'employeeName',
+      render: (text, record) => (
+        <div>
+          <div style={{ fontWeight: '500' }}>{text}</div>
+          <div style={{ fontSize: '12px', color: '#666' }}>{record.department}</div>
+        </div>
+      )
+    },
+    {
+      title: 'Lần nhắc gần nhất',
+      dataIndex: 'lastRemindedAt',
+      key: 'lastRemindedAt',
+      render: (date) => date ? (
+        <div>
+          <div>{dayjs(date).format('DD/MM/YYYY')}</div>
+          <div style={{ fontSize: '12px', color: '#666' }}>
+            {dayjs(date).format('HH:mm')}
+          </div>
+        </div>
+      ) : 'Chưa nhắc'
+    },
+    {
+      title: 'Trạng thái',
+      key: 'status',
+      render: (_, record) => (
+        <Tag color="orange" icon={<ClockCircleOutlined />}>
+          Chưa trả lời
+        </Tag>
+      )
+    },
+    {
+      title: 'Thao tác',
+      key: 'actions',
+      render: (_, record) => (
+        <Space>
+          <Button 
+            type="text" 
+            icon={<SendOutlined />}
+            onClick={() => {
+              message.success(`Đã gửi nhắc nhở đến ${record.employeeName}`);
+            }}
+          >
+            Nhắc nhở
+          </Button>
+        </Space>
+      )
+    }
+  ];
+  
+  // Columns cho người từ chối
+  const declinedColumns = [
+    {
+      title: 'Người từ chối',
+      dataIndex: 'employeeName',
+      key: 'employeeName',
+      render: (text, record) => (
+        <div>
+          <div style={{ fontWeight: '500' }}>{text}</div>
+          <div style={{ fontSize: '12px', color: '#666' }}>{record.department}</div>
+        </div>
+      )
+    },
+    {
+      title: 'Thời gian từ chối',
+      dataIndex: 'respondedAt',
+      key: 'respondedAt',
+      render: (date) => date ? (
+        <div>
+          <div>{dayjs(date).format('DD/MM/YYYY')}</div>
+          <div style={{ fontSize: '12px', color: '#666' }}>
+            {dayjs(date).format('HH:mm')}
+          </div>
+        </div>
+      ) : '-'
+    },
+    {
+      title: 'Lý do từ chối',
+      dataIndex: 'declineReason',
+      key: 'declineReason',
+      ellipsis: true,
+      render: (reason) => (
+        <Tooltip title={reason}>
+          <span>{reason}</span>
+        </Tooltip>
+      )
+    },
+    {
+      title: 'Trạng thái',
+      key: 'status',
+      render: (_, record) => (
+        <Tag color="red" icon={<ExclamationCircleOutlined />}>
+          Đã từ chối
+        </Tag>
+      )
+    },
+    {
+      title: 'Thao tác',
+      key: 'actions',
+      render: (_, record) => (
+        <Button 
+          type="text" 
+          icon={<EyeOutlined />}
+          onClick={() => {
+            setSelectedEmployee(record);
+            setDeclineModalVisible(true);
           }}
         >
           Xem chi tiết
@@ -385,20 +522,121 @@ const SurveyMonitor = () => {
       </Row>
 
       {/* Response Details */}
-      <Card title="Chi tiết phản hồi" className="responses-card">
-        <Table
-          columns={responseColumns}
-          dataSource={responses}
-          rowKey="id"
-          loading={loading}
-          pagination={{
-            pageSize: 10,
-            showSizeChanger: true,
-            showTotal: (total, range) => 
-              `${range[0]}-${range[1]} của ${total} phản hồi`
-          }}
-        />
+      <Card 
+        title="Chi tiết phản hồi" 
+        className="responses-card"
+        tabList={[
+          { key: 'responded', tab: 'Đã trả lời' },
+          { key: 'pending', tab: 'Chưa trả lời' },
+          { key: 'declined', tab: 'Từ chối' },
+        ]}
+        activeTabKey={activeTab}
+        onTabChange={key => setActiveTab(key)}
+      >
+        {activeTab === 'responded' && (
+          <Table
+            columns={respondedColumns}
+            dataSource={responses.filter(r => r.status === 'responded')}
+            rowKey="id"
+            loading={loading}
+            pagination={{
+              pageSize: 10,
+              showSizeChanger: true,
+              showTotal: (total, range) => 
+                `${range[0]}-${range[1]} của ${total} phản hồi`
+            }}
+          />
+        )}
+        
+        {activeTab === 'pending' && (
+          <Table
+            columns={pendingColumns}
+            dataSource={responses.filter(r => r.status === 'pending')}
+            rowKey="id"
+            loading={loading}
+            pagination={{
+              pageSize: 10,
+              showSizeChanger: true,
+              showTotal: (total, range) => 
+                `${range[0]}-${range[1]} của ${total} người chưa trả lời`
+            }}
+          />
+        )}
+        
+        {activeTab === 'declined' && (
+          <Table
+            columns={declinedColumns}
+            dataSource={responses.filter(r => r.status === 'declined')}
+            rowKey="id"
+            loading={loading}
+            pagination={{
+              pageSize: 10,
+              showSizeChanger: true,
+              showTotal: (total, range) => 
+                `${range[0]}-${range[1]} của ${total} người từ chối`
+            }}
+          />
+        )}
       </Card>
+      
+      {/* Modal xem chi tiết lý do từ chối */}
+      <Modal
+        title="Chi tiết từ chối khảo sát"
+        visible={declineModalVisible}
+        onCancel={() => setDeclineModalVisible(false)}
+        footer={[
+          <Button key="close" onClick={() => setDeclineModalVisible(false)}>
+            Đóng
+          </Button>,
+          <Button 
+            key="approve" 
+            type="primary"
+            onClick={() => {
+              message.success('Đã chấp nhận lý do từ chối');
+              setDeclineModalVisible(false);
+            }}
+          >
+            Chấp nhận lý do
+          </Button>
+        ]}
+      >
+        {selectedEmployee && (
+          <div>
+            <p><strong>Người từ chối:</strong> {selectedEmployee.employeeName}</p>
+            <p><strong>Phòng ban:</strong> {selectedEmployee.department}</p>
+            <p><strong>Thời gian từ chối:</strong> {dayjs(selectedEmployee.respondedAt).format('DD/MM/YYYY HH:mm')}</p>
+            
+            <div style={{ marginTop: '16px' }}>
+              <p><strong>Lý do từ chối:</strong></p>
+              <div style={{ 
+                padding: '12px', 
+                background: '#f5f5f5', 
+                borderRadius: '4px',
+                marginTop: '8px'
+              }}>
+                {selectedEmployee.declineReason}
+              </div>
+            </div>
+            
+            {selectedEmployee.attachments && selectedEmployee.attachments.length > 0 && (
+              <div style={{ marginTop: '16px' }}>
+                <p><strong>Tệp đính kèm:</strong></p>
+                <List
+                  size="small"
+                  dataSource={selectedEmployee.attachments}
+                  renderItem={item => (
+                    <List.Item>
+                      <Button type="link" icon={<DownloadOutlined />}>
+                        {item.name}
+                      </Button>
+                    </List.Item>
+                  )}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </Modal>
 
       {/* Question Analytics */}
       {analytics?.questionStats && (

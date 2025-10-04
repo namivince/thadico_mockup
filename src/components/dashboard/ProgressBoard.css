@@ -22,11 +22,15 @@
   border-left: 3px solid #FF9800;
 }
 
+.progress-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .progress-card-title {
   display: flex;
   align-items: center;
-  font-weight: 600;
-  font-size: 16px;
 }
 
 .progress-section {
@@ -40,43 +44,86 @@
   margin-bottom: 8px;
 }
 
+.progress-stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
 .progress-bar {
-  height: 12px;
-  border-radius: 6px;
+  margin-top: 8px;
 }
 
 .todo-section {
-  margin-top: 16px;
+  margin-top: auto;
 }
 
-.todo-section h5 {
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 12px;
 }
 
 .todo-item {
-  padding: 8px 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-bottom: 4px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .todo-item:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: #f5f5f5;
+}
+
+.todo-item-content {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.todo-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.todo-description {
+  font-size: 12px;
+  margin-top: 2px;
 }
 
 .todo-tag {
   margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.todo-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .todo-arrow {
-  margin-left: auto;
-  font-size: 12px;
-  opacity: 0.5;
+  color: #bfbfbf;
 }
 
-.todo-item:hover .todo-arrow {
-  opacity: 1;
+.empty-todo {
+  text-align: center;
+  padding: 16px;
+  color: #bfbfbf;
+}
+
+.show-more-btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  padding: 4px 0;
+  font-size: 12px;
 }
 
 /* Responsive styles */

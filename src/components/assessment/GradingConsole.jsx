@@ -20,7 +20,7 @@ const { TextArea } = Input;
 const { Countdown } = Statistic;
 
 /**
- * Component bảng chấm bài (Grading Console)
+ * Component Kết quả đánh giá (Grading Console)
  * Theo spec: SCR_GRADING_CONSOLE
  */
 const GradingConsole = () => {
@@ -374,7 +374,7 @@ const GradingConsole = () => {
         <Row gutter={16} align="middle">
           <Col flex="auto">
             <Title level={3}>{campaignInfo?.name || 'Đang tải...'}</Title>
-            <Text type="secondary">Bảng chấm bài</Text>
+            <Text type="secondary">Kết quả đánh giá</Text>
           </Col>
           <Col>
             <Button 
