@@ -644,7 +644,7 @@ const RubricBuilder = () => {
         )}
         
         <Layout className="rubric-builder-layout">
-          <Sider width={300} className="rubric-builder-sider">
+          <Sider width={300} className="rubric-builder-sider" theme="light">
             <div className="criteria-list-header">
               <Title level={4}>Danh sách tiêu chí</Title>
               <Button 

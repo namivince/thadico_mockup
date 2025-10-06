@@ -1,0 +1,28 @@
+/* Rubric List Page Styles */
+.rubric-list-page {
+  padding: 24px;
+  background: #f0f2f5;
+  min-height: 100vh;
+}
+
+/* Rubric Card Styles */
+.rubric-card {
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.rubric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.rubric-card .ant-card-body {
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rubric-list-page {
+    padding: 16px;
+  }
+}

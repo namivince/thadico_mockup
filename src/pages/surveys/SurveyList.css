@@ -1,35 +1,23 @@
+/* Modern Survey List Page Styles */
 .survey-list-page {
   padding: 24px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: calc(100vh - 64px);
+  background: #f0f2f5;
+  min-height: 100vh;
 }
 
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  padding: 20px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+/* Table row alternating colors */
+.table-row-light {
+  background: #ffffff;
 }
 
-.page-title h2 {
-  margin: 0 0 8px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 28px;
-  font-weight: 700;
+.table-row-dark {
+  background: #fafafa;
 }
 
-.page-title p {
-  margin: 0;
-  color: #666;
-  font-size: 14px;
+.table-row-light:hover,
+.table-row-dark:hover {
+  background: #e6f7ff !important;
+  transition: all 0.3s ease;
 }
 
 .filter-card {

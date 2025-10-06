@@ -9,6 +9,7 @@ import {
   QuestionCircleOutlined, ExclamationCircleOutlined
 } from '@ant-design/icons';
 import { useParams, useNavigate } from 'react-router-dom';
+import SubmitSuccessModal from '../../components/assessment/SubmitSuccessModal';
 import './SelfEvalForm.css';
 
 const { Title, Text, Paragraph } = Typography;
@@ -23,6 +24,7 @@ const SelfEvalForm = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [evaluation, setEvaluation] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Fetch evaluation data
   useEffect(() => {
@@ -32,6 +34,7 @@ const SelfEvalForm = () => {
         id: 1,
         roundId: 2,
         roundName: 'Đánh giá KPI Q3/2025',
+        resultDate: '2025-10-15',
         employeeId: 123,
         employeeName: 'Lê Thị Nhân Viên',
         department: 'Phòng Kỹ thuật',
@@ -240,6 +243,7 @@ const SelfEvalForm = () => {
           setTimeout(() => {
             setSubmitted(true);
             setSubmitLoading(false);
+            setShowSuccessModal(true);
           }, 1500);
         }
       });
@@ -435,6 +439,16 @@ const SelfEvalForm = () => {
           </Form.Item>
         </Card>
       </Form>
+
+      <SubmitSuccessModal 
+        visible={showSuccessModal}
+        onClose={() => {
+          setShowSuccessModal(false);
+          navigate('/my-assessments');
+        }}
+        resultDate={evaluation?.resultDate || '2025-10-15'}
+        campaignName={evaluation?.roundName || 'Đánh giá'}
+      />
     </div>
   );
 };

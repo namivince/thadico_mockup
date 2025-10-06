@@ -33,6 +33,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { surveyResponses } from '../../mock/dashboardData';
 import dayjs from '../../utils/dayjs';
+import RealtimeBadge from '../../components/common/RealtimeBadge';
 import './SurveyMonitor.css';
 
 /**
@@ -48,6 +49,7 @@ const SurveyMonitor = () => {
   const [refreshInterval, setRefreshInterval] = useState(null);
   const [activeTab, setActiveTab] = useState('responded');
   const [declineModalVisible, setDeclineModalVisible] = useState(false);
+  const [lastSyncTime, setLastSyncTime] = useState(new Date().toISOString());
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   // Load data
@@ -101,6 +103,7 @@ const SurveyMonitor = () => {
       setSurvey(surveyData);
       setResponses(responsesData);
       setAnalytics(analyticsData);
+      setLastSyncTime(new Date().toISOString());
     } catch (error) {
       message.error('Không thể tải dữ liệu khảo sát');
     } finally {
@@ -350,7 +353,13 @@ const SurveyMonitor = () => {
           />
           <div>
             <h2>{survey.name}</h2>
-            <p>Theo dõi tiến độ khảo sát real-time</p>
+            <Space>
+              <p>Theo dõi tiến độ khảo sát real-time</p>
+              <RealtimeBadge 
+                lastSyncTime={lastSyncTime}
+                isRealtime={true}
+              />
+            </Space>
           </div>
         </div>
         

@@ -29,9 +29,9 @@ const MegaMenu = ({ onMenuSelect }) => {
 
   // Icon mapping cho từng menu
   const menuIcons = {
-    'f1': <FormOutlined />,
-    'f2': <BookOutlined />,
-    'f3': <TrophyOutlined />
+    'f1': <TrophyOutlined />,
+    'f2': <FormOutlined />,
+    'f3': <BookOutlined />
   };
 
   // Sử dụng dữ liệu mẫu cho menu

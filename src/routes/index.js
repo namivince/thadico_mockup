@@ -26,6 +26,7 @@ import PlanAutoSuggest from '../pages/training/PlanAutoSuggest';
 // Import các component mới
 import CampaignForm from '../components/assessment/CampaignForm';
 import RubricBuilder from '../pages/assessment/RubricBuilder';
+import RubricList from '../pages/assessment/RubricList';
 import RoundList from '../pages/assessment/RoundList';
 import RoundBoard from '../pages/assessment/RoundBoard';
 import SelfEvalForm from '../pages/assessment/SelfEvalForm';
@@ -329,7 +330,31 @@ const AppRoutes = () => {
           } 
         />
         <Route 
+          path="assessment/rubrics/:id/edit" 
+          element={
+            <AdminRoute>
+              <RubricBuilder />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="assessment/rubrics/:id" 
+          element={
+            <AdminRoute>
+              <RubricBuilder />
+            </AdminRoute>
+          } 
+        />
+        <Route 
           path="assessment/rubrics" 
+          element={
+            <AdminRoute>
+              <RubricList />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="assessment/rubrics/new/builder" 
           element={
             <AdminRoute>
               <RubricBuilder />

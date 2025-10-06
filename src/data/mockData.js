@@ -745,36 +745,37 @@ export const competencies = [
   }
 ];
 
-// Dữ liệu mẫu cho menu - Cấu trúc mới theo FC-101 đến FC-159
+// Dữ liệu mẫu cho menu - Cấu trúc ĐÚNG theo flow nghiệp vụ
 export const menuItems = [
   {
     key: 'f1',
-    label: 'QUẢN LÝ KHẢO SÁT',
+    label: 'ĐÁNH GIÁ NĂNG LỰC',
     children: [
-      { key: 'f1:setup', label: 'Thiết lập dữ liệu', path: '/courses' },
-      { key: 'f1:distribute', label: 'Phân phối khảo sát', path: '/surveys' },
-      { key: 'f1:report', label: 'Báo cáo khảo sát', path: '/surveys/reports' }
+      { key: 'f1:rubrics', label: 'Thiết lập danh mục', path: '/assessment/rubrics' },
+      { key: 'f1:create', label: 'Tạo chiến dịch', path: '/assessment/rounds/new' },
+      { key: 'f1:run', label: 'Thực hiện đánh giá', path: '/assessment/rounds' },
+      { key: 'f1:results', label: 'Kết quả đánh giá', path: '/assessment/results' },
+      { key: 'f1:appeals', label: 'Phúc khảo', path: '/assessment/appeals' }
     ]
   },
   {
     key: 'f2',
-    label: 'LẬP KẾ HOẠCH ĐÀO TẠO',
+    label: 'KHẢO SÁT & PHÂN TÍCH',
     children: [
-      { key: 'f2:demands', label: 'Nhu cầu đào tạo', path: '/training/demands' },
-      { key: 'f2:plans', label: 'Lập kế hoạch đào tạo', path: '/training/plans' },
-      { key: 'f2:split', label: 'Phân rã kế hoạch', path: '/training/plans/split' },
-      { key: 'f2:execute', label: 'Thực hiện kế hoạch', path: '/training/deploy' }
+      { key: 'f2:setup', label: 'Thiết lập dữ liệu', path: '/courses' },
+      { key: 'f2:create', label: 'Tạo khảo sát', path: '/surveys/new' },
+      { key: 'f2:distribute', label: 'Phân phối khảo sát', path: '/surveys' },
+      { key: 'f2:report', label: 'Báo cáo khảo sát', path: '/surveys/reports' }
     ]
   },
   {
     key: 'f3',
-    label: 'ĐÁNH GIÁ NĂNG LỰC',
+    label: 'LẬP KẾ HOẠCH ĐÀO TẠO',
     children: [
-      { key: 'f3:rubrics', label: 'Thiết lập danh mục', path: '/assessment/rubrics' },
-      { key: 'f3:create', label: 'Tạo chiến dịch', path: '/assessment/rounds/new' },
-      { key: 'f3:run', label: 'Thực hiện đánh giá', path: '/assessment/rounds' },
-      { key: 'f3:results', label: 'Kết quả đánh giá', path: '/assessment/results' },
-      { key: 'f3:appeals', label: 'Phúc khảo', path: '/assessment/appeals' }
+      { key: 'f3:demands', label: 'Nhu cầu đào tạo', path: '/training/demands' },
+      { key: 'f3:plans', label: 'Lập kế hoạch đào tạo', path: '/training/plans' },
+      { key: 'f3:split', label: 'Phân rã kế hoạch', path: '/training/plans/split' },
+      { key: 'f3:execute', label: 'Thực hiện kế hoạch', path: '/training/deploy' }
     ]
   }
 ];
@@ -892,6 +893,101 @@ export const surveys = [
       departments: ['Ban Giám đốc', 'Phòng Nhân sự'],
       positions: ['Trưởng phòng', 'Phó phòng'],
       totalUsers: 25
+    }
+  },
+  {
+    id: 4,
+    name: 'Khảo sát nhu cầu đào tạo Excel',
+    description: 'Khảo sát nhu cầu học Excel nâng cao cho nhân viên văn phòng',
+    status: 'running',
+    startAt: '2025-09-15T00:00:00Z',
+    dueAt: '2025-10-10T23:59:59Z',
+    createdBy: 'Phạm Văn D',
+    createdAt: '2025-09-10T11:00:00Z',
+    totalInvitations: 120,
+    totalResponses: 95,
+    responseRate: 79.2,
+    questions: [],
+    audience: {
+      departments: ['Phòng Kế toán', 'Phòng Hành chính'],
+      positions: ['Nhân viên'],
+      totalUsers: 120
+    }
+  },
+  {
+    id: 5,
+    name: 'Khảo sát đánh giá môi trường làm việc',
+    description: 'Khảo sát đánh giá môi trường làm việc và văn hóa công ty',
+    status: 'closed',
+    startAt: '2025-07-01T00:00:00Z',
+    dueAt: '2025-07-31T23:59:59Z',
+    createdBy: 'Nguyễn Thị E',
+    createdAt: '2025-06-25T10:00:00Z',
+    totalInvitations: 250,
+    totalResponses: 238,
+    responseRate: 95.2,
+    questions: [],
+    audience: {
+      departments: ['Tất cả phòng ban'],
+      positions: ['Tất cả vị trí'],
+      totalUsers: 250
+    }
+  },
+  {
+    id: 6,
+    name: 'Khảo sát nhu cầu học tiếng Anh',
+    description: 'Khảo sát nhu cầu học tiếng Anh giao tiếp và chuyên ngành',
+    status: 'draft',
+    startAt: null,
+    dueAt: null,
+    createdBy: 'Lê Văn F',
+    createdAt: '2025-09-28T14:00:00Z',
+    totalInvitations: 0,
+    totalResponses: 0,
+    responseRate: 0,
+    questions: [],
+    audience: {
+      departments: ['Phòng Kinh doanh', 'Phòng Marketing'],
+      positions: ['Nhân viên', 'Trưởng nhóm'],
+      totalUsers: 80
+    }
+  },
+  {
+    id: 7,
+    name: 'Khảo sát đánh giá chương trình onboarding',
+    description: 'Đánh giá hiệu quả chương trình đào tạo nhân viên mới',
+    status: 'running',
+    startAt: '2025-09-20T00:00:00Z',
+    dueAt: '2025-10-20T23:59:59Z',
+    createdBy: 'Trần Thị G',
+    createdAt: '2025-09-18T09:00:00Z',
+    totalInvitations: 45,
+    totalResponses: 32,
+    responseRate: 71.1,
+    questions: [],
+    audience: {
+      departments: ['Tất cả phòng ban'],
+      positions: ['Nhân viên mới'],
+      totalUsers: 45
+    }
+  },
+  {
+    id: 8,
+    name: 'Khảo sát nhu cầu đào tạo kỹ năng mềm',
+    description: 'Khảo sát nhu cầu đào tạo các kỹ năng mềm cho nhân viên',
+    status: 'closed',
+    startAt: '2025-08-01T00:00:00Z',
+    dueAt: '2025-08-25T23:59:59Z',
+    createdBy: 'Hoàng Văn H',
+    createdAt: '2025-07-28T10:30:00Z',
+    totalInvitations: 180,
+    totalResponses: 165,
+    responseRate: 91.7,
+    questions: [],
+    audience: {
+      departments: ['Tất cả phòng ban'],
+      positions: ['Nhân viên', 'Trưởng nhóm'],
+      totalUsers: 180
     }
   }
 ];

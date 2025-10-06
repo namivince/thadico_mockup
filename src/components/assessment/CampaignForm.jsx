@@ -307,25 +307,35 @@ const CampaignForm = () => {
               
               {enableAppeal && (
                 <>
+                  <Alert
+                    message="Cấu hình Phúc khảo"
+                    description="Nhân viên có thể gửi phúc khảo trong khoảng thời gian quy định với số lần giới hạn"
+                    type="info"
+                    showIcon
+                    style={{ marginBottom: 16 }}
+                  />
                   <Row gutter={16}>
                     <Col span={12}>
-                      <Form.Item name="appealLimit" label="Số lần phúc khảo tối đa" rules={[{ required: enableAppeal, message: 'Vui lòng nhập số lần phúc khảo' }]}>
-                        <InputNumber min={1} max={5} defaultValue={2} style={{ width: '100%' }} />
+                      <Form.Item 
+                        name="appealMaxAttempts" 
+                        label="Số lần phúc khảo tối đa" 
+                        rules={[{ required: enableAppeal, message: 'Vui lòng nhập số lần phúc khảo' }]}
+                        tooltip="Số lần tối đa nhân viên có thể gửi phúc khảo cho 1 kỳ đánh giá"
+                      >
+                        <InputNumber min={1} max={5} defaultValue={3} style={{ width: '100%' }} />
                       </Form.Item>
                     </Col>
                     <Col span={12}>
-                      <Form.Item name="appealDays" label="Thời gian phúc khảo (ngày)" rules={[{ required: enableAppeal, message: 'Vui lòng nhập thời gian phúc khảo' }]}>
+                      <Form.Item 
+                        name="appealWindowDays" 
+                        label="Thời gian mở phúc khảo (ngày)" 
+                        rules={[{ required: enableAppeal, message: 'Vui lòng nhập thời gian phúc khảo' }]}
+                        tooltip="Số ngày kể từ khi công bố kết quả mà nhân viên có thể gửi phúc khảo"
+                      >
                         <InputNumber min={1} max={30} defaultValue={7} style={{ width: '100%' }} />
                       </Form.Item>
                     </Col>
                   </Row>
-                  
-                  <Alert
-                    message="Lưu ý về phúc khảo"
-                    description="Cửa sổ phúc khảo chỉ được mở sau khi công bố kết quả và trong khoảng thời gian quy định."
-                    type="warning"
-                    showIcon
-                  />
                 </>
               )}
             </Card>

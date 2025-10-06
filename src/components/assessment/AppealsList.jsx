@@ -225,11 +225,32 @@ const AppealsList = () => {
       ellipsis: true
     },
     {
-      title: 'Lần phúc khảo',
+      title: 'Số lần / Giới hạn',
       key: 'appealCount',
-      render: (_, record) => (
-        <span>{record.count}/{record.limit}</span>
-      )
+      render: (_, record) => {
+        const isMaxed = record.count >= record.limit;
+        return (
+          <Tag color={isMaxed ? 'error' : 'success'}>
+            {record.count}/{record.limit}
+          </Tag>
+        );
+      }
+    },
+    {
+      title: 'Deadline',
+      key: 'deadline',
+      render: (_, record) => {
+        const deadline = moment(record.createdAt).add(record.windowLeftDays, 'days');
+        const isExpired = deadline.isBefore(moment());
+        return (
+          <Space>
+            <ClockCircleOutlined style={{ color: isExpired ? '#ff4d4f' : '#52c41a' }} />
+            <Text type={isExpired ? 'danger' : 'secondary'}>
+              {deadline.format('DD/MM/YYYY')}
+            </Text>
+          </Space>
+        );
+      }
     },
     {
       title: 'Ngày tạo',

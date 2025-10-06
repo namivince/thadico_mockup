@@ -27,13 +27,22 @@
 }
 
 .rubric-builder-sider {
-  background: #fff;
+  background: #fff !important;
   border-right: 1px solid #f0f0f0;
   padding: 16px;
   height: calc(100vh - 300px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+/* Override Ant Design Sider default dark background */
+.rubric-builder-layout .ant-layout-sider {
+  background: #fff !important;
+}
+
+.rubric-builder-layout .ant-layout-sider-children {
+  background: #fff !important;
 }
 
 .criteria-list-header {

@@ -11,6 +11,7 @@ import {
   SyncOutlined, FileOutlined, HomeOutlined
 } from '@ant-design/icons';
 import moment from 'moment';
+import CountdownTimer from '../common/CountdownTimer';
 import './GradingConsole.css';
 
 const { Content, Sider } = Layout;
@@ -56,7 +57,7 @@ const GradingConsole = () => {
       overdueAssignments: 5
     });
     
-    // Mock assignments data
+    // Mock assignments data với SLA deadline - NHIỀU DATA HƠN
     const mockData = [
       {
         id: 'as_01',
@@ -65,6 +66,8 @@ const GradingConsole = () => {
         unit: 'Xưởng A',
         status: 'pending',
         slaLeftMin: 720,
+        sla_deadline: moment().add(30, 'hours').toISOString(),
+        can_extend: true,
         score: null,
         comment: null
       },
@@ -75,6 +78,8 @@ const GradingConsole = () => {
         unit: 'Xưởng B',
         status: 'overdue',
         slaLeftMin: -120,
+        sla_deadline: moment().subtract(2, 'hours').toISOString(),
+        can_extend: true,
         score: null,
         comment: null
       },
@@ -85,6 +90,8 @@ const GradingConsole = () => {
         unit: 'Xưởng A',
         status: 'in_progress',
         slaLeftMin: 360,
+        sla_deadline: moment().add(4, 'hours').toISOString(),
+        can_extend: true,
         score: 7.5,
         comment: 'Cần cải thiện phần thao tác máy'
       },
@@ -95,8 +102,106 @@ const GradingConsole = () => {
         unit: 'Xưởng C',
         status: 'completed',
         slaLeftMin: 480,
+        sla_deadline: moment().add(20, 'hours').toISOString(),
+        can_extend: false,
         score: 8.5,
         comment: 'Thực hiện tốt các quy trình an toàn'
+      },
+      {
+        id: 'as_05',
+        empId: 'u_1005',
+        empName: 'Hoàng Văn E',
+        unit: 'Xưởng A',
+        status: 'overdue',
+        slaLeftMin: -360,
+        sla_deadline: moment().subtract(6, 'hours').toISOString(),
+        can_extend: true,
+        score: null,
+        comment: null
+      },
+      {
+        id: 'as_06',
+        empId: 'u_1006',
+        empName: 'Võ Thị F',
+        unit: 'Xưởng B',
+        status: 'overdue',
+        slaLeftMin: -180,
+        sla_deadline: moment().subtract(3, 'hours').toISOString(),
+        can_extend: true,
+        score: null,
+        comment: null
+      },
+      {
+        id: 'as_07',
+        empId: 'u_1007',
+        empName: 'Đặng Văn G',
+        unit: 'Xưởng C',
+        status: 'pending',
+        slaLeftMin: 180,
+        sla_deadline: moment().add(3, 'hours').toISOString(),
+        can_extend: true,
+        score: null,
+        comment: null
+      },
+      {
+        id: 'as_08',
+        empId: 'u_1008',
+        empName: 'Bùi Thị H',
+        unit: 'Xưởng A',
+        status: 'in_progress',
+        slaLeftMin: 240,
+        sla_deadline: moment().add(4, 'hours').toISOString(),
+        can_extend: true,
+        score: 6.5,
+        comment: 'Đang xem xét'
+      },
+      {
+        id: 'as_09',
+        empId: 'u_1009',
+        empName: 'Lý Văn I',
+        unit: 'Xưởng B',
+        status: 'completed',
+        slaLeftMin: 600,
+        sla_deadline: moment().add(10, 'hours').toISOString(),
+        can_extend: false,
+        score: 9.0,
+        comment: 'Xuất sắc, thực hiện đúng quy trình'
+      },
+      {
+        id: 'as_10',
+        empId: 'u_1010',
+        empName: 'Mai Thị K',
+        unit: 'Xưởng C',
+        status: 'completed',
+        slaLeftMin: 540,
+        sla_deadline: moment().add(9, 'hours').toISOString(),
+        can_extend: false,
+        score: 7.8,
+        comment: 'Tốt, cần duy trì'
+      },
+      {
+        id: 'as_11',
+        empId: 'u_1011',
+        empName: 'Phan Văn L',
+        unit: 'Xưởng A',
+        status: 'overdue',
+        slaLeftMin: -60,
+        sla_deadline: moment().subtract(1, 'hours').toISOString(),
+        can_extend: true,
+        score: null,
+        comment: null
+      },
+      {
+        id: 'as_12',
+        empId: 'u_1012',
+        empName: 'Trương Thị M',
+        unit: 'Xưởng B',
+        status: 'pending',
+        slaLeftMin: 420,
+        sla_deadline: moment().add(7, 'hours').toISOString(),
+        can_extend: true,
+        score: null,
+        comment: null
       }
     ];
     
@@ -181,6 +286,23 @@ const GradingConsole = () => {
     });
   };
 
+  // Xử lý gia hạn SLA
+  const handleExtendSLA = (assignmentId) => {
+    const updatedAssignments = assignments.map(item => {
+      if (item.id === assignmentId) {
+        return {
+          ...item,
+          sla_deadline: moment().add(24, 'hours').toISOString(),
+          status: 'pending'
+        };
+      }
+      return item;
+    });
+    
+    setAssignments(updatedAssignments);
+    alert('Đã gia hạn SLA thêm 24 giờ');
+  };
+
   // Filter assignments theo trạng thái
   const filteredAssignments = filterStatus === 'all' 
     ? assignments 
@@ -235,16 +357,34 @@ const GradingConsole = () => {
       }
     },
     {
-      title: 'SLA còn lại',
-      dataIndex: 'slaLeftMin',
-      key: 'slaLeftMin',
-      render: (mins, record) => {
+      title: 'SLA',
+      dataIndex: 'sla_deadline',
+      key: 'sla',
+      render: (deadline, record) => {
         if (record.status === 'completed') {
           return <Tag color="green">Hoàn thành</Tag>;
         }
         
+        return (
+          <CountdownTimer 
+            deadline={deadline}
+            onExtend={() => handleExtendSLA(record.id)}
+            canExtend={record.can_extend}
+          />
+        );
+      }
+    },
+    {
+      title: 'SLA (Old)',
+      dataIndex: 'slaLeftMin',
+      key: 'slaLeftMin',
+      render: (mins, record) => {
+        if (record.status === 'completed') {
+          return null;
+        }
+        
         if (mins < 0) {
-          return <Tag color="red">Quá {Math.abs(mins)} phút</Tag>;
+          return null;
         }
         
         const hours = Math.floor(mins / 60);
