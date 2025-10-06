@@ -745,33 +745,36 @@ export const competencies = [
   }
 ];
 
-// Dữ liệu mẫu cho menu
+// Dữ liệu mẫu cho menu - Cấu trúc mới theo FC-101 đến FC-159
 export const menuItems = [
- 
   {
-    key: 'assessment',
-    label: 'ĐÁNH GIÁ',
+    key: 'f1',
+    label: 'QUẢN LÝ KHẢO SÁT',
     children: [
-      { key: 'assessment:rounds', label: 'Vòng đánh giá', path: '/assessment/rounds' },
-      { key: 'assessment:create', label: 'Tạo chiến dịch', path: '/assessment/rounds/new' },
-      { key: 'assessment:criteria', label: 'Bộ tiêu chí', path: '/assessment/rubrics/new/builder' },
-      { key: 'assessment:competency', label: 'Từ điển năng lực', path: '/assessment/competency' }
+      { key: 'f1:setup', label: 'Thiết lập dữ liệu', path: '/courses' },
+      { key: 'f1:distribute', label: 'Phân phối khảo sát', path: '/surveys' },
+      { key: 'f1:report', label: 'Báo cáo khảo sát', path: '/surveys/reports' }
     ]
   },
   {
-    key: 'training',
-    label: 'ĐÀO TẠO',
+    key: 'f2',
+    label: 'LẬP KẾ HOẠCH ĐÀO TẠO',
     children: [
-      { key: 'training:demands', label: 'Nhu cầu đào tạo', path: '/training/demands' },
-      { key: 'training:plans', label: 'Kế hoạch đào tạo', path: '/training/plans' },
-      { key: 'training:courses', label: 'Khóa học', path: '/training/courses' }
+      { key: 'f2:demands', label: 'Nhu cầu đào tạo', path: '/training/demands' },
+      { key: 'f2:plans', label: 'Lập kế hoạch đào tạo', path: '/training/plans' },
+      { key: 'f2:split', label: 'Phân rã kế hoạch', path: '/training/plans/split' },
+      { key: 'f2:execute', label: 'Thực hiện kế hoạch', path: '/training/deploy' }
     ]
   },
   {
-    key: 'admin',
-    label: 'Khảo sát',
+    key: 'f3',
+    label: 'ĐÁNH GIÁ NĂNG LỰC',
     children: [
-      { key: 'admin:surveys', label: 'Chương trình khảo sát' },
+      { key: 'f3:rubrics', label: 'Thiết lập danh mục', path: '/assessment/rubrics' },
+      { key: 'f3:create', label: 'Tạo chiến dịch', path: '/assessment/rounds/new' },
+      { key: 'f3:run', label: 'Thực hiện đánh giá', path: '/assessment/rounds' },
+      { key: 'f3:results', label: 'Kết quả đánh giá', path: '/assessment/results' },
+      { key: 'f3:appeals', label: 'Phúc khảo', path: '/assessment/appeals' }
     ]
   }
 ];

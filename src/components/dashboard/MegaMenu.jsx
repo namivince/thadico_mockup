@@ -11,7 +11,8 @@ import {
   UserAddOutlined,
   BookOutlined,
   SettingOutlined,
-  BellOutlined
+  BellOutlined,
+  FormOutlined
 } from '@ant-design/icons';
 import { menuItems } from '../../data/mockData';
 import { useNavigate } from 'react-router-dom';
@@ -28,9 +29,9 @@ const MegaMenu = ({ onMenuSelect }) => {
 
   // Icon mapping cho từng menu
   const menuIcons = {
-    'assessment': <TrophyOutlined />,
-    'training': <BookOutlined />,
-    'admin': <SettingOutlined />
+    'f1': <FormOutlined />,
+    'f2': <BookOutlined />,
+    'f3': <TrophyOutlined />
   };
 
   // Sử dụng dữ liệu mẫu cho menu

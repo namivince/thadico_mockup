@@ -164,6 +164,14 @@ const AppRoutes = () => {
             </AdminRoute>
           } 
         />
+        <Route 
+          path="surveys/reports" 
+          element={
+            <AdminRoute>
+              <SurveyMonitor />
+            </AdminRoute>
+          } 
+        />
       
         {/* Training Plan Routes */}
         <Route 
@@ -207,7 +215,31 @@ const AppRoutes = () => {
           } 
         />
         <Route 
+          path="training/plans/split" 
+          element={
+            <AdminRoute>
+              <PlanApprovalQueue />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="training/plans/:id/split" 
+          element={
+            <AdminRoute>
+              <PlanApprovalQueue />
+            </AdminRoute>
+          } 
+        />
+        <Route 
           path="training/plans/:id/deploy" 
+          element={
+            <AdminRoute>
+              <PlanDeploy />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="training/deploy" 
           element={
             <AdminRoute>
               <PlanDeploy />
@@ -224,6 +256,14 @@ const AppRoutes = () => {
         />
         <Route 
           path="training/courses" 
+          element={
+            <AdminRoute>
+              <CourseList />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="courses" 
           element={
             <AdminRoute>
               <CourseList />
@@ -289,6 +329,14 @@ const AppRoutes = () => {
           } 
         />
         <Route 
+          path="assessment/rubrics" 
+          element={
+            <AdminRoute>
+              <RubricBuilder />
+            </AdminRoute>
+          } 
+        />
+        <Route 
           path="assessment/rounds/:id/board" 
           element={
             <AdminRoute>
@@ -314,6 +362,14 @@ const AppRoutes = () => {
         />
         <Route 
           path="assessment/rounds/:id/results" 
+          element={
+            <AdminRoute>
+              <ResultsReport />
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="assessment/results" 
           element={
             <AdminRoute>
               <ResultsReport />

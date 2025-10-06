@@ -51,44 +51,52 @@ const SideMenu = () => {
   useEffect(() => {
     const path = location.pathname;
     
-    if (path.includes('/surveys')) {
-      if (path.includes('/new')) {
-        setSelectedKeys(['survey:create']);
-      } else if (path.includes('/monitor')) {
-        setSelectedKeys(['survey:monitor']);
+    // F1 - Quản lý khảo sát
+    if (path.includes('/courses')) {
+      setSelectedKeys(['f1:setup']);
+      setOpenKeys(['f1']);
+    } else if (path.includes('/surveys')) {
+      if (path.includes('/reports')) {
+        setSelectedKeys(['f1:report']);
       } else {
-        setSelectedKeys(['admin:surveys']);
+        setSelectedKeys(['f1:distribute']);
       }
-      setOpenKeys(['admin']);
-    } else if (path.includes('/training')) {
+      setOpenKeys(['f1']);
+    }
+    // F2 - Lập kế hoạch đào tạo
+    else if (path.includes('/training')) {
       if (path.includes('/demands')) {
-        setSelectedKeys(['training:demands']);
+        setSelectedKeys(['f2:demands']);
       } else if (path.includes('/plans')) {
-        if (path.includes('/approvals')) {
-          setSelectedKeys(['training:approvals']);
-        } else if (path.includes('/deploy')) {
-          setSelectedKeys(['training:deploy']);
+        if (path.includes('/split')) {
+          setSelectedKeys(['f2:split']);
         } else {
-          setSelectedKeys(['training:plans']);
+          setSelectedKeys(['f2:plans']);
         }
-      } else if (path.includes('/courses')) {
-        setSelectedKeys(['training:courses']);
+      } else if (path.includes('/deploy')) {
+        setSelectedKeys(['f2:execute']);
       }
-      setOpenKeys(['training']);
-    } else if (path.includes('/assessment')) {
-      if (path.includes('/rounds')) {
-        setSelectedKeys(['assessment:rounds']);
-      } else if (path.includes('/campaigns')) {
-        setSelectedKeys(['assessment:create']);
-      } else if (path.includes('/rubrics')) {
-        setSelectedKeys(['assessment:criteria']);
-      } else if (path.includes('/grading')) {
-        setSelectedKeys(['assessment:grading']);
+      setOpenKeys(['f2']);
+    }
+    // F3 - Đánh giá năng lực
+    else if (path.includes('/assessment')) {
+      if (path.includes('/rubrics')) {
+        setSelectedKeys(['f3:rubrics']);
+      } else if (path.includes('/rounds')) {
+        if (path.includes('/new')) {
+          setSelectedKeys(['f3:create']);
+        } else {
+          setSelectedKeys(['f3:run']);
+        }
+      } else if (path.includes('/results')) {
+        setSelectedKeys(['f3:results']);
       } else if (path.includes('/appeals')) {
-        setSelectedKeys(['assessment:appeals']);
+        setSelectedKeys(['f3:appeals']);
       }
-      setOpenKeys(['assessment']);
-    } else if (path.includes('/dashboard')) {
+      setOpenKeys(['f3']);
+    }
+    // Các route khác
+    else if (path.includes('/dashboard')) {
       setSelectedKeys(['dashboard']);
     } else if (path.includes('/alerts')) {
       setSelectedKeys(['alerts']);
@@ -128,49 +136,46 @@ const SideMenu = () => {
         navigate('/dashboard');
         break;
         
-      // Đánh giá
-      case 'assessment:rounds':
-        navigate('/assessment/rounds');
+      // F1 - Quản lý khảo sát
+      case 'f1:setup':
+        navigate('/courses');
         break;
-      case 'assessment:create':
-        navigate('/assessment/campaigns/new');
-        break;
-      case 'assessment:criteria':
-        navigate('/assessment/rubrics/new/builder');
-        break;
-      case 'assessment:grading':
-        navigate('/assessment/grading');
-        break;
-      case 'assessment:appeals':
-        navigate('/assessment/appeals');
-        break;
-      
-      // Đào tạo
-      case 'training:demands':
-        navigate('/training/demands');
-        break;
-      case 'training:plans':
-        navigate('/training/plans');
-        break;
-      case 'training:courses':
-        navigate('/training/courses');
-        break;
-      case 'training:approvals':
-        navigate('/training/plans/approvals');
-        break;
-      case 'training:deploy':
-        navigate('/training/plans/deploy');
-        break;
-      
-      // Khảo sát
-      case 'admin:surveys':
+      case 'f1:distribute':
         navigate('/surveys');
         break;
-      case 'survey:create':
-        navigate('/surveys/new');
+      case 'f1:report':
+        navigate('/surveys/reports');
         break;
-      case 'survey:monitor':
-        navigate('/surveys/monitor');
+      
+      // F2 - Lập kế hoạch đào tạo
+      case 'f2:demands':
+        navigate('/training/demands');
+        break;
+      case 'f2:plans':
+        navigate('/training/plans');
+        break;
+      case 'f2:split':
+        navigate('/training/plans/split');
+        break;
+      case 'f2:execute':
+        navigate('/training/deploy');
+        break;
+      
+      // F3 - Đánh giá năng lực
+      case 'f3:rubrics':
+        navigate('/assessment/rubrics');
+        break;
+      case 'f3:create':
+        navigate('/assessment/rounds/new');
+        break;
+      case 'f3:run':
+        navigate('/assessment/rounds');
+        break;
+      case 'f3:results':
+        navigate('/assessment/results');
+        break;
+      case 'f3:appeals':
+        navigate('/assessment/appeals');
         break;
       
       // Cá nhân
@@ -249,27 +254,24 @@ const SideMenu = () => {
           style={{ width: '100%' }}
         >
           <SubMenu
-            key="admin"
-            title="KHẢO SÁT"
+            key="f1"
+            title="QUẢN LÝ KHẢO SÁT"
             icon={<FormOutlined />}
           >
-            <Menu.Item key="admin:surveys">Danh sách khảo sát</Menu.Item>
-            {hasPermission('survey.create') && (
-              <Menu.Item key="survey:create">Tạo khảo sát mới</Menu.Item>
-            )}
-            <Menu.Item key="survey:monitor">Báo cáo khảo sát</Menu.Item>
+            <Menu.Item key="f1:distribute">Phân phối khảo sát</Menu.Item>
+            <Menu.Item key="f1:report">Báo cáo khảo sát</Menu.Item>
           </SubMenu>
           
           <SubMenu
-            key="training"
-            title="ĐÀO TẠO"
+            key="f2"
+            title="LẬP KẾ HOẠCH ĐÀO TẠO"
             icon={<BookOutlined />}
           >
-            <Menu.Item key="training:plans">Kế hoạch đào tạo</Menu.Item>
+            <Menu.Item key="f2:plans">Lập kế hoạch đào tạo</Menu.Item>
             {hasPermission('plan.approve') && (
-              <Menu.Item key="training:approvals">Phê duyệt kế hoạch</Menu.Item>
+              <Menu.Item key="f2:split">Phân rã kế hoạch</Menu.Item>
             )}
-            <Menu.Item key="training:deploy">Thực hiện kế hoạch</Menu.Item>
+            <Menu.Item key="f2:execute">Thực hiện kế hoạch</Menu.Item>
           </SubMenu>
           
           <Menu.Item key="alerts" icon={<BellOutlined />}>Thông báo</Menu.Item>
@@ -293,37 +295,36 @@ const SideMenu = () => {
           <Menu.Item key="dashboard" icon={<DashboardOutlined />}>Dashboard</Menu.Item>
           
           <SubMenu
-            key="admin"
-            title="KHẢO SÁT"
+            key="f1"
+            title="QUẢN LÝ KHẢO SÁT"
             icon={<FormOutlined />}
           >
-            <Menu.Item key="admin:surveys">Danh sách khảo sát</Menu.Item>
-            <Menu.Item key="survey:create">Tạo khảo sát mới</Menu.Item>
-            <Menu.Item key="survey:monitor">Báo cáo khảo sát</Menu.Item>
+            <Menu.Item key="f1:setup">Thiết lập dữ liệu</Menu.Item>
+            <Menu.Item key="f1:distribute">Phân phối khảo sát</Menu.Item>
+            <Menu.Item key="f1:report">Báo cáo khảo sát</Menu.Item>
           </SubMenu>
           
           <SubMenu
-            key="training"
-            title="ĐÀO TẠO"
+            key="f2"
+            title="LẬP KẾ HOẠCH ĐÀO TẠO"
             icon={<BookOutlined />}
           >
-            <Menu.Item key="training:demands">Nhu cầu đào tạo</Menu.Item>
-            <Menu.Item key="training:plans">Kế hoạch đào tạo</Menu.Item>
-            <Menu.Item key="training:approvals">Phê duyệt kế hoạch</Menu.Item>
-            <Menu.Item key="training:deploy">Thực hiện kế hoạch</Menu.Item>
-            <Menu.Item key="training:courses">Khóa học</Menu.Item>
+            <Menu.Item key="f2:demands">Nhu cầu đào tạo</Menu.Item>
+            <Menu.Item key="f2:plans">Lập kế hoạch đào tạo</Menu.Item>
+            <Menu.Item key="f2:split">Phân rã kế hoạch</Menu.Item>
+            <Menu.Item key="f2:execute">Thực hiện kế hoạch</Menu.Item>
           </SubMenu>
           
           <SubMenu
-            key="assessment"
-            title="ĐÁNH GIÁ"
+            key="f3"
+            title="ĐÁNH GIÁ NĂNG LỰC"
             icon={<TrophyOutlined />}
           >
-            <Menu.Item key="assessment:rounds">Vòng đánh giá</Menu.Item>
-            <Menu.Item key="assessment:create">Tạo chiến dịch</Menu.Item>
-            <Menu.Item key="assessment:criteria">Bộ tiêu chí</Menu.Item>
-            <Menu.Item key="assessment:grading">Kết quả đánh giá</Menu.Item>
-            <Menu.Item key="assessment:appeals">Phúc khảo</Menu.Item>
+            <Menu.Item key="f3:rubrics">Thiết lập danh mục</Menu.Item>
+            <Menu.Item key="f3:create">Tạo chiến dịch</Menu.Item>
+            <Menu.Item key="f3:run">Thực hiện đánh giá</Menu.Item>
+            <Menu.Item key="f3:results">Kết quả đánh giá</Menu.Item>
+            <Menu.Item key="f3:appeals">Phúc khảo</Menu.Item>
           </SubMenu>
           
           <Menu.Item key="alerts" icon={<BellOutlined />}>Thông báo</Menu.Item>
