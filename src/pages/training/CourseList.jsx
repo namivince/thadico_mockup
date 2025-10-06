@@ -140,7 +140,7 @@ const CourseList = () => {
         { user: 'Nguyễn Văn A', rating: 5, comment: 'Khóa học rất bổ ích, giúp tôi cải thiện kỹ năng lãnh đạo' },
         { user: 'Trần Thị B', rating: 4, comment: 'Giảng viên nhiệt tình, nội dung phong phú' }
       ],
-      image: 'https://img.freepik.com/free-photo/business-meeting-office_23-2149060073.jpg'
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80'
     },
     2: {
       id: 2,
@@ -171,7 +171,7 @@ const CourseList = () => {
         { user: 'Phạm Văn C', rating: 5, comment: 'Khóa học giúp tôi quản lý dự án hiệu quả hơn' },
         { user: 'Hoàng Thị D', rating: 4, comment: 'Nội dung thực tế, dễ áp dụng' }
       ],
-      image: 'https://img.freepik.com/free-photo/business-people-discussing-charts-graphs-showing-results-successful-teamwork_1150-5154.jpg'
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'
     },
     3: {
       id: 3,
@@ -197,7 +197,7 @@ const CourseList = () => {
         { user: 'Nguyễn Thị E', rating: 5, comment: 'Giảng viên nhiệt tình, phương pháp giảng dạy hiệu quả' },
         { user: 'Trần Văn F', rating: 5, comment: 'Tôi đã tự tin hơn khi giao tiếp với đối tác nước ngoài' }
       ],
-      image: 'https://img.freepik.com/free-photo/english-teacher-doing-lesson-online_23-2149019143.jpg'
+      image: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&q=80'
     },
     4: {
       id: 4,
@@ -229,7 +229,124 @@ const CourseList = () => {
         { user: 'Lê Thị G', rating: 5, comment: 'Khóa học giúp tôi tiết kiệm rất nhiều thời gian trong công việc' },
         { user: 'Phạm Văn H', rating: 5, comment: 'Nội dung thực tế, dễ áp dụng vào công việc hàng ngày' }
       ],
-      image: 'https://img.freepik.com/free-photo/person-working-html-computer_23-2150038840.jpg'
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80'
+    },
+    5: {
+      id: 5,
+      name: 'Kỹ năng bán hàng',
+      category: 'Sales',
+      cost: 7000000,
+      duration: '3 ngày (24 giờ)',
+      instructor: 'ThS. Nguyễn Văn K - Chuyên gia bán hàng',
+      rating: 4.5,
+      totalRatings: 42,
+      description: 'Khóa học cung cấp các kỹ năng bán hàng chuyên nghiệp, giúp học viên nâng cao hiệu quả trong công tác kinh doanh.',
+      objectives: [
+        'Nắm vững quy trình bán hàng',
+        'Kỹ năng thuyết phục khách hàng',
+        'Xử lý từ chối và đàm phán',
+        'Chăm sóc khách hàng sau bán'
+      ],
+      targetAudience: 'Nhân viên kinh doanh, bán hàng',
+      schedule: [
+        { day: 'Ngày 1', content: 'Tâm lý khách hàng và quy trình bán hàng' },
+        { day: 'Ngày 2', content: 'Kỹ năng thuyết phục và đàm phán' },
+        { day: 'Ngày 3', content: 'Xử lý từ chối và chốt sale' }
+      ],
+      materials: 'Sách, tài liệu, bài tập thực hành, video case study',
+      certification: 'Chứng chỉ kỹ năng bán hàng',
+      reviews: [
+        { user: 'Trần Văn M', rating: 5, comment: 'Khóa học giúp tôi tăng doanh số đáng kể' },
+        { user: 'Lê Thị N', rating: 4, comment: 'Nội dung thực tế, dễ áp dụng' }
+      ],
+      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80'
+    },
+    6: {
+      id: 6,
+      name: 'Kỹ năng thuyết trình',
+      category: 'Soft Skills',
+      cost: 6000000,
+      duration: '2 ngày (16 giờ)',
+      instructor: 'TS. Phạm Thị L - Chuyên gia đào tạo kỹ năng mềm',
+      rating: 4.8,
+      totalRatings: 55,
+      description: 'Khóa học giúp học viên tự tin thuyết trình trước đám đông, truyền tải thông điệp hiệu quả.',
+      objectives: [
+        'Xây dựng nội dung thuyết trình hấp dẫn',
+        'Kỹ năng sử dụng ngôn ngữ cơ thể',
+        'Xử lý tình huống khó trong thuyết trình',
+        'Tương tác với khán giả'
+      ],
+      targetAudience: 'Mọi nhân viên cần thuyết trình trong công việc',
+      schedule: [
+        { day: 'Ngày 1', content: 'Chuẩn bị và cấu trúc bài thuyết trình' },
+        { day: 'Ngày 2', content: 'Kỹ năng trình bày và xử lý tình huống' }
+      ],
+      materials: 'Tài liệu, video mẫu, bài tập thực hành',
+      certification: 'Chứng chỉ kỹ năng thuyết trình',
+      reviews: [
+        { user: 'Hoàng Văn O', rating: 5, comment: 'Tôi đã tự tin hơn rất nhiều khi thuyết trình' },
+        { user: 'Nguyễn Thị P', rating: 5, comment: 'Giảng viên tuyệt vời, phương pháp hiệu quả' }
+      ],
+      image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80'
+    },
+    7: {
+      id: 7,
+      name: 'Quản lý thời gian',
+      category: 'Soft Skills',
+      cost: 4000000,
+      duration: '1 ngày (8 giờ)',
+      instructor: 'ThS. Trần Văn Q - Chuyên gia năng suất',
+      rating: 4.6,
+      totalRatings: 48,
+      description: 'Khóa học giúp học viên quản lý thời gian hiệu quả, nâng cao năng suất làm việc.',
+      objectives: [
+        'Xác định ưu tiên công việc',
+        'Lập kế hoạch làm việc hiệu quả',
+        'Loại bỏ các yếu tố gây mất tập trung',
+        'Cân bằng công việc và cuộc sống'
+      ],
+      targetAudience: 'Mọi nhân viên muốn nâng cao năng suất',
+      schedule: 'Học tập trung 1 ngày',
+      materials: 'Sách, tài liệu, công cụ quản lý thời gian',
+      certification: 'Chứng chỉ hoàn thành khóa học',
+      reviews: [
+        { user: 'Lê Văn R', rating: 5, comment: 'Khóa học giúp tôi làm việc hiệu quả hơn nhiều' },
+        { user: 'Phạm Thị S', rating: 4, comment: 'Nội dung súc tích, dễ áp dụng' }
+      ],
+      image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80'
+    },
+    8: {
+      id: 8,
+      name: 'Digital Marketing',
+      category: 'Marketing',
+      cost: 10000000,
+      duration: '5 ngày (40 giờ)',
+      instructor: 'ThS. Nguyễn Thị T - Chuyên gia Digital Marketing',
+      rating: 4.7,
+      totalRatings: 60,
+      description: 'Khóa học cung cấp kiến thức toàn diện về Digital Marketing, giúp học viên thành thạo các kênh marketing online.',
+      objectives: [
+        'Xây dựng chiến lược Digital Marketing',
+        'SEO và Content Marketing',
+        'Quảng cáo Google Ads và Facebook Ads',
+        'Phân tích và đo lường hiệu quả'
+      ],
+      targetAudience: 'Nhân viên marketing, kinh doanh online',
+      schedule: [
+        { day: 'Ngày 1', content: 'Tổng quan Digital Marketing' },
+        { day: 'Ngày 2', content: 'SEO và Content Marketing' },
+        { day: 'Ngày 3', content: 'Social Media Marketing' },
+        { day: 'Ngày 4', content: 'Google Ads và Facebook Ads' },
+        { day: 'Ngày 5', content: 'Analytics và đo lường hiệu quả' }
+      ],
+      materials: 'Tài liệu, case study, công cụ marketing',
+      certification: 'Chứng chỉ Digital Marketing',
+      reviews: [
+        { user: 'Trần Văn U', rating: 5, comment: 'Khóa học rất thực tế, giúp tôi triển khai chiến dịch hiệu quả' },
+        { user: 'Hoàng Thị V', rating: 5, comment: 'Giảng viên giàu kinh nghiệm, nội dung cập nhật' }
+      ],
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'
     }
   };
 
