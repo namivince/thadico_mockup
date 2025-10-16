@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import DemoPage from '../pages/DemoPage';
 import AdminDashboard from '../pages/dashboard/AdminDashboard';
+import SalesConversionDashboard from '../pages/dashboard/SalesConversionDashboard';
+import ProjectCommandRoomDashboard from '../pages/dashboard/ProjectCommandRoomDashboard';
+import DashboardIndex from '../pages/dashboard/DashboardIndex';
 import LoginPage from '../pages/auth/LoginPage';
 import SurveyList from '../pages/surveys/SurveyList';
 import SurveyForm from '../pages/surveys/SurveyForm';
@@ -102,7 +105,7 @@ const AppRoutes = () => {
       {/* Tất cả các route khác sử dụng MainLayout */}
       <Route path="/" element={<MainLayout />}>
         {/* Route mặc định chuyển hướng đến trang đăng nhập hoặc dashboard */}
-        <Route index element={<Navigate to={isLoggedIn() ? "/dashboard" : "/login"} replace />} />
+        <Route index element={<Navigate to={isLoggedIn() ? "/dashboards" : "/login"} replace />} />
         
         {/* Route demo */}
         <Route 
@@ -114,12 +117,42 @@ const AppRoutes = () => {
           } 
         />
       
+        {/* Dashboard Index */}
+        <Route 
+          path="dashboards" 
+          element={
+            <ProtectedRoute>
+              <DashboardIndex />
+            </ProtectedRoute>
+          } 
+        />
+        
         {/* Route dashboard */}
         <Route 
           path="dashboard" 
           element={
             <ProtectedRoute>
               <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Sales Conversion Dashboard */}
+        <Route 
+          path="dashboard/sales-conversion" 
+          element={
+            <ProtectedRoute>
+              <SalesConversionDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Project Command Room Dashboard */}
+        <Route 
+          path="dashboard/project-command-room" 
+          element={
+            <ProtectedRoute>
+              <ProjectCommandRoomDashboard />
             </ProtectedRoute>
           } 
         />

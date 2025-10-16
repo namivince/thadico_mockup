@@ -11,6 +11,13 @@ function App() {
   // Thêm basename cho GitHub Pages và Netlify
   const basename = process.env.REACT_APP_BASENAME || '';
   
+  // Force dark theme globally
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }, []);
+  
   return (
     <ConfigProvider locale={viVN}>
       <BrowserRouter basename={basename}>

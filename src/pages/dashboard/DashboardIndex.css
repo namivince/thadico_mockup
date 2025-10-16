@@ -1,0 +1,137 @@
+.dashboard-index {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 48px 24px;
+}
+
+.dashboard-index-header {
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.dashboard-index-header h1 {
+  color: #fff !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-cards {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card .ant-card-body {
+  padding: 32px;
+  height: 100%;
+}
+
+.dashboard-card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dashboard-icon {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 16px;
+  align-self: center;
+}
+
+.dashboard-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-info h3 {
+  color: #1f2937 !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+
+.dashboard-features {
+  margin-top: 20px;
+  flex: 1;
+}
+
+.features-list {
+  margin: 12px 0 0 0;
+  padding-left: 20px;
+  color: #64748b;
+}
+
+.features-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.features-list li::marker {
+  color: #10b981;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .dashboard-cards {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-index {
+    padding: 32px 16px;
+  }
+  
+  .dashboard-index-header {
+    margin-bottom: 48px;
+  }
+  
+  .dashboard-index-header h1 {
+    font-size: 36px !important;
+  }
+  
+  .dashboard-card .ant-card-body {
+    padding: 24px;
+  }
+  
+  .dashboard-icon {
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+  
+  .dashboard-info h3 {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-index-header h1 {
+    font-size: 28px !important;
+  }
+  
+  .dashboard-card .ant-card-body {
+    padding: 20px;
+  }
+}

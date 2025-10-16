@@ -1,0 +1,116 @@
+/* MapPanel Animations */
+@keyframes ping {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.8));
+  }
+}
+
+/* Enhanced map styling */
+.map-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: radial-gradient(circle at center, rgba(10, 15, 30, 0.9), rgba(5, 10, 20, 1));
+}
+
+.world-continents path {
+  transition: all 0.3s ease;
+}
+
+.world-continents path:hover {
+  opacity: 0.8 !important;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.tower-3d {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.scanning-beam {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.grid-overlay {
+  background-image: 
+    linear-gradient(rgba(34, 211, 238, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.15) 1px, transparent 1px);
+  background-size: 25px 25px;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.diagonal-grid {
+  background-image: 
+    linear-gradient(45deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.info-panel {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  background: rgba(15, 23, 42, 0.85);
+  transition: all 0.3s ease;
+}
+
+.info-panel:hover {
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+.pipeline-group-item {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pipeline-group-item:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4) !important;
+}
+
+/* Corner decorations animation */
+.corner-decoration {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Scanning lines */
+.scan-line-top {
+  animation: scanLine 4s linear infinite;
+}
+
+.scan-line-bottom {
+  animation: scanLine 4s linear infinite;
+  animation-delay: 2s;
+}

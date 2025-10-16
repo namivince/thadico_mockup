@@ -1,0 +1,90 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-button {
+  border: none !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 12px !important;
+  height: 28px !important;
+  padding: 0 12px !important;
+  border-radius: 18px !important;
+  transition: all 0.3s ease !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.theme-button:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.theme-button.ant-btn-primary {
+  background: #fff !important;
+  color: #1f2937 !important;
+  font-weight: 500 !important;
+}
+
+.theme-button.ant-btn-primary:hover {
+  background: #f8f9fa !important;
+  color: #1f2937 !important;
+}
+
+.reset-button {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 12px !important;
+  height: 32px !important;
+  border-radius: 16px !important;
+  padding: 0 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.reset-button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Light theme styles */
+[data-theme="light"] .theme-toggle-container {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .theme-button {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="light"] .theme-button:hover {
+  color: #000 !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .theme-button.ant-btn-primary {
+  background: #1f2937 !important;
+  color: #fff !important;
+}
+
+[data-theme="light"] .reset-button {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="light"] .reset-button:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #000 !important;
+}

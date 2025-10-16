@@ -1,0 +1,137 @@
+/* Import design tokens */
+@import '../../styles/design-tokens.css';
+
+.sales-conversion-dashboard {
+  min-height: 100vh;
+  background: var(--bg) !important;
+  color: var(--muted) !important;
+  font-family: var(--font-family);
+}
+
+/* Force dark theme styles */
+.sales-conversion-dashboard[data-theme="dark"] {
+  background: #0B1220 !important;
+  color: #A8B5C8 !important;
+}
+
+/* Dashboard Header - Sticky và nhỏ gọn */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(138, 164, 200, 0.1);
+  padding: 16px 0;
+  margin-bottom: 24px;
+}
+
+/* Force dark theme header */
+.sales-conversion-dashboard[data-theme="dark"] .dashboard-header {
+  background: #0B1220 !important;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-left {
+  text-align: left;
+  flex: 1;
+}
+
+.header-right {
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-title);
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.dashboard-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Light theme header text */
+[data-theme="light"] .dashboard-title {
+  color: #1f2937;
+}
+
+[data-theme="light"] .dashboard-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme header text (explicit) */
+[data-theme="dark"] .dashboard-title,
+.dashboard-title {
+  color: var(--text-title);
+}
+
+[data-theme="dark"] .dashboard-header,
+.dashboard-header {
+  border-bottom-color: rgba(138, 164, 200, 0.1);
+}
+
+/* Donut Stack Layout */
+.donut-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-card);
+  height: 100%;
+}
+
+.donut-card {
+  flex: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .dashboard-title {
+    font-size: 22px;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 12px 0;
+    margin-bottom: 16px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .header-right {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+  
+  .dashboard-title {
+    font-size: 20px;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 12px;
+  }
+  
+  .donut-stack {
+    gap: 12px;
+  }
+}

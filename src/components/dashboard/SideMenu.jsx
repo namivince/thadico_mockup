@@ -17,7 +17,9 @@ import {
   TeamOutlined,
   BarChartOutlined,
   FileExcelOutlined,
-  ClockCircleOutlined
+  ClockCircleOutlined,
+  LineChartOutlined,
+  ProjectOutlined
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './SideMenu.css';
@@ -99,7 +101,18 @@ const SideMenu = () => {
     }
     // Các route khác
     else if (path.includes('/dashboard')) {
-      setSelectedKeys(['dashboard']);
+      if (path === '/dashboard') {
+        setSelectedKeys(['dashboard:admin']);
+      } else if (path.includes('/sales-conversion')) {
+        setSelectedKeys(['dashboard:sales']);
+      } else if (path.includes('/project-command-room')) {
+        setSelectedKeys(['dashboard:project']);
+      } else {
+        setSelectedKeys(['dashboard:admin']);
+      }
+      setOpenKeys(['dashboard']);
+    } else if (path.includes('/dashboards')) {
+      setSelectedKeys(['dashboards']);
     } else if (path.includes('/alerts')) {
       setSelectedKeys(['alerts']);
     } else if (path.includes('/reports')) {
@@ -134,8 +147,17 @@ const SideMenu = () => {
     // Điều hướng dựa trên key của menu
     switch (e.key) {
       // Dashboard
-      case 'dashboard':
+      case 'dashboards':
+        navigate('/dashboards');
+        break;
+      case 'dashboard:admin':
         navigate('/dashboard');
+        break;
+      case 'dashboard:sales':
+        navigate('/dashboard/sales-conversion');
+        break;
+      case 'dashboard:project':
+        navigate('/dashboard/project-command-room');
         break;
         
       // F1 - Đánh giá năng lực
@@ -238,6 +260,18 @@ const SideMenu = () => {
           className="side-menu-items"
           style={{ width: '100%' }}
         >
+          <Menu.Item key="dashboards" icon={<DashboardOutlined />}>Tất cả Dashboard</Menu.Item>
+          
+          <SubMenu
+            key="dashboard"
+            title="DASHBOARD"
+            icon={<BarChartOutlined />}
+          >
+            <Menu.Item key="dashboard:admin" icon={<DashboardOutlined />}>Admin Dashboard</Menu.Item>
+            <Menu.Item key="dashboard:sales" icon={<LineChartOutlined />}>Sales Conversion</Menu.Item>
+            <Menu.Item key="dashboard:project" icon={<ProjectOutlined />}>Project Command Room</Menu.Item>
+          </SubMenu>
+          
           <Menu.Item key="my:surveys" icon={<FormOutlined />}>Khảo sát của tôi</Menu.Item>
           <Menu.Item key="my:classes" icon={<CalendarOutlined />}>Lớp học của tôi</Menu.Item>
           <Menu.Item key="my:assessments" icon={<TrophyOutlined />}>Đánh giá của tôi</Menu.Item>
@@ -258,6 +292,18 @@ const SideMenu = () => {
           className="side-menu-items"
           style={{ width: '100%' }}
         >
+          <Menu.Item key="dashboards" icon={<DashboardOutlined />}>Tất cả Dashboard</Menu.Item>
+          
+          <SubMenu
+            key="dashboard"
+            title="DASHBOARD"
+            icon={<BarChartOutlined />}
+          >
+            <Menu.Item key="dashboard:admin" icon={<DashboardOutlined />}>Admin Dashboard</Menu.Item>
+            <Menu.Item key="dashboard:sales" icon={<LineChartOutlined />}>Sales Conversion</Menu.Item>
+            <Menu.Item key="dashboard:project" icon={<ProjectOutlined />}>Project Command Room</Menu.Item>
+          </SubMenu>
+          
           <SubMenu
             key="f1"
             title="ĐÁNH GIÁ NĂNG LỰC"
@@ -306,7 +352,17 @@ const SideMenu = () => {
           className="side-menu-items"
           style={{ width: '100%' }}
         >
-          <Menu.Item key="dashboard" icon={<DashboardOutlined />}>Dashboard</Menu.Item>
+          <Menu.Item key="dashboards" icon={<DashboardOutlined />}>Tất cả Dashboard</Menu.Item>
+          
+          <SubMenu
+            key="dashboard"
+            title="DASHBOARD"
+            icon={<BarChartOutlined />}
+          >
+            <Menu.Item key="dashboard:admin" icon={<DashboardOutlined />}>Admin Dashboard</Menu.Item>
+            <Menu.Item key="dashboard:sales" icon={<LineChartOutlined />}>Sales Conversion</Menu.Item>
+            <Menu.Item key="dashboard:project" icon={<ProjectOutlined />}>Project Command Room</Menu.Item>
+          </SubMenu>
           
           <SubMenu
             key="f1"
@@ -354,7 +410,7 @@ const SideMenu = () => {
     <div className="side-menu">
       <div 
         className="side-menu-logo"
-        onClick={() => navigate('/dashboard')}
+        onClick={() => navigate('/dashboards')}
         style={{ cursor: 'pointer' }}
         title="Về trang Dashboard"
       >

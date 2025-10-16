@@ -1,0 +1,360 @@
+.project-command-room-dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  padding: 24px;
+  color: #fff;
+}
+
+.dashboard-header {
+  margin-bottom: 32px;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.project-icon {
+  margin-right: 24px;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.header-text h1 {
+  color: #fff !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-right {
+  text-align: right;
+}
+
+.current-time {
+  font-size: 32px;
+  font-weight: 700;
+  color: #10B981;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.time-label {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.metrics-row {
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card.primary {
+  border-top: 4px solid #3B82F6;
+}
+
+.metric-card.success {
+  border-top: 4px solid #10B981;
+}
+
+.metric-card.warning {
+  border-top: 4px solid #F59E0B;
+}
+
+.metric-card.info {
+  border-top: 4px solid #8B5CF6;
+}
+
+.metric-content {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.metric-icon {
+  margin-right: 16px;
+  padding: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+}
+
+.metric-info {
+  flex: 1;
+}
+
+.metric-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.main-content-row {
+  margin-bottom: 32px;
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.chart-card .ant-card-head {
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+}
+
+.chart-card .ant-card-head-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.chart-card .ant-card-body {
+  padding: 24px;
+}
+
+.gauge-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.gauge-card .ant-card-head {
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+}
+
+.gauge-card .ant-card-head-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.gauge-container {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.gauge-label {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.resource-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.resource-card .ant-card-head {
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+}
+
+.resource-card .ant-card-head-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.resource-list {
+  padding: 8px 0;
+}
+
+.resource-item {
+  margin-bottom: 20px;
+}
+
+.resource-item:last-child {
+  margin-bottom: 0;
+}
+
+.resource-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.resource-name {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.resource-percentage {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.pipeline-row {
+  margin-bottom: 32px;
+}
+
+.pipeline-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.pipeline-card .ant-card-head {
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+}
+
+.pipeline-card .ant-card-head-title {
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.pipeline-card .ant-card-body {
+  padding: 24px;
+}
+
+.pipeline-group {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.pipeline-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pipeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pipeline-name {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.pipeline-progress {
+  margin-bottom: 12px;
+}
+
+.pipeline-stats {
+  text-align: center;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .header-right {
+    margin-top: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-command-room-dashboard {
+    padding: 16px;
+  }
+  
+  .dashboard-header {
+    padding: 24px 16px;
+  }
+  
+  .header-text h1 {
+    font-size: 28px !important;
+  }
+  
+  .current-time {
+    font-size: 24px;
+  }
+  
+  .metric-number {
+    font-size: 24px;
+  }
+  
+  .chart-card,
+  .gauge-card,
+  .resource-card,
+  .pipeline-card {
+    margin-bottom: 16px;
+  }
+  
+  .pipeline-group {
+    padding: 16px;
+  }
+}
+
+/* Custom Ant Design overrides */
+.ant-progress-bg {
+  border-radius: 4px !important;
+}
+
+.ant-badge-status-text {
+  color: #64748b !important;
+  font-size: 12px !important;
+}

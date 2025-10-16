@@ -1,0 +1,126 @@
+.agent-list {
+  height: 100%;
+}
+
+.agent-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.agent-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  border: 1px solid var(--glass-border);
+}
+
+.agent-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.agent-avatar-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.agent-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.agent-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.agent-percent {
+  font-size: 32px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-title);
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.agent-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.agent-name {
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-title);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.agent-delta {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.agent-sparkline {
+  flex-shrink: 0;
+  width: 120px;
+  height: 32px;
+}
+
+.agent-sparkline .echarts-for-react {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .agent-item {
+    gap: 12px;
+  }
+  
+  .agent-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+  
+  .agent-name {
+    font-size: 14px;
+  }
+  
+  .agent-percent {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
+  .agent-sparkline {
+    width: 50px;
+    height: 20px;
+  }
+}
