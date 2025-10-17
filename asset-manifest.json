@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/thadico_mockup/static/css/main.71a949e2.css",
-    "main.js": "/thadico_mockup/static/js/main.548050b1.js",
+    "main.css": "/thadico_mockup/static/css/main.bcaf57bc.css",
+    "main.js": "/thadico_mockup/static/js/main.3f09f5d1.js",
     "index.html": "/thadico_mockup/index.html"
   },
   "entrypoints": [
-    "static/css/main.71a949e2.css",
-    "static/js/main.548050b1.js"
+    "static/css/main.bcaf57bc.css",
+    "static/js/main.3f09f5d1.js"
   ]
 }
